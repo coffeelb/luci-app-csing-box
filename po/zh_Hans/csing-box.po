@@ -1,0 +1,1655 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:206
+msgid "%s log"
+msgstr "%s 日志"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1456
+msgid "%s nodes removed"
+msgstr "移除了 %s 个节点"
+
+#: htdocs/luci-static/resources/csingbox.js:279
+msgid "/etc/csingbox/certs/..., /etc/acme/..., /etc/ssl/..."
+msgstr "/etc/csingbox/certs/...，/etc/acme/...，/etc/ssl/..."
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1086
+#: htdocs/luci-static/resources/view/csingbox/node.js:1105
+#: htdocs/luci-static/resources/view/csingbox/setting.js:768
+#: htdocs/luci-static/resources/view/csingbox/setting.js:787
+msgid "<strong>Save your configuration before uploading files!</strong>"
+msgstr "<strong>上传文件前请先保存配置！</strong>"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:670
+msgid "Accept any if empty."
+msgstr "留空则不校验。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:1399
+msgid "Access Control"
+msgstr "访问控制"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:396
+msgid "Add a node"
+msgstr "新增节点"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:957
+#: htdocs/luci-static/resources/view/csingbox/node.js:448
+msgid "Address"
+msgstr "地址"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:266
+msgid "All ports"
+msgstr "所有端口"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1040
+#: htdocs/luci-static/resources/view/csingbox/node.js:1382
+msgid "Allow insecure"
+msgstr "允许不安全连接"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1041
+msgid "Allow insecure connection at TLS client."
+msgstr "允许 TLS 客户端侧的不安全连接。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1383
+msgid "Allow insecure connection by default when add nodes from subscriptions."
+msgstr "从订阅获取节点时，默认允许不安全连接。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:874
+#: htdocs/luci-static/resources/view/csingbox/setting.js:482
+msgid "Allowed payload size is in the request."
+msgstr "请求中允许的载荷大小。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:95
+msgid "Already at the latest version."
+msgstr "已是最新版本。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:92
+msgid "Already in updating."
+msgstr "已在更新中。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:742
+#: htdocs/luci-static/resources/view/csingbox/setting.js:391
+msgid "Alter ID"
+msgstr "额外 ID"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1419
+msgid "An error occurred during updating subscriptions: %s"
+msgstr "更新订阅时发生错误：%s"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:429
+#: htdocs/luci-static/resources/view/csingbox/setting.js:176
+msgid "AnyTLS"
+msgstr "AnyTLS"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1072
+msgid "Append self-signed certificate"
+msgstr "追加自签名证书"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:407
+msgid "Applied"
+msgstr "已应用"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:400
+#: htdocs/luci-static/resources/view/csingbox/node.js:410
+msgid "Apply"
+msgstr "应用"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:18
+msgid "Are you sure to allow insecure?"
+msgstr "确定要允许不安全连接吗？"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:766
+msgid "Authenticated length"
+msgstr "认证长度"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:561
+#: htdocs/luci-static/resources/view/csingbox/setting.js:282
+msgid "Authentication payload"
+msgstr "认证载荷"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:554
+#: htdocs/luci-static/resources/view/csingbox/setting.js:275
+msgid "Authentication type"
+msgstr "认证类型"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1335
+msgid "Auto update"
+msgstr "自动更新"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1336
+msgid "Auto update subscriptions and geodata."
+msgstr "自动更新订阅和地理数据。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:702
+msgid "BBR"
+msgstr "BBR"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:235
+msgid "BaiDu"
+msgstr "百度"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:556
+#: htdocs/luci-static/resources/view/csingbox/setting.js:277
+msgid "Base64"
+msgstr "Base64"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1369
+msgid "Blacklist mode"
+msgstr "黑名单模式"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:253
+msgid "Bypass mainland China"
+msgstr "大陆白名单"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:700
+msgid "CUBIC"
+msgstr "CUBIC"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1239
+msgid "Cancel"
+msgstr "取消"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1077
+#: htdocs/luci-static/resources/view/csingbox/setting.js:756
+msgid "Certificate path"
+msgstr "证书路径"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:57
+msgid "Check"
+msgstr "检查"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:105
+msgid "Check update"
+msgstr "检查更新"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:244
+msgid "China IPv4 list version"
+msgstr "国内 IPv4 库版本"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:248
+msgid "China IPv6 list version"
+msgstr "国内 IPv6 库版本"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1064
+#: htdocs/luci-static/resources/view/csingbox/setting.js:586
+msgid "Cipher suites"
+msgstr "密码套件"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:214
+msgid "Clean log"
+msgstr "清空日志"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:664
+msgid "Client version"
+msgstr "客户端版本"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:114
+#: htdocs/luci-static/resources/view/csingbox/setting.js:142
+#: htdocs/luci-static/resources/view/csingbox/status.js:176
+msgid "Collecting data..."
+msgstr "正在收集数据中..."
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:698
+#: htdocs/luci-static/resources/view/csingbox/setting.js:354
+msgid "Congestion control algorithm"
+msgstr "拥塞控制算法"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:232
+msgid "Connection check"
+msgstr "连接检查"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:136
+msgid "Debug"
+msgstr "调试"
+
+#: htdocs/luci-static/resources/csingbox.js:17
+#: htdocs/luci-static/resources/view/csingbox/client.js:433
+#: htdocs/luci-static/resources/view/csingbox/client.js:603
+#: htdocs/luci-static/resources/view/csingbox/client.js:755
+#: htdocs/luci-static/resources/view/csingbox/client.js:1083
+#: htdocs/luci-static/resources/view/csingbox/client.js:1381
+#: htdocs/luci-static/resources/view/csingbox/node.js:710
+msgid "Default"
+msgstr "默认"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1389
+msgid "Default packet encoding"
+msgstr "默认包封装格式"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:364
+#: htdocs/luci-static/resources/view/csingbox/client.js:466
+#: htdocs/luci-static/resources/view/csingbox/client.js:684
+#: htdocs/luci-static/resources/view/csingbox/client.js:1033
+#: htdocs/luci-static/resources/view/csingbox/client.js:1382
+#: htdocs/luci-static/resources/view/csingbox/node.js:428
+msgid "Direct"
+msgstr "直连"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:123
+#: htdocs/luci-static/resources/view/csingbox/client.js:151
+#: htdocs/luci-static/resources/view/csingbox/client.js:1422
+#: htdocs/luci-static/resources/view/csingbox/node.js:499
+#: htdocs/luci-static/resources/view/csingbox/node.js:555
+#: htdocs/luci-static/resources/view/csingbox/node.js:568
+#: htdocs/luci-static/resources/view/csingbox/node.js:1115
+#: htdocs/luci-static/resources/view/csingbox/node.js:1368
+#: htdocs/luci-static/resources/view/csingbox/setting.js:276
+#: htdocs/luci-static/resources/view/csingbox/setting.js:289
+msgid "Disable"
+msgstr "禁用"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:605
+#: htdocs/luci-static/resources/view/csingbox/setting.js:321
+msgid "Disable Path MTU discovery"
+msgstr "禁用路径 MTU 探测"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:606
+#: htdocs/luci-static/resources/view/csingbox/setting.js:322
+msgid ""
+"Disables Path MTU Discovery (RFC 8899). Packets will then be at most 1252 "
+"(IPv4) / 1232 (IPv6) bytes in size."
+msgstr ""
+"禁用路径 MTU 发现 (RFC 8899)。 数据包的大小最多为 1252 (IPv4) / 1232 (IPv6) "
+"字节。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:989
+#: htdocs/luci-static/resources/view/csingbox/setting.js:517
+msgid "Download bandwidth"
+msgstr "下载带宽"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:990
+#: htdocs/luci-static/resources/view/csingbox/setting.js:518
+msgid "Download bandwidth in Mbps."
+msgstr "下载带宽（单位：Mbps）。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1375
+msgid ""
+"Drop/keep nodes that contain the specific keywords. <a target=\"_blank\" "
+"href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/"
+"Regular_Expressions\">Regex</a> is supported."
+msgstr ""
+"丢弃/保留 包含指定关键词的节点。支持<a target=\"_blank\" href=\"https://"
+"developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions\">"
+"正则表达式</a>。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1367
+msgid "Drop/keep specific nodes from subscriptions."
+msgstr "从订阅中 丢弃/保留 指定节点"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1094
+msgid ""
+"ECH (Encrypted Client Hello) is a TLS extension that allows a client to "
+"encrypt the first part of its ClientHello message."
+msgstr ""
+"ECH（Encrypted Client Hello）是一个 TLS 扩展，它允许客户端加密其 ClientHello "
+"信息的第一部分。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1109
+#: htdocs/luci-static/resources/view/csingbox/setting.js:835
+msgid "ECH config"
+msgstr "ECH 配置"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1098
+msgid "ECH config path"
+msgstr "ECH 配置路径"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:873
+#: htdocs/luci-static/resources/view/csingbox/setting.js:481
+msgid "Early data"
+msgstr "前置数据"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:880
+#: htdocs/luci-static/resources/view/csingbox/setting.js:488
+msgid "Early data header name"
+msgstr "前置数据标头"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:721
+#: htdocs/luci-static/resources/view/csingbox/setting.js:370
+msgid "Enable 0-RTT handshake"
+msgstr "启用 0-RTT 握手"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1093
+msgid "Enable ECH"
+msgstr "启用 ECH"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:984
+#: htdocs/luci-static/resources/view/csingbox/setting.js:512
+msgid "Enable TCP Brutal"
+msgstr "启用 TCP Brutal"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:985
+#: htdocs/luci-static/resources/view/csingbox/setting.js:513
+msgid "Enable TCP Brutal congestion control algorithm"
+msgstr "启用 TCP Brutal 拥塞控制算法。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1168
+#: htdocs/luci-static/resources/view/csingbox/setting.js:855
+msgid "Enable UDP fragmentation."
+msgstr "启用 UDP 分片。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:980
+#: htdocs/luci-static/resources/view/csingbox/setting.js:507
+msgid "Enable padding"
+msgstr "启用填充"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1172
+msgid ""
+"Enable the SUoT protocol, requires server support. Conflict with multiplex."
+msgstr "启用 SUoT 协议，需要服务端支持。与多路复用冲突。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:612
+#: htdocs/luci-static/resources/view/csingbox/node.js:748
+#: htdocs/luci-static/resources/view/csingbox/setting.js:338
+msgid "Encrypt method"
+msgstr "加密方式"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:139
+msgid "Error"
+msgstr "错误"
+
+#: htdocs/luci-static/resources/csingbox.js:237
+#: htdocs/luci-static/resources/csingbox.js:271
+#: htdocs/luci-static/resources/csingbox.js:279
+#: htdocs/luci-static/resources/csingbox.js:297
+#: htdocs/luci-static/resources/csingbox.js:306
+#: htdocs/luci-static/resources/csingbox.js:317
+#: htdocs/luci-static/resources/csingbox.js:326
+#: htdocs/luci-static/resources/csingbox.js:328
+#: htdocs/luci-static/resources/view/csingbox/client.js:195
+#: htdocs/luci-static/resources/view/csingbox/client.js:207
+#: htdocs/luci-static/resources/view/csingbox/client.js:211
+#: htdocs/luci-static/resources/view/csingbox/client.js:230
+#: htdocs/luci-static/resources/view/csingbox/client.js:241
+#: htdocs/luci-static/resources/view/csingbox/client.js:245
+#: htdocs/luci-static/resources/view/csingbox/client.js:274
+#: htdocs/luci-static/resources/view/csingbox/client.js:504
+#: htdocs/luci-static/resources/view/csingbox/client.js:518
+#: htdocs/luci-static/resources/view/csingbox/client.js:521
+#: htdocs/luci-static/resources/view/csingbox/client.js:1357
+#: htdocs/luci-static/resources/view/csingbox/client.js:1362
+#: htdocs/luci-static/resources/view/csingbox/client.js:1365
+#: htdocs/luci-static/resources/view/csingbox/client.js:1507
+#: htdocs/luci-static/resources/view/csingbox/client.js:1539
+#: htdocs/luci-static/resources/view/csingbox/node.js:488
+#: htdocs/luci-static/resources/view/csingbox/node.js:1131
+#: htdocs/luci-static/resources/view/csingbox/node.js:1302
+#: htdocs/luci-static/resources/view/csingbox/node.js:1356
+#: htdocs/luci-static/resources/view/csingbox/node.js:1359
+#: htdocs/luci-static/resources/view/csingbox/setting.js:235
+#: htdocs/luci-static/resources/view/csingbox/setting.js:618
+#: htdocs/luci-static/resources/view/csingbox/setting.js:620
+msgid "Expecting: %s"
+msgstr "请输入：%s"
+
+#: htdocs/luci-static/resources/csingbox.js:261
+msgid "Failed to upload %s, error: %s."
+msgstr "上传 %s 失败，错误：%s。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:140
+msgid "Fatal"
+msgstr "致命"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1374
+msgid "Filter keywords"
+msgstr "过滤关键词"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1366
+msgid "Filter nodes"
+msgstr "过滤节点"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:736
+#: htdocs/luci-static/resources/view/csingbox/setting.js:385
+msgid "Flow"
+msgstr "流控"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:842
+msgid "GET"
+msgstr "GET"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:256
+msgid "GFW list version"
+msgstr "GFW 域名列表版本"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:260
+msgid "GitHub token"
+msgstr "GitHub 令牌"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:256
+msgid "Global"
+msgstr "全局"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:759
+msgid "Global padding"
+msgstr "全局填充"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:238
+msgid "Google"
+msgstr "谷歌"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:620
+#: htdocs/luci-static/resources/view/csingbox/client.js:1108
+#: htdocs/luci-static/resources/view/csingbox/node.js:430
+#: htdocs/luci-static/resources/view/csingbox/node.js:777
+#: htdocs/luci-static/resources/view/csingbox/setting.js:177
+#: htdocs/luci-static/resources/view/csingbox/setting.js:403
+msgid "HTTP"
+msgstr "HTTP"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:778
+#: htdocs/luci-static/resources/view/csingbox/setting.js:404
+msgid "HTTPUpgrade"
+msgstr "HTTPUpgrade"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:727
+#: htdocs/luci-static/resources/view/csingbox/setting.js:376
+msgid "Heartbeat interval"
+msgstr "心跳间隔"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:55
+#: htdocs/luci-static/resources/view/csingbox/client.js:57
+#: htdocs/luci-static/resources/view/csingbox/client.js:101
+#: htdocs/luci-static/resources/view/csingbox/status.js:282
+#: root/usr/share/luci/menu.d/luci-app-csingbox.json:3
+msgid "Csing-box"
+msgstr "Csing-box"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:535
+msgid "Hop interval"
+msgstr "跳跃间隔"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:529
+msgid "Hopping port"
+msgstr "跳跃端口"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:826
+#: htdocs/luci-static/resources/view/csingbox/node.js:831
+#: htdocs/luci-static/resources/view/csingbox/node.js:865
+#: htdocs/luci-static/resources/view/csingbox/setting.js:437
+#: htdocs/luci-static/resources/view/csingbox/setting.js:442
+#: htdocs/luci-static/resources/view/csingbox/setting.js:473
+msgid "Host"
+msgstr "主机名"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:669
+msgid "Host key"
+msgstr "主机密钥"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:674
+msgid "Host key algorithms"
+msgstr "主机密钥算法"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:432
+#: htdocs/luci-static/resources/view/csingbox/setting.js:179
+msgid "Hysteria"
+msgstr "Hysteria"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:433
+#: htdocs/luci-static/resources/view/csingbox/setting.js:180
+msgid "Hysteria2"
+msgstr "Hysteria2"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:297
+msgid "IPv6 support"
+msgstr "IPv6 支持"
+
+msgid "Clash Panel Manual Routing"
+msgstr "Clash 面板手动分流"
+
+msgid "Clash panel"
+msgstr "Clash 面板"
+
+msgid "Enabled"
+msgstr "开启"
+
+msgid "Disabled"
+msgstr "关闭"
+
+msgid "Clash panel port"
+msgstr "Clash 面板端口"
+
+msgid "Clash panel secret"
+msgstr "Clash 面板密码"
+
+msgid "Regenerate Clash panel config file"
+msgstr "重新生成 Clash 面板配置文件"
+
+msgid "Regenerate config"
+msgstr "重新生成配置"
+
+msgid "This will overwrite manual modifications in sing-box-panel.json. Continue?"
+msgstr "这将覆盖 sing-box-panel.json 中的手动修改，是否继续？"
+
+msgid "Clash panel config file regenerated and service restarted."
+msgstr "Clash 面板配置文件已重新生成，服务已重启。"
+
+msgid "Failed to regenerate Clash panel config file."
+msgstr "Clash 面板配置文件重新生成失败。"
+
+msgid "Open Clash panel"
+msgstr "打开 Clash 面板"
+
+msgid "Open Clash panel (YACD)"
+msgstr "打开 Clash 面板（YACD）"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:506
+msgid "Idle session check interval"
+msgstr "空闲会话检查间隔"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:513
+msgid "Idle session check timeout"
+msgstr "空闲会话检查超时"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:553
+#: htdocs/luci-static/resources/view/csingbox/node.js:847
+#: htdocs/luci-static/resources/view/csingbox/setting.js:456
+msgid "Idle timeout"
+msgstr "空闲超时"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:819
+msgid ""
+"If enabled, the client transport sends keepalive pings even with no active "
+"connections."
+msgstr "如果启用，客户端传输即使没有活动连接也会发送 keepalive ping。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:804
+#: htdocs/luci-static/resources/view/csingbox/setting.js:425
+msgid ""
+"If the transport doesn't see any activity after a duration of this time (in "
+"seconds), it pings the client to check if the connection is still active."
+msgstr ""
+"如果传输在此时间段（单位：秒）后没有看到任何活动，它会向客户端发送 ping 请求"
+"以检查连接是否仍然活动。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1073
+msgid ""
+"If you have the root certificate, use this option instead of allowing "
+"insecure."
+msgstr "如果你拥有根证书，使用此选项而不是允许不安全连接。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1285
+msgid "Import"
+msgstr "导入"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1232
+#: htdocs/luci-static/resources/view/csingbox/node.js:1311
+#: htdocs/luci-static/resources/view/csingbox/node.js:1313
+msgid "Import share links"
+msgstr "导入分享链接"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:937
+msgid "In seconds. Disabled by default."
+msgstr "单位：秒。默认禁用。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:521
+msgid ""
+"In the check, at least the first <code>n</code> idle sessions are kept open."
+msgstr "在检查中，至少保持前 <code>n</code> 个空闲会话处于打开状态。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:514
+msgid ""
+"In the check, close sessions that have been idle for longer than this, in "
+"seconds."
+msgstr "在检查中，关闭空闲时间超过此值的会话（单位：秒）。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:137
+msgid "Info"
+msgstr "信息"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:507
+msgid "Interval checking for idle sessions, in seconds."
+msgstr "空闲会话检查间隔（单位：秒）。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:728
+#: htdocs/luci-static/resources/view/csingbox/setting.js:377
+msgid ""
+"Interval for sending heartbeat packets for keeping the connection alive (in "
+"seconds)."
+msgstr "发送心跳包以保持连接存活的时间间隔（单位：秒）。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:409
+#: htdocs/luci-static/resources/view/csingbox/client.js:585
+#: htdocs/luci-static/resources/view/csingbox/client.js:937
+#: htdocs/luci-static/resources/view/csingbox/client.js:1065
+#: htdocs/luci-static/resources/view/csingbox/client.js:1324
+#: htdocs/luci-static/resources/view/csingbox/node.js:422
+#: htdocs/luci-static/resources/view/csingbox/setting.js:160
+msgid "Label"
+msgstr "标签"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:743
+#: htdocs/luci-static/resources/view/csingbox/setting.js:392
+msgid ""
+"Legacy protocol support (VMess MD5 Authentication) is provided for "
+"compatibility purposes only, use of alterId > 1 is not recommended."
+msgstr ""
+"提供旧协议支持（VMess MD5 身份验证）仅出于兼容性目的，不建议使用 alterId > "
+"1。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:897
+msgid ""
+"List of IP (v4 or v6) addresses prefixes to be assigned to the interface."
+msgstr "分配给接口的 IP（v4 或 v6）地址前缀列表。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:132
+#: htdocs/luci-static/resources/view/csingbox/client.js:161
+#: htdocs/luci-static/resources/view/csingbox/client.js:497
+msgid "List of nodes to test."
+msgstr "要测试的节点列表。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1036
+#: htdocs/luci-static/resources/view/csingbox/setting.js:566
+msgid "List of supported application level protocols, in order of preference."
+msgstr "支持的应用层协议协商列表，按顺序排列。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:174
+msgid "Loading"
+msgstr "加载中"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:896
+msgid "Local address"
+msgstr "本地地址"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:191
+msgid "Log file does not exist."
+msgstr "日志文件不存在。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:184
+msgid "Log is empty."
+msgstr "日志为空。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:930
+msgid "MTU"
+msgstr "MTU"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:579
+#: htdocs/luci-static/resources/view/csingbox/setting.js:261
+msgid "Max download speed"
+msgstr "最大下载速度"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:580
+#: htdocs/luci-static/resources/view/csingbox/setting.js:262
+msgid "Max download speed in Mbps."
+msgstr "最大下载速度（Mbps）。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:586
+#: htdocs/luci-static/resources/view/csingbox/setting.js:268
+msgid "Max upload speed"
+msgstr "最大上传速度"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:587
+#: htdocs/luci-static/resources/view/csingbox/setting.js:269
+msgid "Max upload speed in Mbps."
+msgstr "最大上传速度（Mbps）。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1056
+#: htdocs/luci-static/resources/view/csingbox/setting.js:578
+msgid "Maximum TLS version"
+msgstr "最大 TLS 版本"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:961
+#: htdocs/luci-static/resources/view/csingbox/node.js:975
+msgid "Maximum connections"
+msgstr "最大连接数"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:972
+msgid "Maximum streams"
+msgstr "最大流数量"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:768
+#: htdocs/luci-static/resources/view/csingbox/client.js:776
+#: htdocs/luci-static/resources/view/csingbox/client.js:1202
+#: htdocs/luci-static/resources/view/csingbox/client.js:1211
+#: htdocs/luci-static/resources/view/csingbox/node.js:841
+#: htdocs/luci-static/resources/view/csingbox/setting.js:452
+msgid "Method"
+msgstr "方式"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1048
+#: htdocs/luci-static/resources/view/csingbox/setting.js:570
+msgid "Minimum TLS version"
+msgstr "最低 TLS 版本"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:520
+msgid "Minimum idle sessions"
+msgstr "最小空闲会话数"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:967
+msgid ""
+"Minimum multiplexed streams in a connection before opening a new connection."
+msgstr "在打开新连接之前，连接中的最小多路复用流数量。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:966
+#: htdocs/luci-static/resources/view/csingbox/node.js:975
+msgid "Minimum streams"
+msgstr "最小流数量"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1164
+#: htdocs/luci-static/resources/view/csingbox/setting.js:850
+msgid "MultiPath TCP"
+msgstr "多路径 TCP（MPTCP）"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:944
+#: htdocs/luci-static/resources/view/csingbox/setting.js:500
+msgid "Multiplex"
+msgstr "多路复用"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:952
+msgid "Multiplex protocol."
+msgstr "多路复用协议。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1395
+msgid "NOTE: Save current settings before updating subscriptions."
+msgstr "注意：更新订阅前先保存当前配置。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:711
+msgid "Native"
+msgstr "原生"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:701
+msgid "New Reno"
+msgstr "New Reno"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:774
+#: htdocs/luci-static/resources/view/csingbox/node.js:791
+#: htdocs/luci-static/resources/view/csingbox/setting.js:400
+#: htdocs/luci-static/resources/view/csingbox/setting.js:417
+msgid "No TCP transport, plain HTTP is merged into the HTTP transport."
+msgstr "无 TCP 传输层, 纯 HTTP 已合并到 HTTP 传输层。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:789
+#: htdocs/luci-static/resources/view/csingbox/setting.js:415
+msgid "No additional encryption support: It's basically duplicate encryption."
+msgstr "无额外加密支持：它基本上是重复加密。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1412
+msgid "No subscription available"
+msgstr "无可用订阅"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1437
+msgid "No subscription node"
+msgstr "无订阅节点"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1271
+msgid "No valid share link found."
+msgstr "找不到有效分享链接。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:419
+#: htdocs/luci-static/resources/view/csingbox/node.js:396
+msgid "Node"
+msgstr "节点"
+
+#: root/usr/share/luci/menu.d/luci-app-csingbox.json:22
+msgid "Node Settings"
+msgstr "节点设置"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1217
+msgid "Nodes"
+msgstr "节点"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:994
+#: htdocs/luci-static/resources/view/csingbox/node.js:737
+#: htdocs/luci-static/resources/view/csingbox/node.js:775
+#: htdocs/luci-static/resources/view/csingbox/setting.js:386
+#: htdocs/luci-static/resources/view/csingbox/setting.js:401
+msgid "None"
+msgstr "无"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:573
+#: htdocs/luci-static/resources/view/csingbox/setting.js:294
+msgid "Obfuscate password"
+msgstr "混淆密码"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:567
+#: htdocs/luci-static/resources/view/csingbox/setting.js:288
+msgid "Obfuscate type"
+msgstr "混淆类型"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:843
+msgid "PUT"
+msgstr "PUT"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:886
+msgid "Packet encoding"
+msgstr "数据包编码"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:141
+msgid "Panic"
+msgstr "崩溃"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:464
+#: htdocs/luci-static/resources/view/csingbox/setting.js:210
+msgid "Password"
+msgstr "密码"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:967
+#: htdocs/luci-static/resources/view/csingbox/client.js:1346
+#: htdocs/luci-static/resources/view/csingbox/node.js:836
+#: htdocs/luci-static/resources/view/csingbox/node.js:869
+#: htdocs/luci-static/resources/view/csingbox/setting.js:447
+#: htdocs/luci-static/resources/view/csingbox/setting.js:477
+msgid "Path"
+msgstr "路径"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:911
+msgid "Peer pubkic key"
+msgstr "对端公钥"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:936
+msgid "Persistent keepalive interval"
+msgstr "持久 keepalive 间隔"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:855
+#: htdocs/luci-static/resources/view/csingbox/setting.js:464
+msgid "Ping timeout"
+msgstr "Ping 超时"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:630
+msgid "Plugin"
+msgstr "插件"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:637
+msgid "Plugin opts"
+msgstr "插件参数"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:848
+#: htdocs/luci-static/resources/view/csingbox/client.js:962
+#: htdocs/luci-static/resources/view/csingbox/client.js:1286
+#: htdocs/luci-static/resources/view/csingbox/node.js:453
+msgid "Port"
+msgstr "端口"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:536
+msgid "Port hopping interval in seconds."
+msgstr "端口跳跃间隔（单位：秒）。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:918
+msgid "Pre-shared key"
+msgstr "预共享密钥"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:678
+#: htdocs/luci-static/resources/view/csingbox/node.js:903
+msgid "Private key"
+msgstr "私钥"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:683
+msgid "Private key passphrase"
+msgstr "私钥指纹"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:615
+#: htdocs/luci-static/resources/view/csingbox/client.js:1104
+#: htdocs/luci-static/resources/view/csingbox/node.js:543
+#: htdocs/luci-static/resources/view/csingbox/node.js:951
+#: htdocs/luci-static/resources/view/csingbox/setting.js:250
+msgid "Protocol"
+msgstr "协议"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:767
+msgid "Protocol parameter. Enable length block encryption."
+msgstr "协议参数。启用长度块加密。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:760
+msgid ""
+"Protocol parameter. Will waste traffic randomly if enabled (enabled by "
+"default in v2ray and cannot be disabled)."
+msgstr "协议参数。 如启用会随机浪费流量（在 v2ray 中默认启用并且无法禁用）。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:1424
+msgid "Proxy all except listed"
+msgstr "仅允许列表外"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:1421
+msgid "Proxy filter mode"
+msgstr "代理过滤模式"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:1423
+msgid "Proxy listed only"
+msgstr "仅允许列表内"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:284
+msgid "Proxy mode"
+msgstr "代理模式"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:497
+msgid "Proxy protocol"
+msgstr "代理协议"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:621
+#: htdocs/luci-static/resources/view/csingbox/client.js:953
+#: htdocs/luci-static/resources/view/csingbox/client.js:1109
+#: htdocs/luci-static/resources/view/csingbox/node.js:712
+#: htdocs/luci-static/resources/view/csingbox/node.js:779
+#: htdocs/luci-static/resources/view/csingbox/setting.js:405
+msgid "QUIC"
+msgstr "QUIC"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:699
+#: htdocs/luci-static/resources/view/csingbox/setting.js:355
+msgid "QUIC congestion control algorithm."
+msgstr "QUIC 拥塞控制算法。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:599
+#: htdocs/luci-static/resources/view/csingbox/setting.js:307
+msgid "QUIC connection receive window"
+msgstr "QUIC 连接窗口"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:593
+#: htdocs/luci-static/resources/view/csingbox/setting.js:300
+msgid "QUIC stream receive window"
+msgstr "QUIC 流接收窗口"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1142
+#: htdocs/luci-static/resources/view/csingbox/setting.js:709
+msgid "REALITY"
+msgstr "REALITY"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1147
+#: htdocs/luci-static/resources/view/csingbox/setting.js:730
+msgid "REALITY public key"
+msgstr "REALITY 公钥"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1153
+#: htdocs/luci-static/resources/view/csingbox/setting.js:734
+msgid "REALITY short ID"
+msgstr "REALITY 标识符"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:665
+msgid "Random version will be used if empty."
+msgstr "如留空，则使用随机版本。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:285
+msgid "Redirect TCP"
+msgstr "Redirect TCP"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:287
+msgid "Redirect TCP + TProxy UDP"
+msgstr "Redirect TCP + TProxy UDP"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1434
+msgid "Remove %s nodes"
+msgstr "移除 %s 个节点"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1424
+msgid "Remove all nodes from subscriptions"
+msgstr "移除所有订阅节点"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:925
+msgid "Reserved field bytes"
+msgstr "保留字段字节"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:241
+msgid "Resources management"
+msgstr "资源管理"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:251
+msgid "Routing mode"
+msgstr "路由模式"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:623
+#: htdocs/luci-static/resources/view/csingbox/client.js:1111
+#: htdocs/luci-static/resources/view/csingbox/node.js:438
+msgid "SSH"
+msgstr "SSH"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1177
+msgid "SUoT version"
+msgstr "SUoT 版本"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:569
+#: htdocs/luci-static/resources/view/csingbox/setting.js:290
+msgid "Salamander"
+msgstr "Salamander"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:267
+#: htdocs/luci-static/resources/view/csingbox/status.js:273
+msgid "Save"
+msgstr "保存"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1397
+msgid "Save current settings"
+msgstr "保存当前设置"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1394
+msgid "Save subscriptions settings"
+msgstr "保存订阅设置"
+
+#: root/usr/share/luci/menu.d/luci-app-csingbox.json:38
+msgid "Service Status"
+msgstr "服务状态"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:436
+msgid "ShadowTLS"
+msgstr "ShadowTLS"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:644
+msgid "ShadowTLS version"
+msgstr "ShadowTLS 版本"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:435
+#: htdocs/luci-static/resources/view/csingbox/setting.js:184
+msgid "Shadowsocks"
+msgstr "Shadowsocks"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:437
+#: htdocs/luci-static/resources/view/csingbox/setting.js:185
+msgid "Socks"
+msgstr "Socks"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:654
+msgid "Socks version"
+msgstr "Socks 版本"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:655
+msgid "Socks4"
+msgstr "Socks4"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:656
+msgid "Socks4A"
+msgstr "Socks4A"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:657
+msgid "Socks5"
+msgstr "Socks5"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:557
+#: htdocs/luci-static/resources/view/csingbox/setting.js:278
+msgid "String"
+msgstr "字符串"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1322
+msgid "Sub (%s)"
+msgstr "订阅（%s）"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1349
+msgid "Subscription URL-s"
+msgstr "订阅地址"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1333
+msgid "Subscriptions"
+msgstr "订阅"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1273
+msgid "Successfully imported %s nodes of total %s."
+msgstr "成功导入 %s 个节点，共 %s 个。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:86
+msgid "Successfully updated."
+msgstr "更新成功。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1233
+#: htdocs/luci-static/resources/view/csingbox/node.js:1350
+msgid ""
+"Support Hysteria, Shadowsocks, Trojan, v2rayN (VMess), and XTLS (VLESS) "
+"online configuration delivery standard."
+msgstr ""
+"支持 Hysteria、Shadowsocks、Trojan、v2rayN（VMess）和 XTLS（VLESS）在线配置交"
+"付标准。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1161
+#: htdocs/luci-static/resources/view/csingbox/setting.js:845
+msgid "TCP fast open"
+msgstr "TCP 快速打开"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:625
+#: htdocs/luci-static/resources/view/csingbox/client.js:950
+#: htdocs/luci-static/resources/view/csingbox/client.js:1113
+#: htdocs/luci-static/resources/view/csingbox/node.js:1003
+#: htdocs/luci-static/resources/view/csingbox/setting.js:532
+msgid "TLS"
+msgstr "TLS"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1035
+#: htdocs/luci-static/resources/view/csingbox/setting.js:565
+msgid "TLS ALPN"
+msgstr "TLS ALPN"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:980
+#: htdocs/luci-static/resources/view/csingbox/node.js:1030
+#: htdocs/luci-static/resources/view/csingbox/setting.js:560
+msgid "TLS SNI"
+msgstr "TLS SNI"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:787
+#: htdocs/luci-static/resources/view/csingbox/setting.js:413
+msgid "TLS is not enforced. If TLS is not configured, plain HTTP 1.1 is used."
+msgstr "不强制执行 TLS。如未配置 TLS，将使用纯 HTTP 1.1。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:138
+#: htdocs/luci-static/resources/view/csingbox/client.js:167
+#: htdocs/luci-static/resources/view/csingbox/client.js:530
+msgid "Test interval"
+msgstr "测试间隔"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:144
+#: htdocs/luci-static/resources/view/csingbox/client.js:173
+#: htdocs/luci-static/resources/view/csingbox/client.js:546
+msgid "Test tolerance"
+msgstr "测试容差"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:600
+#: htdocs/luci-static/resources/view/csingbox/setting.js:308
+msgid "The QUIC connection-level flow control window for receiving data."
+msgstr "用于接收数据的 QUIC 连接级流控制窗口。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:594
+#: htdocs/luci-static/resources/view/csingbox/setting.js:301
+msgid "The QUIC stream-level flow control window for receiving data."
+msgstr "用于接收数据的 QUIC 流级流控制窗口。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1065
+#: htdocs/luci-static/resources/view/csingbox/setting.js:587
+msgid ""
+"The elliptic curves that will be used in an ECDHE handshake, in preference "
+"order. If empty, the default will be used."
+msgstr "将在 ECDHE 握手中使用的椭圆曲线，按优先顺序排列。留空使用默认值。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1057
+#: htdocs/luci-static/resources/view/csingbox/setting.js:579
+msgid "The maximum TLS version that is acceptable."
+msgstr "可接受的最高 TLS 版本。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1049
+#: htdocs/luci-static/resources/view/csingbox/setting.js:571
+msgid "The minimum TLS version that is acceptable."
+msgstr "可接受的最低 TLS 版本。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1099
+msgid ""
+"The path to the ECH config, in PEM format. If empty, load from DNS will be "
+"attempted."
+msgstr "PEM 格式的 ECH 配置路径。如果为空，将尝试从 DNS 加载。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1078
+msgid "The path to the server certificate, in PEM format."
+msgstr "服务端证书路径，需要 PEM 格式。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:139
+#: htdocs/luci-static/resources/view/csingbox/client.js:168
+#: htdocs/luci-static/resources/view/csingbox/client.js:531
+msgid "The test interval in seconds."
+msgstr "测试间隔时间（单位：秒）。"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:145
+#: htdocs/luci-static/resources/view/csingbox/client.js:174
+#: htdocs/luci-static/resources/view/csingbox/client.js:547
+msgid "The test tolerance in milliseconds."
+msgstr "测试容差时间（单位：毫秒）。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:807
+#: htdocs/luci-static/resources/view/csingbox/setting.js:465
+msgid ""
+"The timeout (in seconds) that after performing a keepalive check, the client "
+"will wait for activity. If no activity is detected, the connection will be "
+"closed."
+msgstr ""
+"经过一段时间（单位：秒）之后，客户端将执行 keepalive 检查并等待活动。如果没有"
+"检测到任何活动，则会关闭连接。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1043
+#: htdocs/luci-static/resources/view/csingbox/node.js:1385
+msgid ""
+"This is <strong>DANGEROUS</strong>, your traffic is almost like "
+"<strong>PLAIN TEXT</strong>! Use at your own risk!"
+msgstr ""
+"这是危险行为，您的流量将几乎等同于<strong>明文</strong>！使用风险自负！"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:717
+msgid ""
+"This is the TUIC port of the UDP over TCP protocol, designed to provide a "
+"QUIC stream based UDP relay mode that TUIC does not provide."
+msgstr ""
+"这是 TUIC 的 UDP over TCP 协议移植， 旨在提供 TUIC 不提供的基于 QUIC 流的 "
+"UDP 中继模式。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:135
+msgid "Trace"
+msgstr "跟踪"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:773
+#: htdocs/luci-static/resources/view/csingbox/setting.js:399
+msgid "Transport"
+msgstr "传输层"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:439
+#: htdocs/luci-static/resources/view/csingbox/setting.js:186
+msgid "Trojan"
+msgstr "Trojan"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:441
+#: htdocs/luci-static/resources/view/csingbox/setting.js:188
+msgid "Tuic"
+msgstr "Tuic"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:947
+#: htdocs/luci-static/resources/view/csingbox/client.js:1334
+#: htdocs/luci-static/resources/view/csingbox/node.js:427
+#: htdocs/luci-static/resources/view/csingbox/setting.js:175
+msgid "Type"
+msgstr "类型"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1167
+#: htdocs/luci-static/resources/view/csingbox/setting.js:854
+msgid "UDP Fragment"
+msgstr "UDP 分片"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1171
+msgid "UDP over TCP"
+msgstr "UDP over TCP"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:716
+msgid "UDP over stream"
+msgstr "UDP over stream"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:709
+msgid "UDP packet relay mode."
+msgstr "UDP 包中继模式。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:708
+msgid "UDP relay mode"
+msgstr "UDP 中继模式"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:124
+#: htdocs/luci-static/resources/view/csingbox/client.js:153
+#: htdocs/luci-static/resources/view/csingbox/client.js:421
+msgid "URLTest"
+msgstr "URLTest"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:131
+#: htdocs/luci-static/resources/view/csingbox/client.js:160
+#: htdocs/luci-static/resources/view/csingbox/client.js:496
+msgid "URLTest nodes"
+msgstr "URLTest 节点"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:690
+#: htdocs/luci-static/resources/view/csingbox/setting.js:346
+msgid "UUID"
+msgstr "UUID"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:98
+msgid "Unknown error."
+msgstr "未知错误。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:195
+msgid "Unknown error: %s"
+msgstr "未知错误：%s"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1135
+msgid "Unsupported fingerprint!"
+msgstr "不支持的指纹！"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1409
+msgid "Update %s subscriptions"
+msgstr "更新 %s 个订阅"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:89
+msgid "Update failed."
+msgstr "更新失败。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1404
+msgid "Update nodes from subscriptions"
+msgstr "从订阅更新节点"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1346
+msgid "Update subscriptions via proxy."
+msgstr "使用代理更新订阅。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1339
+msgid "Update time"
+msgstr "更新时间"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1345
+msgid "Update via proxy"
+msgstr "使用代理更新"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1104
+msgid "Upload ECH config"
+msgstr "上传 ECH 配置"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:995
+#: htdocs/luci-static/resources/view/csingbox/setting.js:523
+msgid "Upload bandwidth"
+msgstr "上传带宽"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:996
+#: htdocs/luci-static/resources/view/csingbox/setting.js:524
+msgid "Upload bandwidth in Mbps."
+msgstr "上传带宽（单位：Mbps）。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1085
+#: htdocs/luci-static/resources/view/csingbox/setting.js:767
+msgid "Upload certificate"
+msgstr "上传证书"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1088
+#: htdocs/luci-static/resources/view/csingbox/node.js:1107
+#: htdocs/luci-static/resources/view/csingbox/setting.js:770
+#: htdocs/luci-static/resources/view/csingbox/setting.js:789
+msgid "Upload..."
+msgstr "上传..."
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1031
+#: htdocs/luci-static/resources/view/csingbox/setting.js:561
+msgid ""
+"Used to verify the hostname on the returned certificates unless insecure is "
+"given."
+msgstr "用于验证返回证书上的主机名。如允许不安全连接，此配置无效。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1379
+msgid "User-Agent"
+msgstr "用户代理"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:458
+#: htdocs/luci-static/resources/view/csingbox/setting.js:203
+msgid "Username"
+msgstr "用户名"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:444
+#: htdocs/luci-static/resources/view/csingbox/setting.js:189
+msgid "VLESS"
+msgstr "VLESS"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:445
+#: htdocs/luci-static/resources/view/csingbox/setting.js:190
+msgid "VMess"
+msgstr "VMess"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:138
+msgid "Warn"
+msgstr "警告"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:780
+#: htdocs/luci-static/resources/view/csingbox/setting.js:406
+msgid "WebSocket"
+msgstr "WebSocket"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1370
+msgid "Whitelist mode"
+msgstr "白名单模式"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:443
+msgid "WireGuard"
+msgstr "WireGuard"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:912
+msgid "WireGuard peer public key."
+msgstr "WireGuard 对端公钥。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:919
+msgid "WireGuard pre-shared key."
+msgstr "WireGuard 预共享密钥。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:904
+msgid "WireGuard requires base64-encoded private keys."
+msgstr "WireGuard 要求 base64 编码的私钥。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:498
+msgid "Write proxy protocol in the connection header."
+msgstr "在连接头中写入代理协议。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:889
+#: htdocs/luci-static/resources/view/csingbox/node.js:1392
+msgid "Xudp (Xray-core)"
+msgstr "Xudp (Xray-core)"
+
+#: htdocs/luci-static/resources/csingbox.js:259
+msgid "Your %s was successfully uploaded. Size: %sB."
+msgstr "您的 %s 已成功上传。大小：%sB。"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1090
+#: htdocs/luci-static/resources/view/csingbox/setting.js:772
+msgid "certificate"
+msgstr "证书"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1050
+#: htdocs/luci-static/resources/view/csingbox/node.js:1058
+#: htdocs/luci-static/resources/view/csingbox/setting.js:572
+#: htdocs/luci-static/resources/view/csingbox/setting.js:580
+msgid "default"
+msgstr "默认"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:53
+msgid "failed"
+msgstr "失败"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:776
+#: htdocs/luci-static/resources/view/csingbox/setting.js:402
+msgid "gRPC"
+msgstr "gRPC"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:818
+msgid "gRPC permit without stream"
+msgstr "gRPC 允许无活动连接"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:813
+#: htdocs/luci-static/resources/view/csingbox/setting.js:430
+msgid "gRPC service name"
+msgstr "gRPC 服务名称"
+
+#: htdocs/luci-static/resources/csingbox.js:306
+#: htdocs/luci-static/resources/csingbox.js:326
+#: htdocs/luci-static/resources/view/csingbox/client.js:195
+#: htdocs/luci-static/resources/view/csingbox/client.js:230
+#: htdocs/luci-static/resources/view/csingbox/client.js:504
+#: htdocs/luci-static/resources/view/csingbox/client.js:1357
+#: htdocs/luci-static/resources/view/csingbox/node.js:488
+#: htdocs/luci-static/resources/view/csingbox/node.js:1131
+#: htdocs/luci-static/resources/view/csingbox/setting.js:235
+msgid "non-empty value"
+msgstr "非空值"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:631
+#: htdocs/luci-static/resources/view/csingbox/node.js:887
+#: htdocs/luci-static/resources/view/csingbox/node.js:1390
+msgid "none"
+msgstr "无"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:888
+#: htdocs/luci-static/resources/view/csingbox/node.js:1391
+msgid "packet addr (v2ray-core v5+)"
+msgstr "packet addr (v2ray-core v5+)"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:50
+msgid "passed"
+msgstr "通过"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1113
+msgid "uTLS fingerprint"
+msgstr "uTLS 指纹"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:1114
+msgid ""
+"uTLS is a fork of \"crypto/tls\", which provides ClientHello fingerprinting "
+"resistance."
+msgstr ""
+"uTLS 是 \"crypto/tls\" 的一个分支，拥有抵抗 ClientHello 指纹识别的能力。"
+
+#: htdocs/luci-static/resources/view/csingbox/status.js:59
+msgid "unchecked"
+msgstr "未检查"
+
+#: htdocs/luci-static/resources/csingbox.js:237
+#: htdocs/luci-static/resources/view/csingbox/node.js:1302
+msgid "unique UCI identifier"
+msgstr "独立 UCI 标识"
+
+#: htdocs/luci-static/resources/csingbox.js:317
+msgid "unique value"
+msgstr "独立值"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:500
+#: htdocs/luci-static/resources/view/csingbox/node.js:645
+#: htdocs/luci-static/resources/view/csingbox/node.js:1178
+msgid "v1"
+msgstr "v1"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:501
+#: htdocs/luci-static/resources/view/csingbox/node.js:646
+#: htdocs/luci-static/resources/view/csingbox/node.js:1179
+msgid "v2"
+msgstr "v2"
+
+#: htdocs/luci-static/resources/view/csingbox/node.js:647
+msgid "v3"
+msgstr "v3"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:518
+#: htdocs/luci-static/resources/view/csingbox/client.js:521
+#: htdocs/luci-static/resources/view/csingbox/client.js:1362
+#: htdocs/luci-static/resources/view/csingbox/client.js:1365
+#: htdocs/luci-static/resources/view/csingbox/node.js:1356
+#: htdocs/luci-static/resources/view/csingbox/node.js:1359
+msgid "valid URL"
+msgstr "有效网址"
+
+#: htdocs/luci-static/resources/csingbox.js:271
+msgid "valid base64 key with %d characters"
+msgstr "包含 %d 个字符的有效 base64 密钥"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:1507
+#: htdocs/luci-static/resources/view/csingbox/client.js:1539
+msgid "valid hostname"
+msgstr "有效主机名"
+
+#: htdocs/luci-static/resources/csingbox.js:297
+msgid "valid port range (port1:port2)"
+msgstr "有效端口范围（port1:port2）"
+
+#: htdocs/luci-static/resources/view/csingbox/client.js:274
+msgid "valid port value"
+msgstr "有效端口值"
+
+#: htdocs/luci-static/resources/csingbox.js:328
+msgid "valid uuid"
+msgstr "有效 uuid"
+
+#: htdocs/luci-static/resources/view/csingbox/setting.js
+msgid "Client control"
+msgstr "客户端控制"
+
+#: htdocs/luci-static/resources/view/csingbox/setting.js
+msgid "Direct MAC"
+msgstr "直连 MAC"
+
+#: htdocs/luci-static/resources/view/csingbox/setting.js
+msgid "Proxy MAC"
+msgstr "代理 MAC"
+
+msgid "Node selection"
+msgstr "节点选择"
+
+msgid "Remote DNS"
+msgstr "远程 DNS"
+
+msgid "Local DNS"
+msgstr "本地 DNS"
+
+msgid "Routing ports"
+msgstr "路由端口"
+
+msgid "Specify target ports to be proxied. Multiple ports must be separated by commas."
+msgstr "指定需要被代理的目标端口。多个端口必须用逗号隔开。"
+
+msgid "Common ports only (bypass P2P traffic)"
+msgstr "仅常用端口（绕过 P2P 流量）"
+
+msgid "Auto update rule files"
+msgstr "规则文件自动更新"
+
+msgid "Automatically fetch china_ip4, china_ip6, gfw_list rule files every Sunday at 03:00."
+msgstr "每周日 03:00 自动拉取 china_ip4、china_ip6、gfw_list 规则文件。"
+
+msgid "Basic settings"
+msgstr "基本设置"
+
+msgid "Lightweight build based on HomeProxy"
+msgstr "基于 HomeProxy 轻量化构建"
+
+msgid "Running status"
+msgstr "运行状态"
+
+msgid "Running"
+msgstr "运行中"
+
+msgid "Stopped"
+msgstr "已停用"
+
+msgid "Current node"
+msgstr "当前节点"
+
+msgid "Not selected"
+msgstr "未选择"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "sing-box core version"
+msgstr "sing-box 内核版本"
+
+msgid "Traffic from these MACs bypasses sing-box. You can select LAN DHCP clients from the dropdown."
+msgstr "命中这些 MAC 的客户端流量直接放行，不进入 sing-box，可下拉选择局域网 DHCP 客户端。"
+
+msgid "Traffic from these MACs is forced through sing-box. You can select LAN DHCP clients from the dropdown."
+msgstr "命中这些 MAC 的客户端流量强制进入 sing-box 走代理，可下拉选择局域网 DHCP 客户端。"
+
+msgid "Direct domain list (direct_list.txt)"
+msgstr "强制直连名单（direct_list.txt）"
+
+msgid "One domain per line. Takes priority over routing mode; matching traffic bypasses sing-box."
+msgstr "仅支持域名，一行一个。优先级高于路由模式，命中直接放行、不进 sing-box。"
+
+msgid "Proxy domain list (proxy_list.txt)"
+msgstr "强制代理名单（proxy_list.txt）"
+
+msgid "One domain per line. Takes priority over routing mode; matching traffic goes through proxy."
+msgstr "仅支持域名，一行一个。优先级高于路由模式，命中一律走代理。"
+
+msgid "Not found"
+msgstr "未找到"
+
+msgid "Refresh every %s seconds."
+msgstr "每 %s 秒刷新"
+
+msgid "Node management"
+msgstr "节点管理"
+
+msgid "Reload"
+msgstr "重载"
+
+msgid "GFWlist"
+msgstr "GFWlist"
+
+msgid "Service reloaded."
+msgstr "服务已重载。"
+
+msgid "Failed to reload service."
+msgstr "服务重载失败。"
+
+msgid "-- add MAC --"
+msgstr "-- 添加 MAC --"
+
+msgid "sing-box"
+msgstr "sing-box"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "A new config file will be generated based on the current page settings and overwrite the original file, be careful!"
+msgstr "会根据现在页面设置生成新的配置文件并覆盖原文件，慎重！"
+
+msgid "Port %s alrealy exists!"
+msgstr "端口 %s 已存在！"
+
+msgid "Proxy DNS, supports UDP, TCP, DoH, DoQ, DoT."
+msgstr "代理 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
+
+msgid "Domestic DNS, supports UDP, TCP, DoH, DoQ, DoT."
+msgstr "国内 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
+
+msgid "When set to Clash Panel Manual Routing, you can manually edit the corresponding config file (/etc/csingbox/sing-box-panel.json) for routing."
+msgstr "设置为 Clash 面板手动分流 后可手动编辑对应的配置文件(/etc/csingbox/sing-box-panel.json)分流。"

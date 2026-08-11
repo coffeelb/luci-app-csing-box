@@ -1,0 +1,40 @@
+{
+	"admin/services/csingbox": {
+		"title": "Csing-box",
+		"order": 10,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-csing-box" ],
+			"uci": { "csingbox": true }
+		}
+	},
+	"admin/services/csingbox/setting": {
+		"title": "Settings",
+		"order": 10,
+		"action": {
+			"type": "view",
+			"path": "csingbox/setting"
+		},
+		"i18n": "csing-box"
+	},
+	"admin/services/csingbox/node": {
+		"title": "Node Settings",
+		"order": 15,
+		"action": {
+			"type": "view",
+			"path": "csingbox/node"
+		},
+		"i18n": "csing-box"
+	},
+	"admin/services/csingbox/status": {
+		"title": "Service Status",
+		"order": 20,
+		"action": {
+			"type": "view",
+			"path": "csingbox/status"
+		},
+		"i18n": "csing-box"
+	}
+}

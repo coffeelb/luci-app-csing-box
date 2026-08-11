@@ -1,0 +1,380 @@
+#!/usr/bin/utpl -S
+
+{%-
+import { readfile } from 'fs';
+import { cursor } from 'uci';
+import { isEmpty } from '/etc/csingbox/scripts/csingbox.uc';
+
+const fw4 = require('fw4');
+
+function array_to_nftarr(array) {
+	if (type(array) !== 'array')
+		return null;
+
+	return `{ ${join(', ', uniq(array))} }`;
+}
+
+function resolve_mark(str) {
+	if (isEmpty(str))
+		return null;
+
+	let mark = fw4.parse_mark(str);
+	if (isEmpty(mark))
+		return null;
+
+	if (mark.mask === 0xffffffff)
+		return fw4.hex(mark.mark);
+	else if (mark.mark === 0)
+		return `mark and ${fw4.hex(~mark.mask & 0xffffffff)}`;
+	else if (mark.mark === mark.mask)
+		return `mark or ${fw4.hex(mark.mark)}`;
+	else if (mark.mask === 0)
+		return `mark xor ${fw4.hex(mark.mark)}`;
+	else
+		return `mark and ${fw4.hex(~mark.mask & 0xffffffff)} xor ${fw4.hex(mark.mark)}`;
+}
+
+/* Misc config */
+const resources_dir = '/etc/csingbox/resources';
+
+/* UCI config start */
+const cfgname = 'csingbox';
+const uci = cursor();
+uci.load(cfgname);
+
+const routing_mode = uci.get(cfgname, 'config', 'routing_mode') || 'bypass_mainland_china';
+const china_dns_server = uci.get(cfgname, 'config', 'china_dns_server');
+
+let routing_port = uci.get(cfgname, 'config', 'routing_port');
+if (routing_port === 'common')
+	routing_port = uci.get(cfgname, 'infra', 'common_port') || '22,53,80,143,443,465,587,853,873,993,995,8080,8443,9418';
+
+const proxy_mode = uci.get(cfgname, 'config', 'proxy_mode') || 'redirect_tproxy',
+      ipv6_support = uci.get(cfgname, 'config', 'ipv6_support') || '0';
+
+let self_mark, redirect_port, tproxy_port, tproxy_mark;
+
+if (match(proxy_mode, /redirect/)) {
+	self_mark = uci.get(cfgname, 'infra', 'self_mark') || '200';
+	redirect_port = uci.get(cfgname, 'infra', 'redirect_port') || '6331';
+}
+if (match(proxy_mode, /tproxy/)) {
+	tproxy_port = uci.get(cfgname, 'infra', 'tproxy_port') || '6332';
+	tproxy_mark = resolve_mark(uci.get(cfgname, 'infra', 'tproxy_mark') || '201');
+}
+
+const control_options = [
+	"lan_proxy_mode",
+	"lan_direct_mac_addrs",
+	"lan_proxy_mac_addrs",
+	"wan_proxy_ipv4_ips", "wan_proxy_ipv6_ips"
+];
+const control_info = {};
+
+for (let i in control_options)
+	control_info[i] = uci.get(cfgname, 'control', i);
+
+const dns_redirect = uci.get(cfgname, 'infra', 'dns_redirect') || '1';
+const dns_hijacked = uci.get('dhcp', '@dnsmasq[0]', 'dns_redirect') || '0',
+      dns_port = uci.get('dhcp', '@dnsmasq[0]', 'port') || '53';
+/* UCI config end */
+-%}
+
+{# Reserved addresses -#}
+set csingbox_local_addr_v4 {
+	type ipv4_addr
+	flags interval
+	auto-merge
+	elements = {
+		0.0.0.0/8,
+		10.0.0.0/8,
+		100.64.0.0/10,
+		127.0.0.0/8,
+		169.254.0.0/16,
+		172.16.0.0/12,
+		192.0.0.0/24,
+		192.0.2.0/24,
+		192.31.196.0/24,
+		192.52.193.0/24,
+		192.88.99.0/24,
+		192.168.0.0/16,
+		192.175.48.0/24,
+		198.18.0.0/15,
+		198.51.100.0/24,
+		203.0.113.0/24,
+		224.0.0.0/4,
+		240.0.0.0/4
+	}
+}
+{% if (ipv6_support === '1'): %}
+set csingbox_local_addr_v6 {
+	type ipv6_addr
+	flags interval
+	auto-merge
+	elements = {
+		::/128,
+		::1/128,
+		::ffff:0:0/96,
+		100::/64,
+		64:ff9b::/96,
+		2001::/32,
+		2001:10::/28,
+		2001:20::/28,
+		2001:db8::/28,
+		2002::/16,
+		fc00::/7,
+		fe80::/10,
+		ff00::/8
+	}
+}
+{% endif %}
+
+{% if (routing_mode === 'gfwlist'): %}
+set csingbox_gfw_list_v4 {
+	type ipv4_addr
+	flags interval
+	auto-merge
+}
+{% if (ipv6_support === '1'): %}
+set csingbox_gfw_list_v6 {
+	type ipv6_addr
+	flags interval
+	auto-merge
+}
+{% endif /* ipv6_support */ %}
+{% elif (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel'): %}
+set csingbox_mainland_addr_v4 {
+	type ipv4_addr
+	flags interval
+	auto-merge
+	elements = {
+		{% for (let cnip4 in split(trim(readfile(resources_dir + '/china_ip4.txt')), /[\r\n]/)): %}
+		{{ cnip4 }},
+		{% endfor %}
+	}
+}
+{% if ((ipv6_support === '1') || china_dns_server): %}
+set csingbox_mainland_addr_v6 {
+	type ipv6_addr
+	flags interval
+	auto-merge
+	elements = {
+		{% for (let cnip6 in split(trim(readfile(resources_dir + '/china_ip6.txt')), /[\r\n]/)): %}
+		{{ cnip6 }},
+		{% endfor %}
+	}
+}
+{% endif /* ipv6_support */ %}
+{% endif /* routing_mode */ %}
+
+{# WAN ACL addresses #}
+set csingbox_wan_proxy_addr_v4 {
+	type ipv4_addr
+	flags interval
+	auto-merge
+{% if (control_info.wan_proxy_ipv4_ips): %}
+	elements = { {{ join(', ', control_info.wan_proxy_ipv4_ips) }} }
+{% endif %}
+}
+
+{% if (ipv6_support === '1'): %}
+set csingbox_wan_proxy_addr_v6 {
+	type ipv6_addr
+	flags interval
+	auto-merge
+{% if (control_info.wan_proxy_ipv6_ips): %}
+	elements = { {{ join(', ', control_info.wan_proxy_ipv6_ips) }} }
+{% endif /* wan_proxy_ipv6_ips*/ %}
+}
+{% endif /* ipv6_support */ %}
+
+{% if (routing_port): %}
+set csingbox_routing_port {
+	type inet_service
+	flags interval
+	auto-merge
+	elements = { {{ join(', ', split(routing_port, ',')) }} }
+}
+{% endif %}
+
+{# DNS hijack & TCP redirect #}
+chain dstnat {
+{% if ((dns_redirect === '1') && (dns_hijacked !== '1')): %}
+	meta nfproto { ipv4, ipv6 } udp dport 53 counter redirect to :{{ dns_port }} comment "!{{ cfgname }}: DNS hijack"
+{% endif /* dns_hijacked */ %}
+{% if (match(proxy_mode, /redirect/)): %}
+	meta nfproto { {{ (ipv6_support === '1') ? 'ipv4, ipv6' : 'ipv4' }} } meta l4proto tcp jump csingbox_redirect_lanac
+{% endif /* proxy_mode */ %}
+}
+
+{# TCP redirect #}
+{% if (match(proxy_mode, /redirect/)): %}
+chain csingbox_redirect_proxy {
+	meta l4proto tcp counter redirect to :{{ redirect_port }}
+}
+
+chain csingbox_redirect_proxy_port {
+	{% if (routing_port): %}
+	tcp dport != @csingbox_routing_port counter return
+	{% endif %}
+	goto csingbox_redirect_proxy
+}
+
+chain csingbox_redirect_lanac {
+	meta mark {{ self_mark }} counter return
+
+	{% if (control_info.lan_proxy_mode === 'listed_only'): %}
+	{% if (!isEmpty(control_info.lan_proxy_mac_addrs)): %}
+	ether saddr {{ array_to_nftarr(control_info.lan_proxy_mac_addrs) }} counter goto csingbox_redirect
+	{% endif /* lan_proxy_mac_addrs */ %}
+	{% elif (control_info.lan_proxy_mode === 'except_listed'): %}
+	{% if (!isEmpty(control_info.lan_direct_mac_addrs)): %}
+	ether saddr {{ array_to_nftarr(control_info.lan_direct_mac_addrs) }} counter return
+	{% endif /* lan_direct_mac_addrs */ %}
+	{% endif /* lan_proxy_mode */ %}
+
+	{% if (control_info.lan_proxy_mode !== 'listed_only'): %}
+	counter goto csingbox_redirect
+	{% endif %}
+}
+
+chain csingbox_redirect {
+	meta mark {{ self_mark }} counter return
+
+	ip daddr @csingbox_wan_proxy_addr_v4 counter goto csingbox_redirect_proxy_port
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_wan_proxy_addr_v6 counter goto csingbox_redirect_proxy_port
+	{% endif %}
+
+	ip daddr @csingbox_local_addr_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_local_addr_v6 counter return
+	{% endif %}
+
+	{% if (routing_mode === 'gfwlist'): %}
+	ip daddr != @csingbox_gfw_list_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr != @csingbox_gfw_list_v6 counter return
+	{% endif /* ipv6_support */ %}
+	udp dport { 80, 443 } counter reject comment "!{{ cfgname }}: Fuck you QUIC"
+	{% elif (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel'): %}
+	ip daddr @csingbox_mainland_addr_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_mainland_addr_v6 counter return
+	{% endif /* ipv6_support */ %}
+	udp dport { 80, 443 } counter reject comment "!{{ cfgname }}: Fuck you QUIC"
+	{% endif /* routing_mode */ %}
+
+	counter goto csingbox_redirect_proxy_port
+}
+
+chain csingbox_output_redir {
+	type nat hook output priority filter -105; policy accept
+	meta nfproto { {{ (ipv6_support === '1') ? 'ipv4, ipv6' : 'ipv4' }} } meta l4proto tcp jump csingbox_redirect
+}
+{% endif %}
+
+{# UDP tproxy #}
+{% if (match(proxy_mode, /tproxy/)): %}
+chain csingbox_mangle_tproxy {
+	meta l4proto udp meta mark set {{ tproxy_mark }} tproxy ip to 127.0.0.1:{{ tproxy_port }} counter accept
+	{% if (ipv6_support === '1'): %}
+	meta l4proto udp meta mark set {{ tproxy_mark }} tproxy ip6 to [::1]:{{ tproxy_port }} counter accept
+	{% endif %}
+}
+
+chain csingbox_mangle_tproxy_port {
+	{% if (routing_port): %}
+	udp dport != @csingbox_routing_port counter return
+	{% endif %}
+	goto csingbox_mangle_tproxy
+}
+
+chain csingbox_mangle_mark {
+	{% if (routing_port): %}
+	udp dport != @csingbox_routing_port counter return
+	{% endif %}
+	meta l4proto udp meta mark set {{ tproxy_mark }} counter accept
+}
+
+chain csingbox_mangle_lanac {
+	meta iifname != lo udp dport 53 counter return
+	meta mark {{ self_mark }} counter return
+
+	{% if (control_info.lan_proxy_mode === 'listed_only'): %}
+	{% if (!isEmpty(control_info.lan_proxy_mac_addrs)): %}
+	ether saddr {{ array_to_nftarr(control_info.lan_proxy_mac_addrs) }} counter goto csingbox_mangle_prerouting
+	{% endif /* lan_proxy_mac_addrs */ %}
+	{% elif (control_info.lan_proxy_mode === 'except_listed'): %}
+	{% if (!isEmpty(control_info.lan_direct_mac_addrs)): %}
+	ether saddr {{ array_to_nftarr(control_info.lan_direct_mac_addrs) }} counter return
+	{% endif /* lan_direct_mac_addrs */ %}
+	{% endif /* lan_proxy_mode */ %}
+
+	{% if (control_info.lan_proxy_mode !== 'listed_only'): %}
+	counter goto csingbox_mangle_prerouting
+	{% endif %}
+}
+
+chain csingbox_mangle_prerouting {
+	ip daddr @csingbox_wan_proxy_addr_v4 counter goto csingbox_mangle_tproxy_port
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_wan_proxy_addr_v6 counter goto csingbox_mangle_tproxy_port
+	{% endif %}
+
+	ip daddr @csingbox_local_addr_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_local_addr_v6 counter return
+	{% endif %}
+
+	{% if (routing_mode === 'gfwlist'): %}
+	ip daddr != @csingbox_gfw_list_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr != @csingbox_gfw_list_v6 counter return
+	{% endif /* ipv6_support */ %}
+	{% elif (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel'): %}
+	ip daddr @csingbox_mainland_addr_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_mainland_addr_v6 counter return
+	{% endif /* ipv6_support */ %}
+	{% endif /* routing_mode */ %}
+
+	counter goto csingbox_mangle_tproxy_port
+}
+
+chain csingbox_mangle_output {
+	meta mark {{ self_mark }} counter return
+
+	ip daddr @csingbox_wan_proxy_addr_v4 counter goto csingbox_mangle_mark
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_wan_proxy_addr_v6 counter goto csingbox_mangle_mark
+	{% endif %}
+
+	ip daddr @csingbox_local_addr_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_local_addr_v6 counter return
+	{% endif %}
+
+	{% if (routing_mode === 'gfwlist'): %}
+	ip daddr != @csingbox_gfw_list_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr != @csingbox_gfw_list_v6 counter return
+	{% endif /* ipv6_support */ %}
+	{% elif (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel'): %}
+	ip daddr @csingbox_mainland_addr_v4 counter return
+	{% if (ipv6_support === '1'): %}
+	ip6 daddr @csingbox_mainland_addr_v6 counter return
+	{% endif /* ipv6_support */ %}
+	{% endif /* routing_mode */ %}
+
+	counter goto csingbox_mangle_mark
+}
+
+chain mangle_prerouting {
+	meta nfproto { {{ (ipv6_support === '1') ? 'ipv4, ipv6' : 'ipv4' }} } meta l4proto udp jump csingbox_mangle_lanac
+}
+
+chain mangle_output {
+	meta nfproto { {{ (ipv6_support === '1') ? 'ipv4, ipv6' : 'ipv4' }} } meta l4proto udp jump csingbox_mangle_output
+}
+{% endif %}

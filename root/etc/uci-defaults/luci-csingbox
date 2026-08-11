@@ -1,0 +1,15 @@
+#!/bin/sh
+
+[ -f "/www/luci-static/resources/icons/loading.gif" ] && \
+	sed -i "s,/loading.svg,/loading.gif,g" "/www/luci-static/resources/view/csingbox/status.js"
+
+uci -q batch <<-EOF >"/dev/null"
+	delete firewall.csingbox_post
+	set firewall.csingbox_post=include
+	set firewall.csingbox_post.type=nftables
+	set firewall.csingbox_post.path="/var/run/csingbox/fw4_post.nft"
+	set firewall.csingbox_post.position="table-post"
+	commit firewall
+EOF
+
+exit 0
