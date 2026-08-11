@@ -29,10 +29,6 @@ Based on the simplified positioning, the following homeproxy features are remove
 - **Advanced DNS options**: no disable_cache / independent_cache / client_subnet per-node DNS settings (custom routing removed);
 - **china_list rule file**: the china_list rule resource is not bundled (config for the proxy-mainland-only mode, which was removed).
 
-## Screenshot
-
-![Settings page](screenshots/setting.png)
-
 ## Features
 
 ### Settings Page
