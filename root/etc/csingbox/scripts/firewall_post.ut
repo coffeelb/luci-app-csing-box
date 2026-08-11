@@ -360,13 +360,11 @@ chain csingbox_mangle_output {
 	{% if (ipv6_support === '1'): %}
 	ip6 daddr != @csingbox_gfw_list_v6 counter return
 	{% endif /* ipv6_support */ %}
-	udp dport { 80, 443 } counter reject comment "!{{ cfgname }}: Fuck you QUIC"
 	{% elif (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel'): %}
 	ip daddr @csingbox_mainland_addr_v4 counter return
 	{% if (ipv6_support === '1'): %}
 	ip6 daddr @csingbox_mainland_addr_v6 counter return
 	{% endif /* ipv6_support */ %}
-	udp dport { 80, 443 } counter reject comment "!{{ cfgname }}: Fuck you QUIC"
 	{% endif /* routing_mode */ %}
 
 	counter goto csingbox_mangle_mark
