@@ -338,6 +338,14 @@ if (!isEmpty(main_node)) {
 			server: (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') ? 'china-dns' : 'default-dns'
 		});
 
+	/* Filter out SVCB/HTTPS queries for "exquisite" Apple devices */
+	if (routing_mode === 'gfwlist' || length(proxy_domain_list))
+		push(config.dns.rules, {
+			rule_set: (routing_mode !== 'gfwlist') ? 'proxy-domain' : null,
+			query_type: [64, 65],
+			action: 'reject'
+		});
+
 	if (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') {
 		push(config.dns.servers, {
 			tag: 'china-dns',
@@ -661,4 +669,3 @@ if (routing_mode === 'panel') {
 	}
 	writefile(RUN_DIR + '/sing-box-panel.json', readfile(HP_DIR + '/sing-box-panel.json'));
 }
-
