@@ -324,6 +324,7 @@ return view.extend({
 
 		o = s.taboption('basic', form.Value, 'api_panel_secret', _('Clash panel secret'));
 		o.password = true;
+		o.description = _('Used to authenticate panel API access. It is recommended to set a custom secret instead of the default.');
 		o.default = '666b888C';
 		o.rmempty = false;
 		o.depends('routing_mode', 'panel');

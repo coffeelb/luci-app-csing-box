@@ -1346,6 +1346,9 @@ msgstr "用户代理"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:458
 #: htdocs/luci-static/resources/view/csingbox/setting.js:203
+msgid "Used to authenticate panel API access. It is recommended to set a custom secret instead of the default."
+msgstr "用于面板 API 访问认证，建议自定义密码而非使用默认值。"
+
 msgid "Username"
 msgstr "用户名"
 
