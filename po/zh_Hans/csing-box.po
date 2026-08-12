@@ -761,7 +761,7 @@ msgstr "New Reno"
 #: htdocs/luci-static/resources/view/csingbox/setting.js:400
 #: htdocs/luci-static/resources/view/csingbox/setting.js:417
 msgid "No TCP transport, plain HTTP is merged into the HTTP transport."
-msgstr "无 TCP 传输层, 纯 HTTP 已合并到 HTTP 传输层。"
+msgstr "无 TCP 传输层，纯 HTTP 已合并到 HTTP 传输层。"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:789
 #: htdocs/luci-static/resources/view/csingbox/setting.js:415
@@ -1642,7 +1642,7 @@ msgstr "设置"
 msgid "Regenerates the config file from the current page settings and overwrites the original, losing any manual rules."
 msgstr "将按当前页面设置重新生成配置文件并覆盖原文件，手动添加的规则会丢失。"
 
-msgid "Port %s alrealy exists!"
+msgid "Port %s already exists!"
 msgstr "端口 %s 已存在！"
 
 msgid "Proxy DNS, supports UDP, TCP, DoH, DoQ, DoT."

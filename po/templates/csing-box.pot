@@ -1616,7 +1616,7 @@ msgstr ""
 msgid "Regenerates the config file from the current page settings and overwrites the original, losing any manual rules."
 msgstr ""
 
-msgid "Port %s alrealy exists!"
+msgid "Port %s already exists!"
 msgstr ""
 
 msgid "Proxy DNS, supports UDP, TCP, DoH, DoQ, DoT."
