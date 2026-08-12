@@ -133,8 +133,12 @@ start_service() {
 	procd_set_param command "$PROG"
 	procd_append_param command run --config "$CONFIG_FILE"
 
-	# QUIC-GO GSO is broken on kernel 6.6 currently
-	uname -r | grep -Eq "^6\.6" && procd_set_param env "QUIC_GO_DISABLE_GSO"="true"
+	# QUIC-GO GSO is broken on kernel 6.6 currently; direct temp files to the writable yacd dir
+	if uname -r | grep -Eq "^6\.6"; then
+		procd_set_param env "TMPDIR=$HP_DIR/yacd" "QUIC_GO_DISABLE_GSO=true"
+	else
+		procd_set_param env "TMPDIR=$HP_DIR/yacd"
+	fi
 
 	if [ -x "/sbin/ujail" ] && ! grep -Eq '"type": "(wireguard|tun)"' "$CONFIG_FILE"; then
 		procd_add_jail "sing-box-c" log procfs
@@ -146,7 +150,6 @@ start_service() {
 		procd_add_jail_mount "$HP_DIR/certs/"
 		procd_add_jail_mount "$HP_DIR/resources/"
 		procd_add_jail_mount_rw "$HP_DIR/yacd"
-		procd_add_jail_mount_rw "/tmp"
 		procd_add_jail_mount "/etc/ssl/"
 		procd_add_jail_mount "/etc/localtime"
 		procd_add_jail_mount "/etc/TZ"
