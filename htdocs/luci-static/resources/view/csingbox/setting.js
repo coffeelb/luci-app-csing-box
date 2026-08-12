@@ -353,11 +353,11 @@ return view.extend({
 
 		o = s.taboption('basic', form.Button, '_open_panel', _('Open Clash panel'));
 		o.inputstyle = 'action';
-		o.inputtitle = _('Open Clash panel (YACD)');
+		o.inputtitle = _('Open Clash panel (Yacd)');
 		o.depends('routing_mode', 'panel');
 		o.onclick = function() {
 			const port = uci.get('csingbox', 'config', 'api_panel_port') || '9090';
-			window.open('https://yacd.metacubex.one/?hostname=' + location.hostname + '&port=' + port);
+			window.open('http://' + location.hostname + ':' + port + '/ui/');
 		}
 
 		o = s.taboption('basic', form.ListValue, 'proxy_mode', _('Proxy mode'));

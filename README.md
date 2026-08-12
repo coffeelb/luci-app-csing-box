@@ -9,7 +9,7 @@ Originally I only wanted to add a Clash panel feature; once added, I figured why
 The following adjustments were made on top of homeproxy:
 
 - **Routing mode**: added "Clash Panel Manual Routing" mode, which allows manually editing `/etc/csingbox/sing-box-panel.json` for custom routing;
-- **YACD panel**: the panel UI files are downloaded automatically on first run, so the first start may be a bit slower; once enabled, you can select nodes and outbounds directly from the panel;
+- **Yacd panel**: on first start, the panel UI (Yacd-meta) is downloaded to `/etc/csingbox/yacd` and served locally at `http://<router-ip>:9090/ui/`, so the first start may be a bit slower; once enabled, you can select nodes and outbounds directly from the panel;
 - **Reload button**: click reload directly after changing the configuration; no need to switch the node off and on;
 - **Regenerate Clash panel config file**: clicking regenerate reads the current UI configuration and overwrites the original file; all manually added rules will be lost. **It is recommended to fill in all nodes before regenerating**, so that routing can be done by only editing the rule sets and outbounds in the config file;
 - **Default panel rule set sources**: geoip-cn / geosite-cn / geosite-noncn use the jsDelivr mirror (same as homeproxy); panel mode does not pre-bake routing rules (route.rules only keeps DNS hijacking); routing rules must be edited manually in `/etc/csingbox/sing-box-panel.json`.
@@ -38,8 +38,8 @@ Based on the simplified positioning, the following homeproxy features are remove
 - Remote DNS: default `tls://8.8.8.8:853`, presets and custom values supported (UDP / TCP / DoH / DoQ / DoT);
 - Local DNS: default `udp://223.5.5.5:53`, presets and custom values supported;
 - Routing mode: Bypass Mainland China / Clash Panel Manual Routing / GFWlist / Global, with the same logic as homeproxy;
-- Clash panel: automatically enabled when "Clash Panel Manual Routing" is selected; Clash API (external-controller) + default YACD panel (no bundled UI); port and secret configurable; uses a separate sing-box-panel.json, with the persistent template at /etc/csingbox/sing-box-panel.json (survives reboots, can be edited directly for custom routing); the template is generated on first start and maintained manually afterwards — auto-generation never overwrites it; nodes can be switched directly from the panel; switching to another mode disables the panel;
-  - **Panel access**: open `https://yacd.metacubex.one` in a browser (or use the "Open Clash panel" button on the settings page); API address: `http://<router-ip>:9090`, password: the configured Secret (default `666b888C`);
+- Clash panel: automatically enabled when "Clash Panel Manual Routing" is selected; Clash API (external-controller) + default Yacd panel (no bundled UI); port and secret configurable; uses a separate sing-box-panel.json, with the persistent template at /etc/csingbox/sing-box-panel.json (survives reboots, can be edited directly for custom routing); the template is generated on first start and maintained manually afterwards — auto-generation never overwrites it; nodes can be switched directly from the panel; switching to another mode disables the panel;
+- **Panel access**: open `http://<router-ip>:9090/ui/` in a browser (or use the "Open Clash panel" button on the settings page); API address: `http://<router-ip>:9090`, password: the configured Secret (default `666b888C`);
   - **Local rule set example**: add a local file rule set under `route.rule_set` in `/etc/csingbox/sing-box-panel.json` and reference it in `route.rules`:
     ```json
     { "type": "local", "tag": "myrules", "path": "/etc/csingbox/resources/myrules.json", "format": "source" }
@@ -76,7 +76,7 @@ The direct/proxy decision is ultimately made by the firewall (nftables / fw4) ba
 - Bypass Mainland China: the firewall lets mainland IP ranges (china_ip4 / china_ip6) through directly, everything else goes through the proxy; on the DNS side, mainland domains are resolved directly via the local DNS, everything else via the remote DNS through the proxy;
 - GFWlist: dnsmasq dynamically writes the resolution results of gfw_list domains into nftables sets; matched traffic goes through the proxy, unmatched goes direct; only listed domains use the remote DNS to avoid pollution;
 - Global: everything goes through the proxy except reserved addresses and the forced direct list; all DNS goes through the remote DNS;
-- Clash panel mode: routing logic identical to Bypass Mainland China (mainland domains resolved directly, firewall lets mainland IPs through), but the outbound is a selector group that can switch nodes in real time from the Clash panel (YACD etc.); the routing port restriction still applies;
+- Clash panel mode: routing logic identical to Bypass Mainland China (mainland domains resolved directly, firewall lets mainland IPs through), but the outbound is a selector group that can switch nodes in real time from the Clash panel (Yacd etc.); the routing port restriction still applies;
 - The forced direct / forced proxy lists take priority over the routing mode (IP/CIDR written into nftables sets, domains dynamically written back via dnsmasq nftset);
 - Client control (MAC) is evaluated before traffic enters the redirect chain: proxy listed only / proxy all except listed; it does not affect the router's own traffic.
 

@@ -145,6 +145,7 @@ start_service() {
 		fi
 		procd_add_jail_mount "$HP_DIR/certs/"
 		procd_add_jail_mount "$HP_DIR/resources/"
+		procd_add_jail_mount_rw "$HP_DIR/yacd"
 		procd_add_jail_mount "/etc/ssl/"
 		procd_add_jail_mount "/etc/localtime"
 		procd_add_jail_mount "/etc/TZ"
@@ -172,6 +173,8 @@ start_service() {
 	fi
 
 	# Update permissions for ujail
+	mkdir -p "$HP_DIR/yacd"
+	chown -R sing-box:sing-box "$HP_DIR/yacd"
 	chown -R sing-box:sing-box "$RUN_DIR"
 
 	# Setup firewall

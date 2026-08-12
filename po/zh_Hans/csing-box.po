@@ -535,8 +535,8 @@ msgstr "Clash 面板配置文件重新生成失败。"
 msgid "Open Clash panel"
 msgstr "打开 Clash 面板"
 
-msgid "Open Clash panel (YACD)"
-msgstr "打开 Clash 面板（YACD）"
+msgid "Open Clash panel (Yacd)"
+msgstr "打开 Clash 面板（Yacd）"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:506
 msgid "Idle session check interval"
@@ -1601,7 +1601,7 @@ msgid "Direct domain list (direct_list.txt)"
 msgstr "强制直连名单（direct_list.txt）"
 
 msgid "One domain per line. Takes priority over routing mode; matching traffic bypasses sing-box."
-msgstr "仅支持域名，一行一个。优先级高于路由模式，命中直接放行、不进 sing-box。"
+msgstr "仅支持域名，一行一个。优先级高于路由模式，命中直接放行。"
 
 msgid "Proxy domain list (proxy_list.txt)"
 msgstr "强制代理名单（proxy_list.txt）"

@@ -521,7 +521,7 @@ msgstr ""
 msgid "Open Clash panel"
 msgstr ""
 
-msgid "Open Clash panel (YACD)"
+msgid "Open Clash panel (Yacd)"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:506
