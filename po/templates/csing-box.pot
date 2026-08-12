@@ -1613,7 +1613,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "A new config file will be generated based on the current page settings and overwrite the original file, be careful!"
+msgid "Regenerates the config file from the current page settings and overwrites the original, losing any manual rules."
 msgstr ""
 
 msgid "Port %s alrealy exists!"
@@ -1625,5 +1625,5 @@ msgstr ""
 msgid "Domestic DNS, supports UDP, TCP, DoH, DoQ, DoT."
 msgstr ""
 
-msgid "When set to Clash Panel Manual Routing, you can manually edit the corresponding config file (/etc/csingbox/sing-box-panel.json) for routing."
+msgid "After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules."
 msgstr ""

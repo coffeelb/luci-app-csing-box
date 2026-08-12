@@ -308,7 +308,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.taboption('basic', form.ListValue, 'routing_mode', _('Routing mode'),
-			_('When set to Clash Panel Manual Routing, you can manually edit the corresponding config file (/etc/csingbox/sing-box-panel.json) for routing.'));
+		_('After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules.'));
 		o.value('bypass_mainland_china', _('Bypass mainland China'));
 		o.value('panel', _('Clash Panel Manual Routing'));
 		o.value('gfwlist', _('GFWlist'));
@@ -337,7 +337,7 @@ return view.extend({
 		o = s.taboption('basic', form.Button, '_regenerate_panel_template', _('Regenerate Clash panel config file'));
 		o.inputstyle = 'apply';
 		o.inputtitle = _('Regenerate config');
-		o.description = _('A new config file will be generated based on the current page settings and overwrite the original file, be careful!');
+		o.description = _('Regenerates the config file from the current page settings and overwrites the original, losing any manual rules.');
 		o.depends('routing_mode', 'panel');
 		o.onclick = function() {
 			if (!confirm(_('This will overwrite manual modifications in sing-box-panel.json. Continue?')))

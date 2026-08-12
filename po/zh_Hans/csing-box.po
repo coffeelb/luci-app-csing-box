@@ -1639,8 +1639,8 @@ msgstr "sing-box"
 msgid "Settings"
 msgstr "设置"
 
-msgid "A new config file will be generated based on the current page settings and overwrite the original file, be careful!"
-msgstr "会根据现在页面设置生成新的配置文件并覆盖原文件，慎重！"
+msgid "Regenerates the config file from the current page settings and overwrites the original, losing any manual rules."
+msgstr "将按当前页面设置重新生成配置文件并覆盖原文件，手动添加的规则会丢失。"
 
 msgid "Port %s alrealy exists!"
 msgstr "端口 %s 已存在！"
@@ -1651,5 +1651,5 @@ msgstr "代理 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
 msgid "Domestic DNS, supports UDP, TCP, DoH, DoQ, DoT."
 msgstr "国内 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
 
-msgid "When set to Clash Panel Manual Routing, you can manually edit the corresponding config file (/etc/csingbox/sing-box-panel.json) for routing."
-msgstr "设置为 Clash 面板手动分流 后可手动编辑对应的配置文件(/etc/csingbox/sing-box-panel.json)分流。"
+msgid "After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules."
+msgstr "选择「Clash 面板手动分流」后，可编辑 /etc/csingbox/sing-box-panel.json 自定义分流规则。"
