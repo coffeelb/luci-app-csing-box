@@ -12,12 +12,8 @@ LUCI_PKGARCH:=all
 LUCI_DEPENDS:= \
 	+sing-box \
 	+firewall4 \
-	+dnsmasq-full \
 	+kmod-nft-tproxy \
-	+ucode-mod-digest \
-	+wget-ssl \
-	+ip-full \
-	+luci-base
+	+ucode-mod-digest
 
 PKG_NAME:=luci-app-csing-box
 PKG_VERSION:=1.1.5
@@ -25,6 +21,7 @@ PKG_RELEASE:=3
 
 define Package/luci-app-csing-box/conffiles
 /etc/config/csingbox
+/etc/csingbox/certs/
 /etc/csingbox/resources/direct_list.txt
 /etc/csingbox/resources/proxy_list.txt
 endef
