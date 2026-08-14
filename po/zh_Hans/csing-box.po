@@ -1661,46 +1661,42 @@ msgstr "选择「Clash 面板手动分流」后，可到「面板配置」页面
 msgid "Panel Config"
 msgstr "面板配置"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:52
+#: htdocs/luci-static/resources/view/csingbox/editor.js:51
 msgid "Config File Editor"
 msgstr "配置文件编辑"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:56
+#: htdocs/luci-static/resources/view/csingbox/editor.js:55
 msgid "Notice"
 msgstr "提示"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:58
+#: htdocs/luci-static/resources/view/csingbox/editor.js:57
 msgid "Current routing mode is not Clash Panel Manual Routing; this file will not be used until the mode is switched."
 msgstr "当前路由模式不是「Clash 面板手动分流」，切换到该模式前此文件不会生效。"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:63
+#: htdocs/luci-static/resources/view/csingbox/editor.js:62
 msgid "File status"
 msgstr "文件状态"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:65
-msgid "File not found: %s"
-msgstr "文件不存在：%s"
+#: htdocs/luci-static/resources/view/csingbox/editor.js:64
+msgid "File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
+msgstr "文件不存在，请先在设置中启用「Clash 面板手动分流」并启动一次服务，或在设置页重新生成模板。"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:66
-msgid "Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
-msgstr "请先在设置中启用「Clash 面板手动分流」并启动一次服务，或在设置页重新生成模板。"
-
-#: htdocs/luci-static/resources/view/csingbox/editor.js:70
+#: htdocs/luci-static/resources/view/csingbox/editor.js:68
 msgid "Panel config file"
 msgstr "面板配置文件"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:71
+#: htdocs/luci-static/resources/view/csingbox/editor.js:69
 msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing."
-msgstr "文件：%s。非法 JSON 将被拒绝保存，保存前还会用 sing-box 校验配置。该文件仅在路由模式为「Clash 面板手动分流」时使用。"
+msgstr "文件：%s。保存前还会用 sing-box 校验配置，非法 JSON 将被拒绝保存。该文件仅在路由模式为「Clash 面板手动分流」时使用。"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:85
+#: htdocs/luci-static/resources/view/csingbox/editor.js:83
 msgid "JSON syntax error: %s"
 msgstr "JSON 语法错误：%s"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:98
+#: htdocs/luci-static/resources/view/csingbox/editor.js:96
 msgid "Reload from disk"
 msgstr "从磁盘重新加载"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:104
+#: htdocs/luci-static/resources/view/csingbox/editor.js:102
 msgid "Panel config reloaded from disk."
 msgstr "已从磁盘重新加载面板配置。"

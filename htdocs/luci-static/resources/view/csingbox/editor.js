@@ -61,8 +61,7 @@ return view.extend({
 		if (readRes.error) {
 			o = s.option(form.DummyValue, '_file_missing', _('File status'));
 			o.default = E('strong', { 'style': 'color:red' }, [
-				_('File not found: %s').format(PANEL_PATH) + ' ' +
-				_('Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page.')
+				_('File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page.')
 			]);
 		}
 
