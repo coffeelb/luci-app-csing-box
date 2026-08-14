@@ -28,6 +28,15 @@
 		},
 		"i18n": "csing-box"
 	},
+	"admin/services/csingbox/editor": {
+		"title": "Panel Config",
+		"order": 17,
+		"action": {
+			"type": "view",
+			"path": "csingbox/editor"
+		},
+		"i18n": "csing-box"
+	},
 	"admin/services/csingbox/status": {
 		"title": "Service Status",
 		"order": 20,

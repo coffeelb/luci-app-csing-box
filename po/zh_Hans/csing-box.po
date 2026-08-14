@@ -785,7 +785,7 @@ msgstr "找不到有效分享链接。"
 msgid "Node"
 msgstr "节点"
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:22
+#: root/usr/share/luci/menu.d/luci-app-csingbox.json:23
 msgid "Node Settings"
 msgstr "节点设置"
 
@@ -1019,7 +1019,7 @@ msgstr "保存当前设置"
 msgid "Save subscriptions settings"
 msgstr "保存订阅设置"
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:38
+#: root/usr/share/luci/menu.d/luci-app-csingbox.json:41
 msgid "Service Status"
 msgstr "服务状态"
 
@@ -1656,3 +1656,52 @@ msgstr "国内 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
 
 msgid "After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules."
 msgstr "选择「Clash 面板手动分流」后，可编辑 /etc/csingbox/sing-box-panel.json 自定义分流规则。"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:51
+msgid "View and edit the persistent panel config file. This file is only used when the routing mode is Clash Panel Manual Routing."
+msgstr "查看并编辑持久化面板配置文件。该文件仅在路由模式为「Clash 面板手动分流」时使用。"
+
+#: root/usr/share/luci/menu.d/luci-app-csingbox.json:32
+#: htdocs/luci-static/resources/view/csingbox/editor.js:53
+msgid "Panel Config"
+msgstr "面板配置"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:57
+msgid "Notice"
+msgstr "提示"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:59
+msgid "Current routing mode is not Clash Panel Manual Routing; this file will not be used until the mode is switched."
+msgstr "当前路由模式不是「Clash 面板手动分流」，切换到该模式前此文件不会生效。"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:64
+msgid "File status"
+msgstr "文件状态"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:66
+msgid "File not found: %s"
+msgstr "文件不存在：%s"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:67
+msgid "Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
+msgstr "请先在设置中启用「Clash 面板手动分流」并启动一次服务，或在设置页重新生成模板。"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:71
+msgid "Panel config file"
+msgstr "面板配置文件"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:72
+msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving."
+msgstr "文件：%s。非法 JSON 将被拒绝保存，保存前还会用 sing-box 校验配置。"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:86
+msgid "JSON syntax error: %s"
+msgstr "JSON 语法错误：%s"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:99
+msgid "Reload from disk"
+msgstr "从磁盘重新加载"
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:105
+msgid "Panel config reloaded from disk."
+msgstr "已从磁盘重新加载面板配置。"

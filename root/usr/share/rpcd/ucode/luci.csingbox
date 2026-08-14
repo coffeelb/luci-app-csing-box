@@ -197,6 +197,39 @@ const methods = {
 				return { status: 255, error: 'illegal type' };
 		}
 	},
+	panel_config_read: {
+		call: function() {
+			const content = readfile(`${HP_DIR}/sing-box-panel.json`);
+			return { content: content, error: error() };
+		}
+	},
+	panel_config_write: {
+		args: { content: 'content' },
+		call: function(req) {
+			const content = req.args?.content;
+			if (!content)
+				return { result: false, error: 'empty content' };
+
+			/* Validate with the sing-box core before committing */
+			const tmpcfg = '/tmp/csingbox-panel-check.json';
+			const tmplog = '/tmp/csingbox-panel-check.log';
+			system(`rm -f ${tmpcfg} ${tmplog}`);
+			writefile(tmpcfg, content);
+
+			const exit_code = system(`/usr/bin/sing-box check --config ${shellquote(tmpcfg)} >${tmplog} 2>&1`);
+			const output = trim(readfile(tmplog));
+			system(`rm -f ${tmpcfg} ${tmplog}`);
+
+			if (exit_code !== 0)
+				return { result: false, error: output || 'sing-box check failed' };
+
+			system(`mkdir -p ${HP_DIR}`);
+			writefile(`${HP_DIR}/sing-box-panel.json`, content);
+			system(`chmod 600 ${HP_DIR}/sing-box-panel.json`);
+
+			return { result: true };
+		}
+	},
 	panel_template_regenerate: {
 		call: function() {
 			const ret = system(`rm -f ${HP_DIR}/sing-box-panel.json ${RUN_DIR}/sing-box-panel.json`);
