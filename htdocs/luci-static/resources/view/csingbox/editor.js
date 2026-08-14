@@ -2,7 +2,6 @@
  * SPDX-License-Identifier: GPL-2.0-only
  *
  * Csing-box - Config File Editor
- * Based on luci-app-homeproxy (C) 2022-2025 ImmortalWrt.org
  */
 
 'use strict';
