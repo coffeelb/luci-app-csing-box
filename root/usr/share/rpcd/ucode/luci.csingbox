@@ -209,6 +209,8 @@ const methods = {
 			const content = req.args?.content;
 			if (!content)
 				return { result: false, error: 'empty content' };
+			if (length(content) > 1024 * 1024)
+				return { result: false, error: 'content too large' };
 
 			/* Validate with the sing-box core before committing */
 			const tmpcfg = '/tmp/csingbox-panel-check.json';
