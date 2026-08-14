@@ -1628,7 +1628,7 @@ msgstr ""
 msgid "Domestic DNS, supports UDP, TCP, DoH, DoQ, DoT."
 msgstr ""
 
-msgid "After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules."
+msgid "After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
 msgstr ""
 
 #: root/usr/share/luci/menu.d/luci-app-csingbox.json:32

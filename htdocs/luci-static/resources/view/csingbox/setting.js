@@ -308,7 +308,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.taboption('basic', form.ListValue, 'routing_mode', _('Routing mode'),
-		_('After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules.'));
+		_('After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules.'));
 		o.value('bypass_mainland_china', _('Bypass mainland China'));
 		o.value('panel', _('Clash Panel Manual Routing'));
 		o.value('gfwlist', _('GFWlist'));

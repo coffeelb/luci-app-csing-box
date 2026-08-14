@@ -1654,8 +1654,8 @@ msgstr "代理 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
 msgid "Domestic DNS, supports UDP, TCP, DoH, DoQ, DoT."
 msgstr "国内 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
 
-msgid "After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules."
-msgstr "选择「Clash 面板手动分流」后，可编辑 /etc/csingbox/sing-box-panel.json 自定义分流规则。"
+msgid "After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
+msgstr "选择「Clash 面板手动分流」后，可到「面板配置」页面编辑配置文件，自定义分流规则。"
 
 #: root/usr/share/luci/menu.d/luci-app-csingbox.json:32
 msgid "Panel Config"
