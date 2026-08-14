@@ -1631,54 +1631,50 @@ msgstr ""
 msgid "After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:56
-msgid "View and edit the persistent panel config file. This file is only used when the routing mode is Clash Panel Manual Routing."
-msgstr ""
-
 #: root/usr/share/luci/menu.d/luci-app-csingbox.json:32
 msgid "Panel Config"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:55
+#: htdocs/luci-static/resources/view/csingbox/editor.js:52
 msgid "Config File Editor"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:62
+#: htdocs/luci-static/resources/view/csingbox/editor.js:56
 msgid "Notice"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:64
+#: htdocs/luci-static/resources/view/csingbox/editor.js:58
 msgid "Current routing mode is not Clash Panel Manual Routing; this file will not be used until the mode is switched."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:69
+#: htdocs/luci-static/resources/view/csingbox/editor.js:63
 msgid "File status"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:71
+#: htdocs/luci-static/resources/view/csingbox/editor.js:65
 msgid "File not found: %s"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:72
+#: htdocs/luci-static/resources/view/csingbox/editor.js:66
 msgid "Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:76
+#: htdocs/luci-static/resources/view/csingbox/editor.js:70
 msgid "Panel config file"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:77
-msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving."
+#: htdocs/luci-static/resources/view/csingbox/editor.js:71
+msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:91
+#: htdocs/luci-static/resources/view/csingbox/editor.js:85
 msgid "JSON syntax error: %s"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:104
+#: htdocs/luci-static/resources/view/csingbox/editor.js:98
 msgid "Reload from disk"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:110
+#: htdocs/luci-static/resources/view/csingbox/editor.js:104
 msgid "Panel config reloaded from disk."
 msgstr ""

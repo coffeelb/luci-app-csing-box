@@ -33,11 +33,6 @@ const callServiceReload = rpc.declare({
 
 const PANEL_PATH = '/etc/csingbox/sing-box-panel.json';
 
-const title_css = '		\
-#cbi-csingbox > h2 {		\
-	font-size: 18px;		\
-}';
-
 return view.extend({
 	load() {
 		return Promise.all([
@@ -52,10 +47,9 @@ return view.extend({
 
 		let m, s, o;
 
-		m = new form.Map('csingbox', _('Config File Editor'),
-			_('View and edit the persistent panel config file. This file is only used when the routing mode is Clash Panel Manual Routing.'));
+		m = new form.Map('csingbox');
 
-		s = m.section(form.NamedSection, 'config', 'csingbox');
+		s = m.section(form.NamedSection, 'config', 'csingbox', _('Config File Editor'));
 		s.anonymous = true;
 
 		if (!isPanel) {
@@ -74,7 +68,7 @@ return view.extend({
 		}
 
 		o = s.option(form.TextValue, '_file_content', _('Panel config file'),
-			_('File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving.').format(PANEL_PATH));
+			_('File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing.').format(PANEL_PATH));
 		o.rows = 28;
 		o.wrap = false;
 		o.monospace = true;
@@ -111,10 +105,7 @@ return view.extend({
 			});
 		};
 
-		return m.render().then((node) => {
-			node.appendChild(E('style', [ title_css ]));
-			return node;
-		});
+		return m.render();
 	},
 
 	handleSaveApply(ev) {
