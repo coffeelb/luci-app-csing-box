@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: GPL-2.0-only
  *
- * Csing-box - Panel Config
+ * Csing-box - Config File Editor
  * Based on luci-app-homeproxy (C) 2022-2025 ImmortalWrt.org
  */
 
@@ -33,6 +33,11 @@ const callServiceReload = rpc.declare({
 
 const PANEL_PATH = '/etc/csingbox/sing-box-panel.json';
 
+const title_css = '		\
+#cbi-csingbox > h2 {		\
+	font-size: 18px;		\
+}';
+
 return view.extend({
 	load() {
 		return Promise.all([
@@ -47,10 +52,10 @@ return view.extend({
 
 		let m, s, o;
 
-		m = new form.Map('csingbox', _('Csing-box'),
+		m = new form.Map('csingbox', _('Config File Editor'),
 			_('View and edit the persistent panel config file. This file is only used when the routing mode is Clash Panel Manual Routing.'));
 
-		s = m.section(form.NamedSection, 'config', 'csingbox', _('Panel Config'));
+		s = m.section(form.NamedSection, 'config', 'csingbox');
 		s.anonymous = true;
 
 		if (!isPanel) {
@@ -106,7 +111,10 @@ return view.extend({
 			});
 		};
 
-		return m.render();
+		return m.render().then((node) => {
+			node.appendChild(E('style', [ title_css ]));
+			return node;
+		});
 	},
 
 	handleSaveApply(ev) {

@@ -1631,51 +1631,54 @@ msgstr ""
 msgid "After selecting Clash Panel Manual Routing, you can edit /etc/csingbox/sing-box-panel.json to define custom routing rules."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:51
+#: htdocs/luci-static/resources/view/csingbox/editor.js:56
 msgid "View and edit the persistent panel config file. This file is only used when the routing mode is Clash Panel Manual Routing."
 msgstr ""
 
 #: root/usr/share/luci/menu.d/luci-app-csingbox.json:32
-#: htdocs/luci-static/resources/view/csingbox/editor.js:53
 msgid "Panel Config"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:57
+#: htdocs/luci-static/resources/view/csingbox/editor.js:55
+msgid "Config File Editor"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/csingbox/editor.js:62
 msgid "Notice"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:59
+#: htdocs/luci-static/resources/view/csingbox/editor.js:64
 msgid "Current routing mode is not Clash Panel Manual Routing; this file will not be used until the mode is switched."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:64
+#: htdocs/luci-static/resources/view/csingbox/editor.js:69
 msgid "File status"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:66
+#: htdocs/luci-static/resources/view/csingbox/editor.js:71
 msgid "File not found: %s"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:67
+#: htdocs/luci-static/resources/view/csingbox/editor.js:72
 msgid "Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:71
+#: htdocs/luci-static/resources/view/csingbox/editor.js:76
 msgid "Panel config file"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:72
+#: htdocs/luci-static/resources/view/csingbox/editor.js:77
 msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:86
+#: htdocs/luci-static/resources/view/csingbox/editor.js:91
 msgid "JSON syntax error: %s"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:99
+#: htdocs/luci-static/resources/view/csingbox/editor.js:104
 msgid "Reload from disk"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:105
+#: htdocs/luci-static/resources/view/csingbox/editor.js:110
 msgid "Panel config reloaded from disk."
 msgstr ""
