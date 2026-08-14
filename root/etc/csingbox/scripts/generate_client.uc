@@ -644,11 +644,7 @@ if (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') {
 			default_mode: 'rule',
 			external_ui: HP_DIR + '/yacd',
 			external_ui_download_url: 'https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip',
-			external_ui_download_detour: 'main-out',
-			/* The Yacd panel is served over HTTPS; explicitly allow its origin and
-			 * private network access to pass Chrome's Private Network Access preflight. */
-			access_control_allow_origin: ['https://yacd.metacubex.one'],
-			access_control_allow_private_network: true
+			external_ui_download_detour: 'main-out'
 		};
 	}
 }
