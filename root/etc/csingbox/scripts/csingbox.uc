@@ -71,7 +71,7 @@ export function wGET(url, ua) {
 		return null;
 
 	if (!ua)
-		ua = 'Wget/1.21 (Csing-box, like v2rayN)';
+		ua = 'Wget/1.21 (like v2rayN)';
 
 	const output = executeCommand(`/usr/bin/wget -qO- --user-agent ${shellQuote(ua)} --timeout=10 ${shellQuote(url)}`) || {};
 	return trim(output.stdout);
