@@ -1361,7 +1361,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.taboption('subscription', form.Value, 'user_agent', _('User-Agent'));
-		o.placeholder = 'Wget/1.21 (Csing-box, like v2rayN)';
+		o.placeholder = 'Wget/1.21 (like v2rayN)';
 
 		o = s.taboption('subscription', form.Flag, 'allow_insecure', _('Allow insecure'),
 			_('Allow insecure connection by default when add nodes from subscriptions.') +
