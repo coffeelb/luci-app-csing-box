@@ -343,7 +343,7 @@ msgstr "前置数据标头"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:707
 msgid "Enable 0-RTT QUIC connection handshake on the client side. This is not impacting much on the performance, as the protocol is fully multiplexed.<br/>Disabling this is highly recommended, as it is vulnerable to replay attacks."
-msgstr ""
+msgstr "在客户端启用 0-RTT QUIC 连接握手。由于协议是完全复用的，这对性能影响不大。<br/>强烈建议禁用此功能，因为它容易受到重放攻击。"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:706
 msgid "Enable 0-RTT handshake"
@@ -481,7 +481,7 @@ msgstr "谷歌"
 
 #: root/usr/share/rpcd/acl.d/luci-app-csing-box.json:3
 msgid "Grant access to Csing-box configuration"
-msgstr ""
+msgstr "授权访问 Csing-box 配置"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:427
 #: htdocs/luci-static/resources/view/csingbox/node.js:762
@@ -671,7 +671,7 @@ msgstr "最大连接数"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:958
 msgid "Maximum multiplexed streams in a connection before opening a new connection.<br/>Conflict with <code>%s</code> and <code>%s</code>."
-msgstr ""
+msgstr "在打开新连接之前，连接中的最大多路复用流数量。与 <code>%s</code> 和 <code>%s</code> 冲突。"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:957
 msgid "Maximum streams"
@@ -1108,12 +1108,12 @@ msgstr "Socks5"
 #: htdocs/luci-static/resources/view/csingbox/node.js:781
 #: htdocs/luci-static/resources/view/csingbox/node.js:833
 msgid "Specifies the period of time (in seconds) after which a health check will be performed using a ping frame if no frames have been received on the connection.<br/>Please note that a ping response is considered a received frame, so if there is no other traffic on the connection, the health check will be executed every interval."
-msgstr ""
+msgstr "如果连接上没有收到任何帧，指定一段时间（单位：秒）后将使用 PING 帧执行健康检查。<br/>需要注意的是，PING 响应被视为已接收的帧，因此如果连接上没有其他流量，则健康检查将在每个间隔执行一次。"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:785
 #: htdocs/luci-static/resources/view/csingbox/node.js:841
 msgid "Specifies the timeout duration (in seconds) after sending a PING frame, within which a response must be received.<br/>If a response to the PING frame is not received within the specified timeout duration, the connection will be closed."
-msgstr ""
+msgstr "指定发送 PING 帧后，在指定的超时时间（单位：秒）内必须接收到响应。<br/>如果在指定的超时时间内没有收到 PING 帧的响应，则连接将关闭。"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:347
 msgid "Specify target ports to be proxied. Multiple ports must be separated by commas."
