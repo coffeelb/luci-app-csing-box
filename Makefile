@@ -16,7 +16,7 @@ LUCI_DEPENDS:= \
 	+ucode-mod-digest
 
 PKG_NAME:=luci-app-csing-box
-PKG_VERSION:=1.1.6
+PKG_VERSION:=1.1.7
 PKG_RELEASE:=1
 
 define Package/luci-app-csing-box/conffiles
