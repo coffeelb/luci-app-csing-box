@@ -32,12 +32,10 @@ msgstr ""
 msgid "Add a node"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:957
 #: htdocs/luci-static/resources/view/csingbox/node.js:448
 msgid "Address"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:266
 msgid "All ports"
 msgstr ""
 
@@ -137,7 +135,6 @@ msgstr ""
 msgid "Blacklist mode"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:253
 msgid "Bypass mainland China"
 msgstr ""
 
@@ -183,7 +180,6 @@ msgstr ""
 msgid "Client version"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:114
 #: htdocs/luci-static/resources/view/csingbox/setting.js:142
 #: htdocs/luci-static/resources/view/csingbox/status.js:176
 msgid "Collecting data..."
@@ -203,11 +199,6 @@ msgid "Debug"
 msgstr ""
 
 #: htdocs/luci-static/resources/csingbox.js:17
-#: htdocs/luci-static/resources/view/csingbox/client.js:433
-#: htdocs/luci-static/resources/view/csingbox/client.js:603
-#: htdocs/luci-static/resources/view/csingbox/client.js:755
-#: htdocs/luci-static/resources/view/csingbox/client.js:1083
-#: htdocs/luci-static/resources/view/csingbox/client.js:1381
 #: htdocs/luci-static/resources/view/csingbox/node.js:710
 msgid "Default"
 msgstr ""
@@ -216,18 +207,10 @@ msgstr ""
 msgid "Default packet encoding"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:364
-#: htdocs/luci-static/resources/view/csingbox/client.js:466
-#: htdocs/luci-static/resources/view/csingbox/client.js:684
-#: htdocs/luci-static/resources/view/csingbox/client.js:1033
-#: htdocs/luci-static/resources/view/csingbox/client.js:1382
 #: htdocs/luci-static/resources/view/csingbox/node.js:428
 msgid "Direct"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:123
-#: htdocs/luci-static/resources/view/csingbox/client.js:151
-#: htdocs/luci-static/resources/view/csingbox/client.js:1422
 #: htdocs/luci-static/resources/view/csingbox/node.js:499
 #: htdocs/luci-static/resources/view/csingbox/node.js:555
 #: htdocs/luci-static/resources/view/csingbox/node.js:568
@@ -348,21 +331,6 @@ msgstr ""
 #: htdocs/luci-static/resources/csingbox.js:317
 #: htdocs/luci-static/resources/csingbox.js:326
 #: htdocs/luci-static/resources/csingbox.js:328
-#: htdocs/luci-static/resources/view/csingbox/client.js:195
-#: htdocs/luci-static/resources/view/csingbox/client.js:207
-#: htdocs/luci-static/resources/view/csingbox/client.js:211
-#: htdocs/luci-static/resources/view/csingbox/client.js:230
-#: htdocs/luci-static/resources/view/csingbox/client.js:241
-#: htdocs/luci-static/resources/view/csingbox/client.js:245
-#: htdocs/luci-static/resources/view/csingbox/client.js:274
-#: htdocs/luci-static/resources/view/csingbox/client.js:504
-#: htdocs/luci-static/resources/view/csingbox/client.js:518
-#: htdocs/luci-static/resources/view/csingbox/client.js:521
-#: htdocs/luci-static/resources/view/csingbox/client.js:1357
-#: htdocs/luci-static/resources/view/csingbox/client.js:1362
-#: htdocs/luci-static/resources/view/csingbox/client.js:1365
-#: htdocs/luci-static/resources/view/csingbox/client.js:1507
-#: htdocs/luci-static/resources/view/csingbox/client.js:1539
 #: htdocs/luci-static/resources/view/csingbox/node.js:488
 #: htdocs/luci-static/resources/view/csingbox/node.js:1131
 #: htdocs/luci-static/resources/view/csingbox/node.js:1302
@@ -407,7 +375,6 @@ msgstr ""
 msgid "GitHub token"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:256
 msgid "Global"
 msgstr ""
 
@@ -419,8 +386,6 @@ msgstr ""
 msgid "Google"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:620
-#: htdocs/luci-static/resources/view/csingbox/client.js:1108
 #: htdocs/luci-static/resources/view/csingbox/node.js:430
 #: htdocs/luci-static/resources/view/csingbox/node.js:777
 #: htdocs/luci-static/resources/view/csingbox/setting.js:177
@@ -438,11 +403,8 @@ msgstr ""
 msgid "Heartbeat interval"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:55
-#: htdocs/luci-static/resources/view/csingbox/client.js:57
-#: htdocs/luci-static/resources/view/csingbox/client.js:101
 #: htdocs/luci-static/resources/view/csingbox/status.js:282
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:3
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:3
 msgid "Csing-box"
 msgstr ""
 
@@ -481,7 +443,6 @@ msgstr ""
 msgid "Hysteria2"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:297
 msgid "IPv6 support"
 msgstr ""
 
@@ -532,7 +493,6 @@ msgstr ""
 msgid "Idle session check timeout"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:553
 #: htdocs/luci-static/resources/view/csingbox/node.js:847
 #: htdocs/luci-static/resources/view/csingbox/setting.js:456
 msgid "Idle timeout"
@@ -597,11 +557,6 @@ msgid ""
 "seconds)."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:409
-#: htdocs/luci-static/resources/view/csingbox/client.js:585
-#: htdocs/luci-static/resources/view/csingbox/client.js:937
-#: htdocs/luci-static/resources/view/csingbox/client.js:1065
-#: htdocs/luci-static/resources/view/csingbox/client.js:1324
 #: htdocs/luci-static/resources/view/csingbox/node.js:422
 #: htdocs/luci-static/resources/view/csingbox/setting.js:160
 msgid "Label"
@@ -619,9 +574,6 @@ msgid ""
 "List of IP (v4 or v6) addresses prefixes to be assigned to the interface."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:132
-#: htdocs/luci-static/resources/view/csingbox/client.js:161
-#: htdocs/luci-static/resources/view/csingbox/client.js:497
 msgid "List of nodes to test."
 msgstr ""
 
@@ -684,10 +636,6 @@ msgstr ""
 msgid "Maximum streams"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:768
-#: htdocs/luci-static/resources/view/csingbox/client.js:776
-#: htdocs/luci-static/resources/view/csingbox/client.js:1202
-#: htdocs/luci-static/resources/view/csingbox/client.js:1211
 #: htdocs/luci-static/resources/view/csingbox/node.js:841
 #: htdocs/luci-static/resources/view/csingbox/setting.js:452
 msgid "Method"
@@ -762,12 +710,11 @@ msgstr ""
 msgid "No valid share link found."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:419
 #: htdocs/luci-static/resources/view/csingbox/node.js:396
 msgid "Node"
 msgstr ""
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:23
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:23
 msgid "Node Settings"
 msgstr ""
 
@@ -775,7 +722,6 @@ msgstr ""
 msgid "Nodes"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:994
 #: htdocs/luci-static/resources/view/csingbox/node.js:737
 #: htdocs/luci-static/resources/view/csingbox/node.js:775
 #: htdocs/luci-static/resources/view/csingbox/setting.js:386
@@ -810,8 +756,6 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:967
-#: htdocs/luci-static/resources/view/csingbox/client.js:1346
 #: htdocs/luci-static/resources/view/csingbox/node.js:836
 #: htdocs/luci-static/resources/view/csingbox/node.js:869
 #: htdocs/luci-static/resources/view/csingbox/setting.js:447
@@ -840,9 +784,6 @@ msgstr ""
 msgid "Plugin opts"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:848
-#: htdocs/luci-static/resources/view/csingbox/client.js:962
-#: htdocs/luci-static/resources/view/csingbox/client.js:1286
 #: htdocs/luci-static/resources/view/csingbox/node.js:453
 msgid "Port"
 msgstr ""
@@ -864,8 +805,6 @@ msgstr ""
 msgid "Private key passphrase"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:615
-#: htdocs/luci-static/resources/view/csingbox/client.js:1104
 #: htdocs/luci-static/resources/view/csingbox/node.js:543
 #: htdocs/luci-static/resources/view/csingbox/node.js:951
 #: htdocs/luci-static/resources/view/csingbox/setting.js:250
@@ -894,7 +833,6 @@ msgstr ""
 msgid "Proxy listed only"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:284
 msgid "Proxy mode"
 msgstr ""
 
@@ -902,9 +840,6 @@ msgstr ""
 msgid "Proxy protocol"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:621
-#: htdocs/luci-static/resources/view/csingbox/client.js:953
-#: htdocs/luci-static/resources/view/csingbox/client.js:1109
 #: htdocs/luci-static/resources/view/csingbox/node.js:712
 #: htdocs/luci-static/resources/view/csingbox/node.js:779
 #: htdocs/luci-static/resources/view/csingbox/setting.js:405
@@ -945,11 +880,9 @@ msgstr ""
 msgid "Random version will be used if empty."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:285
 msgid "Redirect TCP"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:287
 msgid "Redirect TCP + TProxy UDP"
 msgstr ""
 
@@ -969,12 +902,9 @@ msgstr ""
 msgid "Resources management"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:251
 msgid "Routing mode"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:623
-#: htdocs/luci-static/resources/view/csingbox/client.js:1111
 #: htdocs/luci-static/resources/view/csingbox/node.js:438
 msgid "SSH"
 msgstr ""
@@ -1001,7 +931,7 @@ msgstr ""
 msgid "Save subscriptions settings"
 msgstr ""
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:41
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:41
 msgid "Service Status"
 msgstr ""
 
@@ -1076,9 +1006,6 @@ msgstr ""
 msgid "TCP fast open"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:625
-#: htdocs/luci-static/resources/view/csingbox/client.js:950
-#: htdocs/luci-static/resources/view/csingbox/client.js:1113
 #: htdocs/luci-static/resources/view/csingbox/node.js:1003
 #: htdocs/luci-static/resources/view/csingbox/setting.js:532
 msgid "TLS"
@@ -1089,7 +1016,6 @@ msgstr ""
 msgid "TLS ALPN"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:980
 #: htdocs/luci-static/resources/view/csingbox/node.js:1030
 #: htdocs/luci-static/resources/view/csingbox/setting.js:560
 msgid "TLS SNI"
@@ -1100,15 +1026,9 @@ msgstr ""
 msgid "TLS is not enforced. If TLS is not configured, plain HTTP 1.1 is used."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:138
-#: htdocs/luci-static/resources/view/csingbox/client.js:167
-#: htdocs/luci-static/resources/view/csingbox/client.js:530
 msgid "Test interval"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:144
-#: htdocs/luci-static/resources/view/csingbox/client.js:173
-#: htdocs/luci-static/resources/view/csingbox/client.js:546
 msgid "Test tolerance"
 msgstr ""
 
@@ -1149,15 +1069,9 @@ msgstr ""
 msgid "The path to the server certificate, in PEM format."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:139
-#: htdocs/luci-static/resources/view/csingbox/client.js:168
-#: htdocs/luci-static/resources/view/csingbox/client.js:531
 msgid "The test interval in seconds."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:145
-#: htdocs/luci-static/resources/view/csingbox/client.js:174
-#: htdocs/luci-static/resources/view/csingbox/client.js:547
 msgid "The test tolerance in milliseconds."
 msgstr ""
 
@@ -1201,8 +1115,6 @@ msgstr ""
 msgid "Tuic"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:947
-#: htdocs/luci-static/resources/view/csingbox/client.js:1334
 #: htdocs/luci-static/resources/view/csingbox/node.js:427
 #: htdocs/luci-static/resources/view/csingbox/setting.js:175
 msgid "Type"
@@ -1229,15 +1141,9 @@ msgstr ""
 msgid "UDP relay mode"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:124
-#: htdocs/luci-static/resources/view/csingbox/client.js:153
-#: htdocs/luci-static/resources/view/csingbox/client.js:421
 msgid "URLTest"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:131
-#: htdocs/luci-static/resources/view/csingbox/client.js:160
-#: htdocs/luci-static/resources/view/csingbox/client.js:496
 msgid "URLTest nodes"
 msgstr ""
 
@@ -1411,10 +1317,6 @@ msgstr ""
 
 #: htdocs/luci-static/resources/csingbox.js:306
 #: htdocs/luci-static/resources/csingbox.js:326
-#: htdocs/luci-static/resources/view/csingbox/client.js:195
-#: htdocs/luci-static/resources/view/csingbox/client.js:230
-#: htdocs/luci-static/resources/view/csingbox/client.js:504
-#: htdocs/luci-static/resources/view/csingbox/client.js:1357
 #: htdocs/luci-static/resources/view/csingbox/node.js:488
 #: htdocs/luci-static/resources/view/csingbox/node.js:1131
 #: htdocs/luci-static/resources/view/csingbox/setting.js:235
@@ -1475,10 +1377,6 @@ msgstr ""
 msgid "v3"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:518
-#: htdocs/luci-static/resources/view/csingbox/client.js:521
-#: htdocs/luci-static/resources/view/csingbox/client.js:1362
-#: htdocs/luci-static/resources/view/csingbox/client.js:1365
 #: htdocs/luci-static/resources/view/csingbox/node.js:1356
 #: htdocs/luci-static/resources/view/csingbox/node.js:1359
 msgid "valid URL"
@@ -1488,8 +1386,6 @@ msgstr ""
 msgid "valid base64 key with %d characters"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1507
-#: htdocs/luci-static/resources/view/csingbox/client.js:1539
 msgid "valid hostname"
 msgstr ""
 
@@ -1497,7 +1393,6 @@ msgstr ""
 msgid "valid port range (port1:port2)"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:274
 msgid "valid port value"
 msgstr ""
 
@@ -1551,9 +1446,6 @@ msgid "Auto update rule files"
 msgstr ""
 
 msgid "Automatically fetch china_ip4, china_ip6, gfw_list rule files every Sunday at 03:00."
-msgstr ""
-
-msgid "Basic settings"
 msgstr ""
 
 msgid "General"
@@ -1649,46 +1541,34 @@ msgstr ""
 msgid "After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
 msgstr ""
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:32
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:32
 msgid "Panel Config"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:51
-msgid "Config File Editor"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/csingbox/editor.js:55
-msgid "Notice"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/csingbox/editor.js:57
-msgid "Current routing mode is not Clash Panel Manual Routing; this file will not be used until the mode is switched."
-msgstr ""
-
-#: htdocs/luci-static/resources/view/csingbox/editor.js:62
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "File status"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:64
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:68
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "Panel config file"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:69
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:83
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "JSON syntax error: %s"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:96
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "Reload from disk"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:102
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "Panel config reloaded from disk."
 msgstr ""

@@ -39,12 +39,10 @@ msgstr "访问控制"
 msgid "Add a node"
 msgstr "新增节点"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:957
 #: htdocs/luci-static/resources/view/csingbox/node.js:448
 msgid "Address"
 msgstr "地址"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:266
 msgid "All ports"
 msgstr "所有端口"
 
@@ -144,7 +142,6 @@ msgstr "Base64"
 msgid "Blacklist mode"
 msgstr "黑名单模式"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:253
 msgid "Bypass mainland China"
 msgstr "大陆白名单"
 
@@ -190,7 +187,6 @@ msgstr "清空日志"
 msgid "Client version"
 msgstr "客户端版本"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:114
 #: htdocs/luci-static/resources/view/csingbox/setting.js:142
 #: htdocs/luci-static/resources/view/csingbox/status.js:176
 msgid "Collecting data..."
@@ -210,11 +206,6 @@ msgid "Debug"
 msgstr "调试"
 
 #: htdocs/luci-static/resources/csingbox.js:17
-#: htdocs/luci-static/resources/view/csingbox/client.js:433
-#: htdocs/luci-static/resources/view/csingbox/client.js:603
-#: htdocs/luci-static/resources/view/csingbox/client.js:755
-#: htdocs/luci-static/resources/view/csingbox/client.js:1083
-#: htdocs/luci-static/resources/view/csingbox/client.js:1381
 #: htdocs/luci-static/resources/view/csingbox/node.js:710
 msgid "Default"
 msgstr "默认"
@@ -223,18 +214,10 @@ msgstr "默认"
 msgid "Default packet encoding"
 msgstr "默认包封装格式"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:364
-#: htdocs/luci-static/resources/view/csingbox/client.js:466
-#: htdocs/luci-static/resources/view/csingbox/client.js:684
-#: htdocs/luci-static/resources/view/csingbox/client.js:1033
-#: htdocs/luci-static/resources/view/csingbox/client.js:1382
 #: htdocs/luci-static/resources/view/csingbox/node.js:428
 msgid "Direct"
 msgstr "直连"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:123
-#: htdocs/luci-static/resources/view/csingbox/client.js:151
-#: htdocs/luci-static/resources/view/csingbox/client.js:1422
 #: htdocs/luci-static/resources/view/csingbox/node.js:499
 #: htdocs/luci-static/resources/view/csingbox/node.js:555
 #: htdocs/luci-static/resources/view/csingbox/node.js:568
@@ -362,21 +345,6 @@ msgstr "错误"
 #: htdocs/luci-static/resources/csingbox.js:317
 #: htdocs/luci-static/resources/csingbox.js:326
 #: htdocs/luci-static/resources/csingbox.js:328
-#: htdocs/luci-static/resources/view/csingbox/client.js:195
-#: htdocs/luci-static/resources/view/csingbox/client.js:207
-#: htdocs/luci-static/resources/view/csingbox/client.js:211
-#: htdocs/luci-static/resources/view/csingbox/client.js:230
-#: htdocs/luci-static/resources/view/csingbox/client.js:241
-#: htdocs/luci-static/resources/view/csingbox/client.js:245
-#: htdocs/luci-static/resources/view/csingbox/client.js:274
-#: htdocs/luci-static/resources/view/csingbox/client.js:504
-#: htdocs/luci-static/resources/view/csingbox/client.js:518
-#: htdocs/luci-static/resources/view/csingbox/client.js:521
-#: htdocs/luci-static/resources/view/csingbox/client.js:1357
-#: htdocs/luci-static/resources/view/csingbox/client.js:1362
-#: htdocs/luci-static/resources/view/csingbox/client.js:1365
-#: htdocs/luci-static/resources/view/csingbox/client.js:1507
-#: htdocs/luci-static/resources/view/csingbox/client.js:1539
 #: htdocs/luci-static/resources/view/csingbox/node.js:488
 #: htdocs/luci-static/resources/view/csingbox/node.js:1131
 #: htdocs/luci-static/resources/view/csingbox/node.js:1302
@@ -421,7 +389,6 @@ msgstr "GFW 域名列表版本"
 msgid "GitHub token"
 msgstr "GitHub 令牌"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:256
 msgid "Global"
 msgstr "全局"
 
@@ -433,8 +400,6 @@ msgstr "全局填充"
 msgid "Google"
 msgstr "谷歌"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:620
-#: htdocs/luci-static/resources/view/csingbox/client.js:1108
 #: htdocs/luci-static/resources/view/csingbox/node.js:430
 #: htdocs/luci-static/resources/view/csingbox/node.js:777
 #: htdocs/luci-static/resources/view/csingbox/setting.js:177
@@ -452,11 +417,8 @@ msgstr "HTTPUpgrade"
 msgid "Heartbeat interval"
 msgstr "心跳间隔"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:55
-#: htdocs/luci-static/resources/view/csingbox/client.js:57
-#: htdocs/luci-static/resources/view/csingbox/client.js:101
 #: htdocs/luci-static/resources/view/csingbox/status.js:282
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:3
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:3
 msgid "Csing-box"
 msgstr "Csing-box"
 
@@ -495,7 +457,6 @@ msgstr "Hysteria"
 msgid "Hysteria2"
 msgstr "Hysteria2"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:297
 msgid "IPv6 support"
 msgstr "IPv6 支持"
 
@@ -546,7 +507,6 @@ msgstr "空闲会话检查间隔"
 msgid "Idle session check timeout"
 msgstr "空闲会话检查超时"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:553
 #: htdocs/luci-static/resources/view/csingbox/node.js:847
 #: htdocs/luci-static/resources/view/csingbox/setting.js:456
 msgid "Idle timeout"
@@ -613,11 +573,6 @@ msgid ""
 "seconds)."
 msgstr "发送心跳包以保持连接存活的时间间隔（单位：秒）。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:409
-#: htdocs/luci-static/resources/view/csingbox/client.js:585
-#: htdocs/luci-static/resources/view/csingbox/client.js:937
-#: htdocs/luci-static/resources/view/csingbox/client.js:1065
-#: htdocs/luci-static/resources/view/csingbox/client.js:1324
 #: htdocs/luci-static/resources/view/csingbox/node.js:422
 #: htdocs/luci-static/resources/view/csingbox/setting.js:160
 msgid "Label"
@@ -637,9 +592,6 @@ msgid ""
 "List of IP (v4 or v6) addresses prefixes to be assigned to the interface."
 msgstr "分配给接口的 IP（v4 或 v6）地址前缀列表。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:132
-#: htdocs/luci-static/resources/view/csingbox/client.js:161
-#: htdocs/luci-static/resources/view/csingbox/client.js:497
 msgid "List of nodes to test."
 msgstr "要测试的节点列表。"
 
@@ -702,10 +654,6 @@ msgstr "最大连接数"
 msgid "Maximum streams"
 msgstr "最大流数量"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:768
-#: htdocs/luci-static/resources/view/csingbox/client.js:776
-#: htdocs/luci-static/resources/view/csingbox/client.js:1202
-#: htdocs/luci-static/resources/view/csingbox/client.js:1211
 #: htdocs/luci-static/resources/view/csingbox/node.js:841
 #: htdocs/luci-static/resources/view/csingbox/setting.js:452
 msgid "Method"
@@ -780,12 +728,11 @@ msgstr "无订阅节点"
 msgid "No valid share link found."
 msgstr "找不到有效分享链接。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:419
 #: htdocs/luci-static/resources/view/csingbox/node.js:396
 msgid "Node"
 msgstr "节点"
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:23
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:23
 msgid "Node Settings"
 msgstr "节点设置"
 
@@ -793,7 +740,6 @@ msgstr "节点设置"
 msgid "Nodes"
 msgstr "节点"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:994
 #: htdocs/luci-static/resources/view/csingbox/node.js:737
 #: htdocs/luci-static/resources/view/csingbox/node.js:775
 #: htdocs/luci-static/resources/view/csingbox/setting.js:386
@@ -828,8 +774,6 @@ msgstr "崩溃"
 msgid "Password"
 msgstr "密码"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:967
-#: htdocs/luci-static/resources/view/csingbox/client.js:1346
 #: htdocs/luci-static/resources/view/csingbox/node.js:836
 #: htdocs/luci-static/resources/view/csingbox/node.js:869
 #: htdocs/luci-static/resources/view/csingbox/setting.js:447
@@ -858,9 +802,6 @@ msgstr "插件"
 msgid "Plugin opts"
 msgstr "插件参数"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:848
-#: htdocs/luci-static/resources/view/csingbox/client.js:962
-#: htdocs/luci-static/resources/view/csingbox/client.js:1286
 #: htdocs/luci-static/resources/view/csingbox/node.js:453
 msgid "Port"
 msgstr "端口"
@@ -882,8 +823,6 @@ msgstr "私钥"
 msgid "Private key passphrase"
 msgstr "私钥指纹"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:615
-#: htdocs/luci-static/resources/view/csingbox/client.js:1104
 #: htdocs/luci-static/resources/view/csingbox/node.js:543
 #: htdocs/luci-static/resources/view/csingbox/node.js:951
 #: htdocs/luci-static/resources/view/csingbox/setting.js:250
@@ -912,7 +851,6 @@ msgstr "代理过滤模式"
 msgid "Proxy listed only"
 msgstr "仅允许列表内"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:284
 msgid "Proxy mode"
 msgstr "代理模式"
 
@@ -920,9 +858,6 @@ msgstr "代理模式"
 msgid "Proxy protocol"
 msgstr "代理协议"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:621
-#: htdocs/luci-static/resources/view/csingbox/client.js:953
-#: htdocs/luci-static/resources/view/csingbox/client.js:1109
 #: htdocs/luci-static/resources/view/csingbox/node.js:712
 #: htdocs/luci-static/resources/view/csingbox/node.js:779
 #: htdocs/luci-static/resources/view/csingbox/setting.js:405
@@ -963,11 +898,9 @@ msgstr "REALITY 标识符"
 msgid "Random version will be used if empty."
 msgstr "如留空，则使用随机版本。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:285
 msgid "Redirect TCP"
 msgstr "Redirect TCP"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:287
 msgid "Redirect TCP + TProxy UDP"
 msgstr "Redirect TCP + TProxy UDP"
 
@@ -987,12 +920,9 @@ msgstr "保留字段字节"
 msgid "Resources management"
 msgstr "资源管理"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:251
 msgid "Routing mode"
 msgstr "路由模式"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:623
-#: htdocs/luci-static/resources/view/csingbox/client.js:1111
 #: htdocs/luci-static/resources/view/csingbox/node.js:438
 msgid "SSH"
 msgstr "SSH"
@@ -1019,7 +949,7 @@ msgstr "保存当前设置"
 msgid "Save subscriptions settings"
 msgstr "保存订阅设置"
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:41
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:41
 msgid "Service Status"
 msgstr "服务状态"
 
@@ -1096,9 +1026,6 @@ msgstr ""
 msgid "TCP fast open"
 msgstr "TCP 快速打开"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:625
-#: htdocs/luci-static/resources/view/csingbox/client.js:950
-#: htdocs/luci-static/resources/view/csingbox/client.js:1113
 #: htdocs/luci-static/resources/view/csingbox/node.js:1003
 #: htdocs/luci-static/resources/view/csingbox/setting.js:532
 msgid "TLS"
@@ -1109,7 +1036,6 @@ msgstr "TLS"
 msgid "TLS ALPN"
 msgstr "TLS ALPN"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:980
 #: htdocs/luci-static/resources/view/csingbox/node.js:1030
 #: htdocs/luci-static/resources/view/csingbox/setting.js:560
 msgid "TLS SNI"
@@ -1120,15 +1046,9 @@ msgstr "TLS SNI"
 msgid "TLS is not enforced. If TLS is not configured, plain HTTP 1.1 is used."
 msgstr "不强制执行 TLS。如未配置 TLS，将使用纯 HTTP 1.1。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:138
-#: htdocs/luci-static/resources/view/csingbox/client.js:167
-#: htdocs/luci-static/resources/view/csingbox/client.js:530
 msgid "Test interval"
 msgstr "测试间隔"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:144
-#: htdocs/luci-static/resources/view/csingbox/client.js:173
-#: htdocs/luci-static/resources/view/csingbox/client.js:546
 msgid "Test tolerance"
 msgstr "测试容差"
 
@@ -1169,15 +1089,9 @@ msgstr "PEM 格式的 ECH 配置路径。如果为空，将尝试从 DNS 加载�
 msgid "The path to the server certificate, in PEM format."
 msgstr "服务端证书路径，需要 PEM 格式。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:139
-#: htdocs/luci-static/resources/view/csingbox/client.js:168
-#: htdocs/luci-static/resources/view/csingbox/client.js:531
 msgid "The test interval in seconds."
 msgstr "测试间隔时间（单位：秒）。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:145
-#: htdocs/luci-static/resources/view/csingbox/client.js:174
-#: htdocs/luci-static/resources/view/csingbox/client.js:547
 msgid "The test tolerance in milliseconds."
 msgstr "测试容差时间（单位：毫秒）。"
 
@@ -1226,8 +1140,6 @@ msgstr "Trojan"
 msgid "Tuic"
 msgstr "Tuic"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:947
-#: htdocs/luci-static/resources/view/csingbox/client.js:1334
 #: htdocs/luci-static/resources/view/csingbox/node.js:427
 #: htdocs/luci-static/resources/view/csingbox/setting.js:175
 msgid "Type"
@@ -1254,15 +1166,9 @@ msgstr "UDP 包中继模式。"
 msgid "UDP relay mode"
 msgstr "UDP 中继模式"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:124
-#: htdocs/luci-static/resources/view/csingbox/client.js:153
-#: htdocs/luci-static/resources/view/csingbox/client.js:421
 msgid "URLTest"
 msgstr "URLTest"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:131
-#: htdocs/luci-static/resources/view/csingbox/client.js:160
-#: htdocs/luci-static/resources/view/csingbox/client.js:496
 msgid "URLTest nodes"
 msgstr "URLTest 节点"
 
@@ -1436,10 +1342,6 @@ msgstr "gRPC 服务名称"
 
 #: htdocs/luci-static/resources/csingbox.js:306
 #: htdocs/luci-static/resources/csingbox.js:326
-#: htdocs/luci-static/resources/view/csingbox/client.js:195
-#: htdocs/luci-static/resources/view/csingbox/client.js:230
-#: htdocs/luci-static/resources/view/csingbox/client.js:504
-#: htdocs/luci-static/resources/view/csingbox/client.js:1357
 #: htdocs/luci-static/resources/view/csingbox/node.js:488
 #: htdocs/luci-static/resources/view/csingbox/node.js:1131
 #: htdocs/luci-static/resources/view/csingbox/setting.js:235
@@ -1501,10 +1403,6 @@ msgstr "v2"
 msgid "v3"
 msgstr "v3"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:518
-#: htdocs/luci-static/resources/view/csingbox/client.js:521
-#: htdocs/luci-static/resources/view/csingbox/client.js:1362
-#: htdocs/luci-static/resources/view/csingbox/client.js:1365
 #: htdocs/luci-static/resources/view/csingbox/node.js:1356
 #: htdocs/luci-static/resources/view/csingbox/node.js:1359
 msgid "valid URL"
@@ -1514,8 +1412,6 @@ msgstr "有效网址"
 msgid "valid base64 key with %d characters"
 msgstr "包含 %d 个字符的有效 base64 密钥"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1507
-#: htdocs/luci-static/resources/view/csingbox/client.js:1539
 msgid "valid hostname"
 msgstr "有效主机名"
 
@@ -1523,7 +1419,6 @@ msgstr "有效主机名"
 msgid "valid port range (port1:port2)"
 msgstr "有效端口范围（port1:port2）"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:274
 msgid "valid port value"
 msgstr "有效端口值"
 
@@ -1578,9 +1473,6 @@ msgstr "规则文件自动更新"
 
 msgid "Automatically fetch china_ip4, china_ip6, gfw_list rule files every Sunday at 03:00."
 msgstr "每周日 03:00 自动拉取 china_ip4、china_ip6、gfw_list 规则文件。"
-
-msgid "Basic settings"
-msgstr "基本设置"
 
 msgid "General"
 msgstr "常规"
@@ -1675,46 +1567,34 @@ msgstr "国内 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
 msgid "After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
 msgstr "选择「Clash 面板手动分流」后，可到「面板配置」页面编辑配置文件，自定义分流规则。"
 
-#: root/usr/share/luci/menu.d/luci-app-csingbox.json:32
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json:32
 msgid "Panel Config"
 msgstr "面板配置"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:51
-msgid "Config File Editor"
-msgstr "配置文件编辑"
-
-#: htdocs/luci-static/resources/view/csingbox/editor.js:55
-msgid "Notice"
-msgstr "提示"
-
-#: htdocs/luci-static/resources/view/csingbox/editor.js:57
-msgid "Current routing mode is not Clash Panel Manual Routing; this file will not be used until the mode is switched."
-msgstr "当前路由模式不是「Clash 面板手动分流」，切换到该模式前此文件不会生效。"
-
-#: htdocs/luci-static/resources/view/csingbox/editor.js:62
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "File status"
 msgstr "文件状态"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:64
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
 msgstr "文件不存在。请先在设置中启用「Clash 面板手动分流」并启动一次服务，或在设置页重新生成模板。"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:68
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "Panel config file"
 msgstr "面板配置文件"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:69
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing."
 msgstr "文件：%s。保存前还会用 sing-box 校验配置，非法 JSON 将被拒绝保存。该文件仅在路由模式为「Clash 面板手动分流」时使用。"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:83
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "JSON syntax error: %s"
 msgstr "JSON 语法错误：%s"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:96
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "Reload from disk"
 msgstr "从磁盘重新加载"
 
-#: htdocs/luci-static/resources/view/csingbox/editor.js:102
+#: htdocs/luci-static/resources/view/csingbox/setting.js
 msgid "Panel config reloaded from disk."
 msgstr "已从磁盘重新加载面板配置。"
