@@ -477,16 +477,5 @@ return view.extend({
 		}
 
 		return m.render();
-	},
-
-	handleSaveApply(ev) {
-		return this.handleSave(ev).then(() => {
-			return L.resolveDefault(callServiceReload(), {}).then((res) => {
-				if (res && res.status === 0)
-					ui.addNotification(null, E('p', {}, _('Service reloaded.')));
-				else
-					ui.addNotification(null, E('p', {}, _('Failed to reload service.')));
-			});
-		});
 	}
 });
