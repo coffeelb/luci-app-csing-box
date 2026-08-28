@@ -59,13 +59,15 @@ if (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') {
 }
 dns_default_strategy = (ipv6_support !== '1') ? 'ipv4_only' : null;
 
-direct_domain_list = trim(readfile(HP_DIR + '/resources/direct_list.txt'));
-if (direct_domain_list)
-	direct_domain_list = split(direct_domain_list, /[\r\n]/);
+if (routing_mode !== 'panel') {
+	direct_domain_list = trim(readfile(HP_DIR + '/resources/direct_list.txt'));
+	if (direct_domain_list)
+		direct_domain_list = split(direct_domain_list, /[\r\n]/);
 
-proxy_domain_list = trim(readfile(HP_DIR + '/resources/proxy_list.txt'));
-if (proxy_domain_list)
-	proxy_domain_list = split(proxy_domain_list, /[\r\n]/);
+	proxy_domain_list = trim(readfile(HP_DIR + '/resources/proxy_list.txt'));
+	if (proxy_domain_list)
+		proxy_domain_list = split(proxy_domain_list, /[\r\n]/);
+}
 
 sniff_override = uci.get(uciconfig, uciinfra, 'sniff_override') || '1';
 

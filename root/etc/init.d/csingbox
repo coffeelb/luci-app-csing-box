@@ -105,7 +105,8 @@ start_service() {
 	esac
 
 	# Forced proxy list (proxy_list.txt) -> write forced proxy IP sets back to nftset
-	if [ -s "$HP_DIR/resources/proxy_list.txt" ]; then
+	# Not applied in panel mode: routing is delegated to the Clash panel and the domain ACL is hidden
+	if [ "$routing_mode" != "panel" ] && [ -s "$HP_DIR/resources/proxy_list.txt" ]; then
 		local wan_nftset_v6
 		[ "$ipv6_support" -eq "0" ] || wan_nftset_v6=",6#inet#fw4#csingbox_wan_proxy_addr_v6"
 		sed -r -e '/^\s*$/d' -e "s/(.*)/server=\/\1\/127.0.0.1#$dns_port\nnftset=\/\1\\/4#inet#fw4#csingbox_wan_proxy_addr_v4$wan_nftset_v6/g" \

@@ -6,9 +6,7 @@
  */
 
 'use strict';
-'require dom';
 'require form';
-'require network';
 'require poll';
 'require rpc';
 'require uci';
@@ -51,12 +49,27 @@ const callPanelRegenerate = rpc.declare({
 	expect: { '': {} }
 });
 
+const callPanelRead = rpc.declare({
+	object: 'luci.csingbox',
+	method: 'panel_config_read',
+	expect: { '': {} }
+});
+
+const callPanelWrite = rpc.declare({
+	object: 'luci.csingbox',
+	method: 'panel_config_write',
+	params: ['content'],
+	expect: { '': {} }
+});
+
 const routing_modes = {
 	'bypass_mainland_china': _('Bypass mainland China'),
 	'panel': _('Clash Panel Manual Routing'),
 	'gfwlist': _('GFWlist'),
 	'global': _('Global')
 };
+
+const PANEL_PATH = '/etc/csingbox/sing-box-panel.json';
 
 let stubValidator = {
 	factory: validation,
@@ -70,41 +83,6 @@ let stubValidator = {
 		return !!condition;
 	}
 };
-
-/* Kanged from luci-app-firewall tools/firewall.js */
-const CBIDynamicMultiValueList = form.DynamicList.extend({
-	renderWidget() {
-		const dl = form.DynamicList.prototype.renderWidget.apply(this, arguments);
-		const inst = dom.findClassInstance(dl);
-
-		inst.addItem = function(dl, value, text, flash) {
-			const values = L.toArray(value);
-			for (let val of values)
-				ui.DynamicList.prototype.addItem.call(this, dl, val, null, true);
-		};
-
-		return dl;
-	}
-});
-
-function addMACOption(s, name, label, description, hosts) {
-	const o = s.option(CBIDynamicMultiValueList, name, label, description);
-
-	o.modalonly = true;
-	o.datatype = 'list(macaddr)';
-	o.placeholder = _('-- add MAC --');
-
-	L.sortedKeys(hosts).forEach(function(mac) {
-		o.value(mac, E([], [ mac, ' (', E('strong', {}, [
-			hosts[mac].name ||
-			L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4)[0] ||
-			L.toArray(hosts[mac].ip6addrs || hosts[mac].ipv6)[0] ||
-			'?'
-		]), ')' ]));
-	});
-
-	return o;
-}
 
 const status_css = '				\
 :root {						\
@@ -198,14 +176,14 @@ return view.extend({
 		return Promise.all([
 			uci.load('csingbox'),
 			cs.getBuiltinFeatures(),
-			network.getHostHints()
+			L.resolveDefault(callPanelRead(), {})
 		]);
 	},
 
 	render(data) {
-		let m, s, o, ss, so;
+		let m, s, o;
 		const features = data[1];
-		const hosts = data[2]?.hosts;
+		const readRes = data[2];
 
 		let proxy_nodes = {};
 		uci.sections('csingbox', 'node', (res) => {
@@ -241,8 +219,9 @@ return view.extend({
 
 		s = m.section(form.NamedSection, 'config', 'csingbox');
 		s.anonymous = true;
-		s.tab('basic', _('Basic settings'));
-		s.tab('access', _('Access Control'));
+		s.tab('basic', _('General'));
+		s.tab('panel', _('Panel Config'));
+		s.tab('domain', _('Domain Rules'));
 
 		o = s.taboption('basic', form.ListValue, 'main_node', _('Node selection'));
 		o.widget = 'select';
@@ -391,42 +370,76 @@ return view.extend({
 		o = s.taboption('basic', form.Flag, 'ipv6_support', _('IPv6 support'));
 		o.rmempty = false;
 
-		o = s.taboption('access', form.SectionValue, '_control', form.NamedSection, 'control', 'csingbox', _('Client control'));
-		ss = o.subsection;
-		ss.anonymous = true;
+		/* Panel config file editor (Clash panel manual routing only) */
+		if (readRes.error) {
+			o = s.taboption('panel', form.DummyValue, '_file_missing', _('File status'));
+			o.depends('routing_mode', 'panel');
+			o.default = E('strong', { 'style': 'color:red' }, [
+				_('File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page.')
+			]);
+		}
 
-		so = ss.option(form.ListValue, 'lan_proxy_mode', _('Proxy filter mode'));
-		so.value('disabled', _('Disable'));
-		so.value('listed_only', _('Proxy listed only'));
-		so.value('except_listed', _('Proxy all except listed'));
-		so.default = 'disabled';
-		so.rmempty = false;
+		o = s.taboption('panel', form.TextValue, '_file_content', _('Panel config file'),
+			_('File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing.').format(PANEL_PATH));
+		o.rows = 28;
+		o.wrap = false;
+		o.monospace = true;
+		o.depends('routing_mode', 'panel');
+		o.load = function() {
+			return L.resolveDefault(callPanelRead(), {}).then((res) => {
+				return (res.content != null) ? res.content : '';
+			});
+		};
+		o.validate = function(section_id, value) {
+			if (value) {
+				try {
+					JSON.parse(value);
+				} catch (e) {
+					return _('JSON syntax error: %s').format(e.message);
+				}
+			}
 
-		so = addMACOption(ss, 'lan_direct_mac_addrs', _('Direct MAC'),
-			_('Traffic from these MACs bypasses sing-box. You can select LAN DHCP clients from the dropdown.'), hosts);
-		so.depends('lan_proxy_mode', 'except_listed');
+			return true;
+		};
+		o.write = function(_section_id, value) {
+			return callPanelWrite(value).then((res) => {
+				if (!res || !res.result)
+					throw new Error((res && res.error) ? res.error : _('Unknown error.'));
+			});
+		};
 
-		so = addMACOption(ss, 'lan_proxy_mac_addrs', _('Proxy MAC'),
-			_('Traffic from these MACs is forced through sing-box. You can select LAN DHCP clients from the dropdown.'), hosts);
-		so.depends('lan_proxy_mode', 'listed_only');
+		o = s.taboption('panel', form.Button, '_reload_file', _('Reload from disk'));
+		o.inputstyle = 'action';
+		o.depends('routing_mode', 'panel');
+		o.onclick = function() {
+			return L.resolveDefault(callPanelRead(), {}).then((res) => {
+				const content = (res.content != null) ? res.content : '';
+				m.lookupOption('_file_content', 'config')[0].getUIElement('config').setValue(content);
+				ui.addNotification(null, E('p', {}, _('Panel config reloaded from disk.')));
+			});
+		};
 
-		so = ss.option(form.TextValue, '_direct_domain_list', _('Direct domain list (direct_list.txt)'),
+		/* Domain rules (all routing modes except Clash panel manual routing) */
+		o = s.taboption('domain', form.TextValue, '_direct_domain_list', _('Direct domain list (direct_list.txt)'),
 			_('One domain per line. Takes priority over routing mode; matching traffic bypasses sing-box.'));
-		so.rows = 10;
-		so.monospace = true;
-		so.datatype = 'hostname';
-		so.load = function() {
+		o.rows = 10;
+		o.monospace = true;
+		o.datatype = 'hostname';
+		o.depends('routing_mode', 'bypass_mainland_china');
+		o.depends('routing_mode', 'gfwlist');
+		o.depends('routing_mode', 'global');
+		o.load = function() {
 			return L.resolveDefault(callReadDomainList('direct_list')).then((res) => {
 				return res.content;
 			});
 		}
-		so.write = function(_section_id, value) {
+		o.write = function(_section_id, value) {
 			return callWriteDomainList('direct_list', value);
 		}
-		so.remove = function() {
+		o.remove = function() {
 			return callWriteDomainList('direct_list', '');
 		}
-		so.validate = function(section_id, value) {
+		o.validate = function(section_id, value) {
 			if (section_id && value)
 				for (let i of value.split('\n'))
 					if (i && !stubValidator.apply('hostname', i))
@@ -435,23 +448,26 @@ return view.extend({
 			return true;
 		}
 
-		so = ss.option(form.TextValue, '_proxy_domain_list', _('Proxy domain list (proxy_list.txt)'),
+		o = s.taboption('domain', form.TextValue, '_proxy_domain_list', _('Proxy domain list (proxy_list.txt)'),
 			_('One domain per line. Takes priority over routing mode; matching traffic goes through proxy.'));
-		so.rows = 10;
-		so.monospace = true;
-		so.datatype = 'hostname';
-		so.load = function() {
+		o.rows = 10;
+		o.monospace = true;
+		o.datatype = 'hostname';
+		o.depends('routing_mode', 'bypass_mainland_china');
+		o.depends('routing_mode', 'gfwlist');
+		o.depends('routing_mode', 'global');
+		o.load = function() {
 			return L.resolveDefault(callReadDomainList('proxy_list')).then((res) => {
 				return res.content;
 			});
 		}
-		so.write = function(_section_id, value) {
+		o.write = function(_section_id, value) {
 			return callWriteDomainList('proxy_list', value);
 		}
-		so.remove = function() {
+		o.remove = function() {
 			return callWriteDomainList('proxy_list', '');
 		}
-		so.validate = function(section_id, value) {
+		o.validate = function(section_id, value) {
 			if (section_id && value)
 				for (let i of value.split('\n'))
 					if (i && !stubValidator.apply('hostname', i))
