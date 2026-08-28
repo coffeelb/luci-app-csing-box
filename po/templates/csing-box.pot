@@ -877,11 +877,11 @@ msgid "Proxy DNS, supports UDP, TCP, DoH, DoQ, DoT."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/access.js:83
-msgid "Proxy IPv4 IP-s"
+msgid "Proxy IPv4 addresses"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/access.js:88
-msgid "Proxy IPv6 IP-s"
+msgid "Proxy IPv6 addresses"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/access.js:79

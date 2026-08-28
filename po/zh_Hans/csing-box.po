@@ -895,11 +895,11 @@ msgid "Proxy DNS, supports UDP, TCP, DoH, DoQ, DoT."
 msgstr "代理 DNS，支持 UDP、TCP、DoH、DoQ、DoT。"
 
 #: htdocs/luci-static/resources/view/csingbox/access.js:83
-msgid "Proxy IPv4 IP-s"
+msgid "Proxy IPv4 addresses"
 msgstr "代理 IPv4 地址"
 
 #: htdocs/luci-static/resources/view/csingbox/access.js:88
-msgid "Proxy IPv6 IP-s"
+msgid "Proxy IPv6 addresses"
 msgstr "代理 IPv6 地址"
 
 #: htdocs/luci-static/resources/view/csingbox/access.js:79

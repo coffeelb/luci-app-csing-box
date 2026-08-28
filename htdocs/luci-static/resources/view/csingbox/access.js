@@ -80,12 +80,12 @@ return view.extend({
 			_('Traffic from these MACs is forced through sing-box. You can select LAN DHCP clients from the dropdown.'), hosts);
 		so.depends('lan_proxy_mode', 'listed_only');
 
-		so = s.option(form.DynamicList, 'wan_proxy_ipv4_ips', _('Proxy IPv4 IP-s'),
+		so = s.option(form.DynamicList, 'wan_proxy_ipv4_ips', _('Proxy IPv4 addresses'),
 			_('Traffic to these destination IPs is always forced through the proxy, taking priority over the routing mode.'));
 		so.datatype = 'or(ip4addr, cidr4)';
 
 		if (uci.get('csingbox', 'config', 'ipv6_support') === '1') {
-			so = s.option(form.DynamicList, 'wan_proxy_ipv6_ips', _('Proxy IPv6 IP-s'),
+			so = s.option(form.DynamicList, 'wan_proxy_ipv6_ips', _('Proxy IPv6 addresses'),
 				_('Traffic to these destination IPs is always forced through the proxy, taking priority over the routing mode.'));
 			so.datatype = 'or(ip6addr, cidr6)';
 		}
