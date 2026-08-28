@@ -31,7 +31,7 @@ msgstr "<strong>上传文件前请先保存配置！</strong>"
 msgid "Accept any if empty."
 msgstr "留空则不校验。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1399
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json
 msgid "Access Control"
 msgstr "访问控制"
 
@@ -900,15 +900,15 @@ msgid ""
 "default in v2ray and cannot be disabled)."
 msgstr "协议参数。 如启用会随机浪费流量（在 v2ray 中默认启用并且无法禁用）。"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1424
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy all except listed"
 msgstr "仅允许列表外"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1421
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy filter mode"
 msgstr "代理过滤模式"
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1423
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy listed only"
 msgstr "仅允许列表内"
 
@@ -1531,17 +1531,29 @@ msgstr "有效端口值"
 msgid "valid uuid"
 msgstr "有效 uuid"
 
-#: htdocs/luci-static/resources/view/csingbox/setting.js
-msgid "Client control"
-msgstr "客户端控制"
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Routing control"
+msgstr "分流控制"
 
-#: htdocs/luci-static/resources/view/csingbox/setting.js
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Direct MAC"
 msgstr "直连 MAC"
 
-#: htdocs/luci-static/resources/view/csingbox/setting.js
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy MAC"
 msgstr "代理 MAC"
+
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Proxy IPv4 IP-s"
+msgstr "代理 IPv4 地址"
+
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Proxy IPv6 IP-s"
+msgstr "代理 IPv6 地址"
+
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Traffic to these destination IPs is always forced through the proxy, taking priority over the routing mode."
+msgstr "命中这些目标 IP 的流量强制走代理，优先级高于路由模式。"
 
 msgid "Node selection"
 msgstr "节点选择"
@@ -1569,6 +1581,12 @@ msgstr "每周日 03:00 自动拉取 china_ip4、china_ip6、gfw_list 规则文�
 
 msgid "Basic settings"
 msgstr "基本设置"
+
+msgid "General"
+msgstr "常规"
+
+msgid "Domain Rules"
+msgstr "域名规则"
 
 msgid "Lightweight build based on HomeProxy"
 msgstr "基于 HomeProxy 轻量化构建"

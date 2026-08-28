@@ -28,12 +28,12 @@
 		},
 		"i18n": "csing-box"
 	},
-	"admin/services/csingbox/editor": {
-		"title": "Panel Config",
-		"order": 17,
+	"admin/services/csingbox/access": {
+		"title": "Access Control",
+		"order": 18,
 		"action": {
 			"type": "view",
-			"path": "csingbox/editor"
+			"path": "csingbox/access"
 		},
 		"i18n": "csing-box"
 	},

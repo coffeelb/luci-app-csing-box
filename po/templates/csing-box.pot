@@ -24,7 +24,7 @@ msgstr ""
 msgid "Accept any if empty."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1399
+#: root/usr/share/luci/menu.d/luci-app-csing-box.json
 msgid "Access Control"
 msgstr ""
 
@@ -882,15 +882,15 @@ msgid ""
 "default in v2ray and cannot be disabled)."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1424
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy all except listed"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1421
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy filter mode"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/client.js:1423
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy listed only"
 msgstr ""
 
@@ -1505,16 +1505,28 @@ msgstr ""
 msgid "valid uuid"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/setting.js
-msgid "Client control"
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Routing control"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/setting.js
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Direct MAC"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/csingbox/setting.js
+#: htdocs/luci-static/resources/view/csingbox/access.js
 msgid "Proxy MAC"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Proxy IPv4 IP-s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Proxy IPv6 IP-s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/csingbox/access.js
+msgid "Traffic to these destination IPs is always forced through the proxy, taking priority over the routing mode."
 msgstr ""
 
 msgid "Node selection"
@@ -1542,6 +1554,12 @@ msgid "Automatically fetch china_ip4, china_ip6, gfw_list rule files every Sunda
 msgstr ""
 
 msgid "Basic settings"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Domain Rules"
 msgstr ""
 
 msgid "Lightweight build based on HomeProxy"
