@@ -834,7 +834,7 @@ msgid "Path"
 msgstr "路径"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:896
-msgid "Peer pubkic key"
+msgid "Peer public key"
 msgstr "对端公钥"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:921
