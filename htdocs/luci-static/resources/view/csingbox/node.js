@@ -893,7 +893,7 @@ function renderNodeSettings(section, data, features, main_node) {
 	o.rmempty = false;
 	o.modalonly = true;
 
-	o = s.option(form.Value, 'wireguard_peer_public_key', _('Peer public key'),
+	o = s.option(form.Value, 'wireguard_peer_public_key', _('Peer pubkic key'),
 		_('WireGuard peer public key.'));
 	o.depends('type', 'wireguard');
 	o.validate = L.bind(cs.validateBase64Key, this, 44);

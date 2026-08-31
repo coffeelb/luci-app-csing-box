@@ -192,7 +192,7 @@ function parse_uri(uri) {
 		case 'socks':
 		case 'socks4':
 		case 'socks4a':
-		case 'socks5':
+		case 'socsk5':
 		case 'socks5h':
 			url = parseURL('http://' + uri[1]) || {};
 
@@ -627,7 +627,7 @@ function main() {
 		service_action('start');
 	}
 
-	log(sprintf('%s nodes added, %s nodes removed.', added, removed));
+	log(sprintf('%s nodes added, %s removed.', added, removed));
 	log('Successfully updated subscriptions.');
 }
 
