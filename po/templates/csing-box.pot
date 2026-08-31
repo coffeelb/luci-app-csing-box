@@ -816,7 +816,7 @@ msgid "Path"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:896
-msgid "Peer pubkic key"
+msgid "Peer public key"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:921
