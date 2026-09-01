@@ -43,7 +43,7 @@ const ntp_server = uci.get(uciconfig, uciinfra, 'ntp_server') || 'time.apple.com
 
 const ipv6_support = uci.get(uciconfig, ucimain, 'ipv6_support') || '0';
 
-let main_node, sniff_override, dns_server, china_dns_server, dns_default_strategy,
+let main_node, dns_server, china_dns_server, dns_default_strategy,
     direct_domain_list, proxy_domain_list;
 
 main_node = uci.get(uciconfig, ucimain, 'main_node') || 'nil';
@@ -68,8 +68,6 @@ if (routing_mode !== 'panel') {
 	if (proxy_domain_list)
 		proxy_domain_list = split(proxy_domain_list, /[\r\n]/);
 }
-
-sniff_override = uci.get(uciconfig, uciinfra, 'sniff_override') || '1';
 
 const proxy_mode = uci.get(uciconfig, ucimain, 'proxy_mode') || 'redirect_tproxy';
 
@@ -408,8 +406,6 @@ push(config.inbounds, {
 	listen: '::',
 	listen_port: int(mixed_port),
 	udp_timeout: strToTime(udp_timeout),
-	sniff: true,
-	sniff_override_destination: strToBool(sniff_override),
 	set_system_proxy: false
 });
 
@@ -419,9 +415,7 @@ if (match(proxy_mode, /redirect/))
 		tag: 'redirect-in',
 
 		listen: '::',
-		listen_port: int(redirect_port),
-		sniff: true,
-		sniff_override_destination: strToBool(sniff_override)
+		listen_port: int(redirect_port)
 	});
 if (match(proxy_mode, /tproxy/))
 	push(config.inbounds, {
@@ -431,9 +425,7 @@ if (match(proxy_mode, /tproxy/))
 		listen: '::',
 		listen_port: int(tproxy_port),
 		network: 'udp',
-		udp_timeout: strToTime(udp_timeout),
-		sniff: true,
-		sniff_override_destination: strToBool(sniff_override)
+		udp_timeout: strToTime(udp_timeout)
 	});
 /* Inbound end */
 
@@ -530,15 +522,12 @@ if (isEmpty(config.endpoints))
 config.route = {
 	rules: [
 		{
+			action: 'sniff'
+		},
+		{
 			inbound: 'dns-in',
 			action: 'hijack-dns'
 		}
-		/*
-		 * leave for sing-box 1.13.0
-		 * {
-		 * 	action: 'sniff'
-		 * }
-		 */
 	],
 	rule_set: [],
 	auto_detect_interface: true
