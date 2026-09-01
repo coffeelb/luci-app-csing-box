@@ -576,6 +576,13 @@ if (!isEmpty(main_node)) {
 
 	config.route.final = 'main-out';
 
+	/* Shared HTTP client for remote rule-set and panel dashboard downloads (sing-box >= 1.14) */
+	config.http_clients = [{
+		tag: 'main',
+		detour: 'main-out'
+	}];
+	config.route.default_http_client = 'main';
+
 	/* Rule set */
 	/* Direct list */
 	if (length(direct_domain_list))
@@ -607,21 +614,21 @@ if (!isEmpty(main_node)) {
 			tag: 'geoip-cn',
 			format: 'binary',
 			url: 'https://fastly.jsdelivr.net/gh/1715173329/IPCIDR-CHINA@rule-set/cn.srs',
-			download_detour: 'main-out'
+			http_client: 'main'
 		});
 		push(config.route.rule_set, {
 			type: 'remote',
 			tag: 'geosite-cn',
 			format: 'binary',
 			url: 'https://fastly.jsdelivr.net/gh/1715173329/sing-geosite@rule-set-unstable/geosite-geolocation-cn.srs',
-			download_detour: 'main-out'
+			http_client: 'main'
 		});
 		push(config.route.rule_set, {
 			type: 'remote',
 			tag: 'geosite-noncn',
 			format: 'binary',
 			url: 'https://fastly.jsdelivr.net/gh/1715173329/sing-geosite@rule-set-unstable/geosite-geolocation-!cn.srs',
-			download_detour: 'main-out'
+			http_client: 'main'
 		});
 	}
 
@@ -640,14 +647,22 @@ if (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') {
 	};
 
 	if (routing_mode === 'panel') {
-		config.experimental.clash_api = {
-			external_controller: '0.0.0.0:' + api_panel_port,
+		/* sing-box 1.14 native API service, serving sing-box-dashboard over the same listener */
+		config.services = [{
+			type: 'api',
+			tag: 'api',
+			listen: '0.0.0.0',
+			listen_port: int(api_panel_port),
 			secret: api_panel_secret,
-			default_mode: 'rule',
-			external_ui: HP_DIR + '/yacd',
-			external_ui_download_url: 'https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip',
-			external_ui_download_detour: 'main-out'
-		};
+			access_control_allow_private_network: true,
+			dashboard: {
+				enabled: true,
+				path: HP_DIR + '/dashboard',
+				download_url: 'https://github.com/SagerNet/sing-box-dashboard/archive/refs/heads/gh-pages.zip',
+				http_client: 'main',
+				update_interval: '1d'
+			}
+		}];
 	}
 }
 /* Experimental end */
@@ -658,7 +673,7 @@ const config_json = sprintf('%.J\n', removeBlankAttrs(config));
 /* Always generate the regular config */
 writefile(RUN_DIR + '/sing-box-c.json', config_json);
 
-/* Clash panel mode: the persistent template lives in /etc/csingbox (survives reboots),
+/* Panel mode: the persistent template lives in /etc/csingbox (survives reboots),
  * the runtime copy in /var/run. The template is generated automatically on first start,
  * then maintained manually (auto-generation never overwrites it); each start refreshes
  * the runtime copy from the persistent template. */

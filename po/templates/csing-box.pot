@@ -39,7 +39,7 @@ msgid "Address"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:287
-msgid "After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
+msgid "After selecting Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:348
@@ -183,23 +183,23 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:67
 #: htdocs/luci-static/resources/view/csingbox/setting.js:289
-msgid "Clash Panel Manual Routing"
+msgid "Panel Manual Routing"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:168
-msgid "Clash panel"
+msgid "Panel"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:325
-msgid "Clash panel config file regenerated and service restarted."
+msgid "Panel config file regenerated and service restarted."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:295
-msgid "Clash panel port"
+msgid "Panel port"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:301
-msgid "Clash panel secret"
+msgid "Panel secret"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/status.js:214
@@ -392,7 +392,7 @@ msgid "Expecting: %s"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:327
-msgid "Failed to regenerate Clash panel config file."
+msgid "Failed to regenerate panel config file."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:244
@@ -408,7 +408,7 @@ msgid "Fatal"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:378
-msgid "File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
+msgid "File not found. Enable Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:375
@@ -416,7 +416,7 @@ msgid "File status"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:383
-msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing."
+msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Panel Manual Routing."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:1358
@@ -775,11 +775,11 @@ msgid "One domain per line. Takes priority over routing mode; matching traffic g
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:331
-msgid "Open Clash panel"
+msgid "Open Panel"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:333
-msgid "Open Clash panel (Yacd)"
+msgid "Open sing-box dashboard"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:828
@@ -958,7 +958,7 @@ msgid "Refresh every %s seconds."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:314
-msgid "Regenerate Clash panel config file"
+msgid "Regenerate panel config file"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:316

@@ -1,7 +1,7 @@
 ## About
 
-Lightweight OpenWrt firmware built on HomeProxy, featuring a Clash dashboard.
-**It is recommended to fill in all nodes before enabling the Clash panel's manual routing mode.**
+Lightweight OpenWrt firmware built on HomeProxy, featuring a sing-box dashboard.
+**It is recommended to fill in all nodes before enabling the panel's manual routing mode.**
 
 ## Build (OpenWrt SDK / Buildroot)
 

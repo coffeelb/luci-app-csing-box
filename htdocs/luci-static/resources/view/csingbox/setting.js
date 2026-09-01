@@ -64,7 +64,7 @@ const callPanelWrite = rpc.declare({
 
 const routing_modes = {
 	'bypass_mainland_china': _('Bypass mainland China'),
-	'panel': _('Clash Panel Manual Routing'),
+	'panel': _('Panel Manual Routing'),
 	'gfwlist': _('GFWlist'),
 	'global': _('Global')
 };
@@ -165,7 +165,7 @@ function renderStatus(isRunning, version) {
 
 	return item(_('Running status'),
 			'<span class="status-dot ' + cls + '"></span><span class="status-text ' + cls + '">' + escapeHtml(state) + '</span>') +
-		item(_('Clash panel'), '<span class="status-text ' + panelCls + '">' + escapeHtml(panelState) + '</span>') +
+		item(_('Panel'), '<span class="status-text ' + panelCls + '">' + escapeHtml(panelState) + '</span>') +
 		item(_('Current node'), escapeHtml(nodeLabel)) +
 		item(_('Routing mode'), escapeHtml(mode)) +
 		item(_('sing-box core version'), escapeHtml(version ? 'v' + version : _('Unknown')));
@@ -284,21 +284,21 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.taboption('basic', form.ListValue, 'routing_mode', _('Routing mode'),
-		_('After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules.'));
+		_('After selecting Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules.'));
 		o.value('bypass_mainland_china', _('Bypass mainland China'));
-		o.value('panel', _('Clash Panel Manual Routing'));
+		o.value('panel', _('Panel Manual Routing'));
 		o.value('gfwlist', _('GFWlist'));
 		o.value('global', _('Global'));
 		o.default = 'bypass_mainland_china';
 		o.rmempty = false;
 
-		o = s.taboption('basic', form.Value, 'api_panel_port', _('Clash panel port'));
+		o = s.taboption('basic', form.Value, 'api_panel_port', _('Panel port'));
 		o.datatype = 'port';
 		o.default = '9090';
 		o.rmempty = false;
 		o.depends('routing_mode', 'panel');
 
-		o = s.taboption('basic', form.Value, 'api_panel_secret', _('Clash panel secret'));
+		o = s.taboption('basic', form.Value, 'api_panel_secret', _('Panel secret'));
 		o.password = true;
 		o.description = _('Used to authenticate panel API access. It is recommended to set a custom secret instead of the default.');
 		o.default = '666b888C';
@@ -311,7 +311,7 @@ return view.extend({
 			return true;
 		}
 
-		o = s.taboption('basic', form.Button, '_regenerate_panel_template', _('Regenerate Clash panel config file'));
+		o = s.taboption('basic', form.Button, '_regenerate_panel_template', _('Regenerate panel config file'));
 		o.inputstyle = 'apply';
 		o.inputtitle = _('Regenerate config');
 		o.description = _('Regenerates the config file from the current page settings and overwrites the original, losing any manual rules.');
@@ -322,19 +322,19 @@ return view.extend({
 
 			return L.resolveDefault(callPanelRegenerate(), {}).then((res) => {
 				if (res && res.result)
-					ui.addNotification(null, E('p', {}, _('Clash panel config file regenerated and service restarted.')));
+					ui.addNotification(null, E('p', {}, _('Panel config file regenerated and service restarted.')));
 				else
-					ui.addNotification(null, E('p', {}, _('Failed to regenerate Clash panel config file.')));
+					ui.addNotification(null, E('p', {}, _('Failed to regenerate panel config file.')));
 			});
 		}
 
-		o = s.taboption('basic', form.Button, '_open_panel', _('Open Clash panel'));
+		o = s.taboption('basic', form.Button, '_open_panel', _('Open Panel'));
 		o.inputstyle = 'action';
-		o.inputtitle = _('Open Clash panel (Yacd)');
+		o.inputtitle = _('Open sing-box dashboard');
 		o.depends('routing_mode', 'panel');
 		o.onclick = function() {
 			const port = uci.get('csingbox', 'config', 'api_panel_port') || '9090';
-			window.open('http://' + location.hostname + ':' + port + '/ui/');
+			window.open('http://' + location.hostname + ':' + port + '/dashboard/');
 		}
 
 		o = s.taboption('basic', form.ListValue, 'proxy_mode', _('Proxy mode'));
@@ -370,17 +370,17 @@ return view.extend({
 		o = s.taboption('basic', form.Flag, 'ipv6_support', _('IPv6 support'));
 		o.rmempty = false;
 
-		/* Panel config file editor (Clash panel manual routing only) */
+		/* Panel config file editor (panel manual routing only) */
 		if (readRes.error) {
 			o = s.taboption('panel', form.DummyValue, '_file_missing', _('File status'));
 			o.depends('routing_mode', 'panel');
 			o.default = E('strong', { 'style': 'color:red' }, [
-				_('File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page.')
+				_('File not found. Enable Panel Manual Routing and start the service once, or regenerate the template from the Settings page.')
 			]);
 		}
 
 		o = s.taboption('panel', form.TextValue, '_file_content', _('Panel config file'),
-			_('File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing.').format(PANEL_PATH));
+			_('File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Panel Manual Routing.').format(PANEL_PATH));
 		o.rows = 28;
 		o.wrap = false;
 		o.monospace = true;
@@ -419,7 +419,7 @@ return view.extend({
 			});
 		};
 
-		/* Domain rules (all routing modes except Clash panel manual routing) */
+		/* Domain rules (all routing modes except panel manual routing) */
 		o = s.taboption('domain', form.TextValue, '_direct_domain_list', _('Direct domain list (direct_list.txt)'),
 			_('One domain per line. Takes priority over routing mode; matching traffic bypasses sing-box.'));
 		o.rows = 10;

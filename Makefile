@@ -7,8 +7,8 @@ include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=Csing-box - Simplified homeproxy client
 LUCI_PKGARCH:=all
-# sing-box core compatibility: config generation supports 1.12.x - 1.13.x (verified with 1.13.16)
-# If the bundled sing-box is outdated, manually replace /usr/bin/sing-box with the 1.13.16 binary
+# sing-box core compatibility: config generation supports 1.14.x (verified with 1.14.0)
+# If the bundled sing-box is outdated, manually replace /usr/bin/sing-box with the 1.14.0 binary
 LUCI_DEPENDS:= \
 	+sing-box \
 	+firewall4 \

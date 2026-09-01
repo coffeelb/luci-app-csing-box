@@ -46,8 +46,8 @@ msgid "Address"
 msgstr "地址"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:287
-msgid "After selecting Clash Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
-msgstr "选择「Clash 面板手动分流」后，可到「面板配置」页面编辑配置文件，自定义分流规则。"
+msgid "After selecting Panel Manual Routing, you can edit the config file on the Panel Config page to define custom routing rules."
+msgstr "选择「面板手动分流」后，可到「面板配置」页面编辑配置文件，自定义分流规则。"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:348
 msgid "All ports"
@@ -190,24 +190,24 @@ msgstr "密码套件"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:67
 #: htdocs/luci-static/resources/view/csingbox/setting.js:289
-msgid "Clash Panel Manual Routing"
-msgstr "Clash 面板手动分流"
+msgid "Panel Manual Routing"
+msgstr "面板手动分流"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:168
-msgid "Clash panel"
-msgstr "Clash 面板"
+msgid "Panel"
+msgstr "面板"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:325
-msgid "Clash panel config file regenerated and service restarted."
-msgstr "Clash 面板配置文件已重新生成，服务已重启。"
+msgid "Panel config file regenerated and service restarted."
+msgstr "面板配置文件已重新生成，服务已重启。"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:295
-msgid "Clash panel port"
-msgstr "Clash 面板端口"
+msgid "Panel port"
+msgstr "面板端口"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:301
-msgid "Clash panel secret"
-msgstr "Clash 面板密码"
+msgid "Panel secret"
+msgstr "面板密码"
 
 #: htdocs/luci-static/resources/view/csingbox/status.js:214
 msgid "Clean log"
@@ -406,8 +406,8 @@ msgid "Expecting: %s"
 msgstr "请输入：%s"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:327
-msgid "Failed to regenerate Clash panel config file."
-msgstr "Clash 面板配置文件重新生成失败。"
+msgid "Failed to regenerate panel config file."
+msgstr "面板配置文件重新生成失败。"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:244
 msgid "Failed to reload service."
@@ -422,16 +422,16 @@ msgid "Fatal"
 msgstr "致命"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:378
-msgid "File not found. Enable Clash Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
-msgstr "文件不存在。请先在设置中启用「Clash 面板手动分流」并启动一次服务，或在设置页重新生成模板。"
+msgid "File not found. Enable Panel Manual Routing and start the service once, or regenerate the template from the Settings page."
+msgstr "文件不存在。请先在设置中启用「面板手动分流」并启动一次服务，或在设置页重新生成模板。"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:375
 msgid "File status"
 msgstr "文件状态"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:383
-msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Clash Panel Manual Routing."
-msgstr "文件：%s。保存前还会用 sing-box 校验配置，非法 JSON 将被拒绝保存。该文件仅在路由模式为「Clash 面板手动分流」时使用。"
+msgid "File: %s. Invalid JSON will be rejected; the config is also checked with sing-box before saving. This file is only used when the routing mode is Panel Manual Routing."
+msgstr "文件：%s。保存前还会用 sing-box 校验配置，非法 JSON 将被拒绝保存。该文件仅在路由模式为「面板手动分流」时使用。"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:1358
 msgid "Filter keywords"
@@ -793,12 +793,12 @@ msgid "One domain per line. Takes priority over routing mode; matching traffic g
 msgstr "仅支持域名，一行一个。优先级高于路由模式，命中一律走代理。"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:331
-msgid "Open Clash panel"
-msgstr "打开 Clash 面板"
+msgid "Open Panel"
+msgstr "打开面板"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:333
-msgid "Open Clash panel (Yacd)"
-msgstr "打开 Clash 面板（Yacd）"
+msgid "Open sing-box dashboard"
+msgstr "打开 sing-box 仪表盘"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:828
 msgid "PUT"
@@ -976,8 +976,8 @@ msgid "Refresh every %s seconds."
 msgstr "每 %s 秒刷新"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:314
-msgid "Regenerate Clash panel config file"
-msgstr "重新生成 Clash 面板配置文件"
+msgid "Regenerate panel config file"
+msgstr "重新生成面板配置文件"
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:316
 msgid "Regenerate config"
