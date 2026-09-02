@@ -646,7 +646,7 @@ if (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') {
 			access_control_allow_private_network: true,
 			dashboard: {
 				enabled: true,
-				path: HP_DIR + '/run/dashboard',
+				path: HP_DIR + '/ui/dashboard',
 				download_url: 'https://github.com/SagerNet/sing-box-dashboard/archive/refs/heads/gh-pages.zip',
 				http_client: 'main',
 				update_interval: '1d'

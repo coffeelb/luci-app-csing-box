@@ -134,11 +134,11 @@ start_service() {
 	procd_set_param command "$PROG"
 	procd_append_param command run --config "$CONFIG_FILE"
 
-	# QUIC-GO GSO is broken on kernel 6.6 currently; direct temp files to the writable run dir
+	# QUIC-GO GSO is broken on kernel 6.6 currently; direct temp files to the writable ui dir
 	if uname -r | grep -Eq "^6\.6"; then
-		procd_set_param env "TMPDIR=$HP_DIR/run" "QUIC_GO_DISABLE_GSO=true"
+		procd_set_param env "TMPDIR=$HP_DIR/ui" "QUIC_GO_DISABLE_GSO=true"
 	else
-		procd_set_param env "TMPDIR=$HP_DIR/run"
+		procd_set_param env "TMPDIR=$HP_DIR/ui"
 	fi
 
 	if [ -x "/sbin/ujail" ] && ! grep -Eq '"type": "(wireguard|tun)"' "$CONFIG_FILE"; then
@@ -150,7 +150,7 @@ start_service() {
 		fi
 		procd_add_jail_mount "$HP_DIR/certs/"
 		procd_add_jail_mount "$HP_DIR/resources/"
-		procd_add_jail_mount_rw "$HP_DIR/run"
+		procd_add_jail_mount_rw "$HP_DIR/ui"
 		procd_add_jail_mount "/etc/ssl/"
 		procd_add_jail_mount "/etc/localtime"
 		procd_add_jail_mount "/etc/TZ"
@@ -178,8 +178,8 @@ start_service() {
 	fi
 
 	# Update permissions for ujail
-	mkdir -p "$HP_DIR/run/dashboard"
-	chown -R sing-box:sing-box "$HP_DIR/run"
+	mkdir -p "$HP_DIR/ui/dashboard"
+	chown -R sing-box:sing-box "$HP_DIR/ui"
 	chown -R sing-box:sing-box "$RUN_DIR"
 
 	# Setup firewall
