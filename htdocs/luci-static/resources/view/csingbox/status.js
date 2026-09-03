@@ -15,7 +15,7 @@
 'require ui';
 'require view';
 
-const cs_dir = '/var/run/csingbox';
+const RUN_DIR = '/var/run/csingbox';
 
 function getConnStat(o, site) {
 	const callConnStat = rpc.declare({
@@ -178,7 +178,7 @@ function getRuntimeLog(o, name, _option_index, section_id, _in_table) {
 
 	let log;
 	poll.add(L.bind(() => {
-		return fs.read_direct(String.format('%s/%s.log', cs_dir, filename), 'text')
+		return fs.read_direct(String.format('%s/%s.log', RUN_DIR, filename), 'text')
 		.then((res) => {
 			log = E('pre', { 'wrap': 'pre' }, [
 				res.trim() || _('Log is empty.')
