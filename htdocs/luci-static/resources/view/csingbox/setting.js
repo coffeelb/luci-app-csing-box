@@ -120,12 +120,6 @@ html[data-darkmode="true"] {			\
 }						\
 .status-dot.danger {				\
 	background: #dc2626;			\
-}						\
-.status-text.success {				\
-	color: #16a34a;				\
-}						\
-.status-text.danger {				\
-	color: #dc2626;				\
 }';
 
 function getServiceStatus() {
@@ -208,7 +202,7 @@ return view.extend({
 			});
 
 			return E([
-				E('style', [ status_css ]),
+				E('style', [ cs.status_css, status_css ]),
 				E('div', { 'class': 'cbi-section' }, [
 					E('div', { 'class': 'cbi-section-node' }, [
 						E('div', { 'class': 'csingbox-status-bar', 'id': 'service_status' }, _('Collecting data...'))
@@ -374,7 +368,7 @@ return view.extend({
 		if (readRes.error) {
 			o = s.taboption('panel', form.DummyValue, '_file_missing', _('File status'));
 			o.depends('routing_mode', 'panel');
-			o.default = E('strong', { 'style': 'color:red' }, [
+			o.default = E('strong', { 'class': 'status-text danger' }, [
 				_('File not found. Enable Panel Manual Routing and start the service once, or regenerate the template from the Settings page.')
 			]);
 		}

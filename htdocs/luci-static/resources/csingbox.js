@@ -12,6 +12,17 @@
 'require ui';
 
 return baseclass.extend({
+	status_css: '\
+.status-text.success {				\
+	color: #16a34a;				\
+}						\
+.status-text.danger {				\
+	color: #dc2626;				\
+}						\
+.status-text.muted {				\
+	color: var(--text-color-low);			\
+}',
+
 	shadowsocks_encrypt_methods: [
 		/* Stream */
 		'none',

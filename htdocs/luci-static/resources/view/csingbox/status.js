@@ -14,6 +14,7 @@
 'require uci';
 'require ui';
 'require view';
+'require csingbox as cs';
 
 const RUN_DIR = '/var/run/csingbox';
 
@@ -25,23 +26,23 @@ function getConnStat(o, site) {
 		expect: { '': {} }
 	});
 
-	let status = E('strong', { 'style': 'color:gray' }, _('unchecked'));
+	let status = E('strong', { 'class': 'status-text muted' }, _('unchecked'));
 
-	o.default = E('div', { 'style': 'cbi-value-field' }, [
+	o.default = E('div', [
 		E('button', {
 			'class': 'btn cbi-button cbi-button-action',
 			'click': ui.createHandlerFn(this, () => {
 				return L.resolveDefault(callConnStat(site), {}).then((ret) => {
 					if (ret && ret.result !== undefined && ret.result !== null) {
 						if (ret.result) {
-							status.style.setProperty('color', 'green');
+							status.className = 'status-text success';
 							status.innerHTML = _('passed');
 						} else {
-							status.style.setProperty('color', 'red');
+							status.className = 'status-text danger';
 							status.innerHTML = _('failed');
 						}
 					} else {
-						status.style.setProperty('color', 'red');
+						status.className = 'status-text danger';
 						status.innerHTML = _('failed');
 					}
 				});
@@ -79,7 +80,7 @@ function getResVersion(o, type) {
 	});
 
 	return L.resolveDefault(callResVersion(type), {}).then((res) => {
-		let spanTemp = E('div', { 'style': 'cbi-value-field' }, [
+		let spanTemp = E('div', [
 			E('button', {
 				'class': 'btn cbi-button cbi-button-action',
 				'click': ui.createHandlerFn(this, () => {
@@ -107,7 +108,7 @@ function getResVersion(o, type) {
 				})
 			}, [ _('Check update') ]),
 			' ',
-			E('strong', { 'style': (res.error ? 'color:red' : 'color:green') },
+			E('strong', { 'class': (res.error ? 'status-text danger' : 'status-text success') },
 				[ res.error ? _('Not found') : res.version ]
 			),
 		]);
@@ -200,7 +201,7 @@ function getRuntimeLog(o, name, _option_index, section_id, _in_table) {
 	}));
 
 	return E([
-		E('style', [ css ]),
+		E('style', [ cs.status_css, css ]),
 		E('div', {'class': 'cbi-map'}, [
 			E('h3', {'name': 'content', 'style': 'align-items: center; display: flex;'}, [
 				_('%s log').format(name),
