@@ -57,7 +57,7 @@ return view.extend({
 	},
 
 	render(data) {
-		let m, s, so;
+		let m, s, o;
 		const hosts = data[1]?.hosts;
 
 		m = new form.Map('csingbox');
@@ -65,29 +65,29 @@ return view.extend({
 		s = m.section(form.NamedSection, 'control', 'csingbox', _('Routing control'));
 		s.anonymous = true;
 
-		so = s.option(form.ListValue, 'lan_proxy_mode', _('Proxy filter mode'));
-		so.value('disabled', _('Disable'));
-		so.value('listed_only', _('Proxy listed only'));
-		so.value('except_listed', _('Proxy all except listed'));
-		so.default = 'disabled';
-		so.rmempty = false;
+		o = s.option(form.ListValue, 'lan_proxy_mode', _('Proxy filter mode'));
+		o.value('disabled', _('Disable'));
+		o.value('listed_only', _('Proxy listed only'));
+		o.value('except_listed', _('Proxy all except listed'));
+		o.default = 'disabled';
+		o.rmempty = false;
 
-		so = addMACOption(s, 'lan_direct_mac_addrs', _('Direct MAC'),
+		o = addMACOption(s, 'lan_direct_mac_addrs', _('Direct MAC'),
 			_('Traffic from these MACs bypasses sing-box. You can select LAN DHCP clients from the dropdown.'), hosts);
-		so.depends('lan_proxy_mode', 'except_listed');
+		o.depends('lan_proxy_mode', 'except_listed');
 
-		so = addMACOption(s, 'lan_proxy_mac_addrs', _('Proxy MAC'),
+		o = addMACOption(s, 'lan_proxy_mac_addrs', _('Proxy MAC'),
 			_('Traffic from these MACs is forced through sing-box. You can select LAN DHCP clients from the dropdown.'), hosts);
-		so.depends('lan_proxy_mode', 'listed_only');
+		o.depends('lan_proxy_mode', 'listed_only');
 
-		so = s.option(form.DynamicList, 'wan_proxy_ipv4_ips', _('Proxy IPv4 addresses'),
+		o = s.option(form.DynamicList, 'wan_proxy_ipv4_ips', _('Proxy IPv4 addresses'),
 			_('Traffic to these destination IPs is always forced through the proxy, taking priority over the routing mode.'));
-		so.datatype = 'or(ip4addr, cidr4)';
+		o.datatype = 'or(ip4addr, cidr4)';
 
 		if (uci.get('csingbox', 'config', 'ipv6_support') === '1') {
-			so = s.option(form.DynamicList, 'wan_proxy_ipv6_ips', _('Proxy IPv6 addresses'),
+			o = s.option(form.DynamicList, 'wan_proxy_ipv6_ips', _('Proxy IPv6 addresses'),
 				_('Traffic to these destination IPs is always forced through the proxy, taking priority over the routing mode.'));
-			so.datatype = 'or(ip6addr, cidr6)';
+			o.datatype = 'or(ip6addr, cidr6)';
 		}
 
 		return m.render();
