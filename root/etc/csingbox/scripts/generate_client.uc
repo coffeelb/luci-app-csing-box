@@ -13,7 +13,7 @@ import { cursor } from 'uci';
 
 import {
 	isEmpty, parseURL, strToBool, strToInt, strToTime,
-	removeBlankAttrs, validation, HP_DIR, RUN_DIR
+	removeBlankAttrs, validation, CS_DIR, RUN_DIR
 } from 'csingbox';
 
 const ubus = connect();
@@ -60,11 +60,11 @@ if (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') {
 dns_default_strategy = (ipv6_support !== '1') ? 'ipv4_only' : null;
 
 if (routing_mode !== 'panel') {
-	direct_domain_list = trim(readfile(HP_DIR + '/resources/direct_list.txt'));
+	direct_domain_list = trim(readfile(CS_DIR + '/resources/direct_list.txt'));
 	if (direct_domain_list)
 		direct_domain_list = split(direct_domain_list, /[\r\n]/);
 
-	proxy_domain_list = trim(readfile(HP_DIR + '/resources/proxy_list.txt'));
+	proxy_domain_list = trim(readfile(CS_DIR + '/resources/proxy_list.txt'));
 	if (proxy_domain_list)
 		proxy_domain_list = split(proxy_domain_list, /[\r\n]/);
 }
@@ -646,7 +646,7 @@ if (routing_mode === 'bypass_mainland_china' || routing_mode === 'panel') {
 			access_control_allow_private_network: true,
 			dashboard: {
 				enabled: true,
-				path: HP_DIR + '/ui/dashboard',
+				path: CS_DIR + '/ui/dashboard',
 				download_url: 'https://github.com/SagerNet/sing-box-dashboard/archive/refs/heads/gh-pages.zip',
 				http_client: 'main',
 				update_interval: '1d'
@@ -667,10 +667,10 @@ writefile(RUN_DIR + '/sing-box-c.json', config_json);
  * then maintained manually (auto-generation never overwrites it); each start refreshes
  * the runtime copy from the persistent template. */
 if (routing_mode === 'panel') {
-	if (!readfile(HP_DIR + '/sing-box-panel.json')) {
+	if (!readfile(CS_DIR + '/sing-box-panel.json')) {
 		/* Upgrade migration: the manually-maintained copy used to live in /var/run; preserve manual modifications */
 		const legacy_panel = readfile(RUN_DIR + '/sing-box-panel.json');
-		writefile(HP_DIR + '/sing-box-panel.json', legacy_panel || config_json);
+		writefile(CS_DIR + '/sing-box-panel.json', legacy_panel || config_json);
 	}
-	writefile(RUN_DIR + '/sing-box-panel.json', readfile(HP_DIR + '/sing-box-panel.json'));
+	writefile(RUN_DIR + '/sing-box-panel.json', readfile(CS_DIR + '/sing-box-panel.json'));
 }
