@@ -16,7 +16,7 @@ import { urldecode, urlencode } from 'luci.http';
 
 import {
 	wGET, decodeBase64Str, getTime, isEmpty, parseURL,
-	validation, HP_DIR, RUN_DIR
+	validation, CS_DIR, RUN_DIR
 } from 'csingbox';
 
 /* UCI config start */

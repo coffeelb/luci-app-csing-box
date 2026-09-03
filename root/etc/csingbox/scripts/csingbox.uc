@@ -8,7 +8,7 @@ import { mkstemp } from 'fs';
 import { urldecode_params } from 'luci.http';
 
 /* Global variables start */
-export const HP_DIR = '/etc/csingbox';
+export const CS_DIR = '/etc/csingbox';
 export const RUN_DIR = '/var/run/csingbox';
 /* Global variables end */
 

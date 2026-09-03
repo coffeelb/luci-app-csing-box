@@ -14,7 +14,7 @@ function shellquote(s) {
 	return `'${replace(s, "'", "'\\''")}'`;
 }
 
-const HP_DIR = '/etc/csingbox';
+const CS_DIR = '/etc/csingbox';
 const RUN_DIR = '/var/run/csingbox';
 
 const methods = {
@@ -24,7 +24,7 @@ const methods = {
 			if (index(['direct_list', 'proxy_list'], req.args?.type) === -1)
 				return { content: null, error: 'illegal type' };
 
-			const filecontent = readfile(`${HP_DIR}/resources/${req.args?.type}.txt`);
+			const filecontent = readfile(`${CS_DIR}/resources/${req.args?.type}.txt`);
 			return { content: filecontent };
 		}
 	},
@@ -34,7 +34,7 @@ const methods = {
 			if (index(['direct_list', 'proxy_list'], req.args?.type) === -1)
 				return { result: false, error: 'illegal type' };
 
-			const file = `${HP_DIR}/resources/${req.args?.type}.txt`;
+			const file = `${CS_DIR}/resources/${req.args?.type}.txt`;
 			let content = req.args?.content;
 
 			/* Sanitize content */
@@ -45,7 +45,7 @@ const methods = {
 					content += '\n';
 			}
 
-			system(`mkdir -p ${HP_DIR}/resources`);
+			system(`mkdir -p ${CS_DIR}/resources`);
 			writefile(file, content);
 
 			return { result: true };
@@ -94,8 +94,8 @@ const methods = {
 				if (!match(filecontent, /\n$/))
 					filecontent += '\n';
 
-				system(`mkdir -p ${HP_DIR}/certs`);
-				writefile(`${HP_DIR}/certs/${filename}.pem`, filecontent);
+				system(`mkdir -p ${CS_DIR}/certs`);
+				writefile(`${CS_DIR}/certs/${filename}.pem`, filecontent);
 				system(`rm -f ${tmpcert}`);
 
 				return { result: true };
@@ -182,7 +182,7 @@ const methods = {
 	resources_get_version: {
 		args: { type: 'type' },
 		call: function(req) {
-			const version = trim(readfile(`${HP_DIR}/resources/${req.args?.type}.ver`));
+			const version = trim(readfile(`${CS_DIR}/resources/${req.args?.type}.ver`));
 			return { version: version, error: error() };
 		}
 	},
@@ -191,7 +191,7 @@ const methods = {
 		call: function(req) {
 			if (req.args?.type) {
 				const type = shellquote(req.args?.type);
-				const exit_code = system(`${HP_DIR}/scripts/update_resources.sh ${type}`);
+				const exit_code = system(`${CS_DIR}/scripts/update_resources.sh ${type}`);
 				return { status: exit_code };
 			} else
 				return { status: 255, error: 'illegal type' };
@@ -199,7 +199,7 @@ const methods = {
 	},
 	panel_config_read: {
 		call: function() {
-			const content = readfile(`${HP_DIR}/sing-box-panel.json`);
+			const content = readfile(`${CS_DIR}/sing-box-panel.json`);
 			return { content: content, error: error() };
 		}
 	},
@@ -225,16 +225,16 @@ const methods = {
 			if (exit_code !== 0)
 				return { result: false, error: output || 'sing-box check failed' };
 
-			system(`mkdir -p ${HP_DIR}`);
-			writefile(`${HP_DIR}/sing-box-panel.json`, content);
-			system(`chmod 600 ${HP_DIR}/sing-box-panel.json`);
+			system(`mkdir -p ${CS_DIR}`);
+			writefile(`${CS_DIR}/sing-box-panel.json`, content);
+			system(`chmod 600 ${CS_DIR}/sing-box-panel.json`);
 
 			return { result: true };
 		}
 	},
 	panel_template_regenerate: {
 		call: function() {
-			const ret = system(`rm -f ${HP_DIR}/sing-box-panel.json ${RUN_DIR}/sing-box-panel.json`);
+			const ret = system(`rm -f ${CS_DIR}/sing-box-panel.json ${RUN_DIR}/sing-box-panel.json`);
 			if (ret !== 0)
 				return { result: false, error: 'failed to remove panel template' };
 

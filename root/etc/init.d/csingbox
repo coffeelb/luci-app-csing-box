@@ -12,7 +12,7 @@ STOP=10
 CONF="csingbox"
 PROG="/usr/bin/sing-box"
 
-HP_DIR="/etc/csingbox"
+CS_DIR="/etc/csingbox"
 RUN_DIR="/var/run/csingbox"
 LOG_PATH="$RUN_DIR/csingbox.log"
 
@@ -41,16 +41,16 @@ start_service() {
 		uci -q get "csingbox.@node[0]" >/dev/null 2>&1 || return 1
 	fi
 
-	mkdir -p "$RUN_DIR" "$HP_DIR/certs"
+	mkdir -p "$RUN_DIR" "$CS_DIR/certs"
 
 	# Clear the sing-box log on every start
 	echo > "$RUN_DIR/sing-box-c.log" 2>"/dev/null"
 
 	# Generate/Validate client config
-	ucode -S "$HP_DIR/scripts/generate_client.uc" 2>>"$LOG_PATH"
+	ucode -S "$CS_DIR/scripts/generate_client.uc" 2>>"$LOG_PATH"
 	# The persistent panel template contains node credentials and the panel secret; tighten permissions
 	if [ "$routing_mode" = "panel" ]; then
-		chmod 600 "$HP_DIR/sing-box-panel.json" 2>"/dev/null"
+		chmod 600 "$CS_DIR/sing-box-panel.json" 2>"/dev/null"
 	fi
 	if [ "$routing_mode" = "panel" ]; then
 		CONFIG_FILE="$RUN_DIR/sing-box-panel.json"
@@ -70,7 +70,7 @@ start_service() {
 	config_get_bool auto_update "config" "auto_update" "1"
 	sed -i "/#${CONF}_autosetup/d" "/etc/crontabs/root" 2>"/dev/null"
 	if [ "$auto_update" = "1" ]; then
-		echo -e "0 3 * * 0 $HP_DIR/scripts/update_resources.sh all #${CONF}_autosetup" >> "/etc/crontabs/root"
+		echo -e "0 3 * * 0 $CS_DIR/scripts/update_resources.sh all #${CONF}_autosetup" >> "/etc/crontabs/root"
 	fi
 
 	# Cron: subscription auto-update
@@ -78,7 +78,7 @@ start_service() {
 	config_get_bool sub_auto_update "subscription" "auto_update" "0"
 	if [ "$sub_auto_update" = "1" ]; then
 		config_get sub_auto_update_time "subscription" "auto_update_time" "2"
-		echo -e "0 $sub_auto_update_time * * * $HP_DIR/scripts/update_subscriptions.uc #${CONF}_autosetup" >> "/etc/crontabs/root"
+		echo -e "0 $sub_auto_update_time * * * $CS_DIR/scripts/update_subscriptions.uc #${CONF}_autosetup" >> "/etc/crontabs/root"
 	fi
 	/etc/init.d/cron restart >"/dev/null" 2>&1
 
@@ -100,17 +100,17 @@ start_service() {
 		local gfw_nftset_v6
 		[ "$ipv6_support" -eq "0" ] || gfw_nftset_v6=",6#inet#fw4#csingbox_gfw_list_v6"
 		sed -r -e "s/(.*)/server=\/\1\/127.0.0.1#$dns_port\nnftset=\/\1\\/4#inet#fw4#csingbox_gfw_list_v4$gfw_nftset_v6/g" \
-			"$HP_DIR/resources/gfw_list.txt" > "$DNSMASQ_DIR/gfw_list.conf"
+			"$CS_DIR/resources/gfw_list.txt" > "$DNSMASQ_DIR/gfw_list.conf"
 		;;
 	esac
 
 	# Forced proxy list (proxy_list.txt) -> write forced proxy IP sets back to nftset
 	# Not applied in panel mode: routing is delegated to the Clash panel and the domain ACL is hidden
-	if [ "$routing_mode" != "panel" ] && [ -s "$HP_DIR/resources/proxy_list.txt" ]; then
+	if [ "$routing_mode" != "panel" ] && [ -s "$CS_DIR/resources/proxy_list.txt" ]; then
 		local wan_nftset_v6
 		[ "$ipv6_support" -eq "0" ] || wan_nftset_v6=",6#inet#fw4#csingbox_wan_proxy_addr_v6"
 		sed -r -e '/^\s*$/d' -e "s/(.*)/server=\/\1\/127.0.0.1#$dns_port\nnftset=\/\1\\/4#inet#fw4#csingbox_wan_proxy_addr_v4$wan_nftset_v6/g" \
-			"$HP_DIR/resources/proxy_list.txt" > "$DNSMASQ_DIR/proxy_list.conf"
+			"$CS_DIR/resources/proxy_list.txt" > "$DNSMASQ_DIR/proxy_list.conf"
 	fi
 	/etc/init.d/dnsmasq restart >"/dev/null" 2>&1
 
@@ -136,9 +136,9 @@ start_service() {
 
 	# QUIC-GO GSO is broken on kernel 6.6 currently; direct temp files to the writable yacd dir
 	if uname -r | grep -Eq "^6\.6"; then
-		procd_set_param env "TMPDIR=$HP_DIR/yacd" "QUIC_GO_DISABLE_GSO=true"
+		procd_set_param env "TMPDIR=$CS_DIR/yacd" "QUIC_GO_DISABLE_GSO=true"
 	else
-		procd_set_param env "TMPDIR=$HP_DIR/yacd"
+		procd_set_param env "TMPDIR=$CS_DIR/yacd"
 	fi
 
 	if [ -x "/sbin/ujail" ] && ! grep -Eq '"type": "(wireguard|tun)"' "$CONFIG_FILE"; then
@@ -148,9 +148,9 @@ start_service() {
 		if [ "$routing_mode" = "bypass_mainland_china" -o "$routing_mode" = "panel" ]; then
 			procd_add_jail_mount_rw "$RUN_DIR/cache.db"
 		fi
-		procd_add_jail_mount "$HP_DIR/certs/"
-		procd_add_jail_mount "$HP_DIR/resources/"
-		procd_add_jail_mount_rw "$HP_DIR/yacd"
+		procd_add_jail_mount "$CS_DIR/certs/"
+		procd_add_jail_mount "$CS_DIR/resources/"
+		procd_add_jail_mount_rw "$CS_DIR/yacd"
 		procd_add_jail_mount "/etc/ssl/"
 		procd_add_jail_mount "/etc/localtime"
 		procd_add_jail_mount "/etc/TZ"
@@ -168,7 +168,7 @@ start_service() {
 
 	# Log size limit is 50KB; truncate when exceeded
 	procd_open_instance "log-cleaner"
-	procd_set_param command "$HP_DIR/scripts/clean_log.sh"
+	procd_set_param command "$CS_DIR/scripts/clean_log.sh"
 	procd_set_param respawn
 	procd_close_instance
 
@@ -178,12 +178,12 @@ start_service() {
 	fi
 
 	# Update permissions for ujail
-	mkdir -p "$HP_DIR/yacd"
-	chown -R sing-box:sing-box "$HP_DIR/yacd"
+	mkdir -p "$CS_DIR/yacd"
+	chown -R sing-box:sing-box "$CS_DIR/yacd"
 	chown -R sing-box:sing-box "$RUN_DIR"
 
 	# Setup firewall
-	utpl -S "$HP_DIR/scripts/firewall_post.ut" > "$RUN_DIR/fw4_post.nft"
+	utpl -S "$CS_DIR/scripts/firewall_post.ut" > "$RUN_DIR/fw4_post.nft"
 	fw4 reload >"/dev/null" 2>&1
 
 	log "sing-box $(sing-box version -n) started."
