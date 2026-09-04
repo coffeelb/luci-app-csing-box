@@ -362,6 +362,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.taboption('basic', form.Flag, 'ipv6_support', _('IPv6 support'));
+		o.default = '1';
 		o.rmempty = false;
 
 		/* Panel config file editor (panel manual routing only) */
