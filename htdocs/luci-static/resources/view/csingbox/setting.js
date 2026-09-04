@@ -361,19 +361,19 @@ return view.extend({
 		o.default = '1';
 		o.rmempty = false;
 
-		o = s.taboption('basic', form.Flag, 'ipv6_support', _('IPv6 support'));
-		o.rmempty = false;
-
 		o = s.taboption('basic', form.Flag, 'dns_mainland_fallback',
 			_('Mainland IP DNS fallback'),
-			_('When the proxy DNS returns a mainland China IP, re-resolve the query with the local DNS. ' +
-			  'Uses sing-box 1.14 response matching and disables per-rule DNS strategies (only the ' +
-			  'global strategy remains). In Panel Manual Routing, regenerate the panel config file ' +
-			  'after changing this option.'));
-		o.default = '0';
+			_('When the proxy DNS returns a mainland IP, re-resolve the query with the local DNS; ' +
+			  'per-rule DNS strategies are disabled once enabled. Regenerate the panel config file ' +
+			  'in Panel Manual Routing.'));
+		o.default = '1';
 		o.rmempty = false;
 		o.depends('routing_mode', 'bypass_mainland_china');
 		o.depends('routing_mode', 'panel');
+
+		o = s.taboption('basic', form.Flag, 'ipv6_support', _('IPv6 support'));
+		o.default = '1';
+		o.rmempty = false;
 
 		/* Panel config file editor (panel manual routing only) */
 		if (readRes.error) {

@@ -522,10 +522,9 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/setting.js:370
 msgid ""
-"When the proxy DNS returns a mainland China IP, re-resolve the query with the "
-"local DNS. Uses sing-box 1.14 response matching and disables per-rule DNS "
-"strategies (only the global strategy remains). In Panel Manual Routing, "
-"regenerate the panel config file after changing this option."
+"When the proxy DNS returns a mainland IP, re-resolve the query with the "
+"local DNS; per-rule DNS strategies are disabled once enabled. Regenerate the "
+"panel config file in Panel Manual Routing."
 msgstr ""
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:500
