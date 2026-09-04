@@ -368,10 +368,12 @@ return view.extend({
 			_('Mainland IP DNS fallback'),
 			_('When the proxy DNS returns a mainland China IP, re-resolve the query with the local DNS. ' +
 			  'Uses sing-box 1.14 response matching and disables per-rule DNS strategies (only the ' +
-			  'global strategy remains).'));
+			  'global strategy remains). In Panel Manual Routing, regenerate the panel config file ' +
+			  'after changing this option.'));
 		o.default = '0';
 		o.rmempty = false;
 		o.depends('routing_mode', 'bypass_mainland_china');
+		o.depends('routing_mode', 'panel');
 
 		/* Panel config file editor (panel manual routing only) */
 		if (readRes.error) {

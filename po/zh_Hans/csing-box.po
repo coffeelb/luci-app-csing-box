@@ -538,10 +538,12 @@ msgstr "大陆 IP DNS 兜底"
 msgid ""
 "When the proxy DNS returns a mainland China IP, re-resolve the query with the "
 "local DNS. Uses sing-box 1.14 response matching and disables per-rule DNS "
-"strategies (only the global strategy remains)."
+"strategies (only the global strategy remains). In Panel Manual Routing, "
+"regenerate the panel config file after changing this option."
 msgstr ""
 "当代理 DNS 返回大陆 IP 时，改用本地 DNS 重新解析该查询。该功能使用 "
 "sing-box 1.14 响应匹配，启用后会禁用逐规则 DNS 策略（仅保留全局策略）。"
+"面板手动路由模式下，修改此选项后需重新生成面板配置文件。"
 
 #: htdocs/luci-static/resources/view/csingbox/node.js:500
 msgid "Idle session check interval"
