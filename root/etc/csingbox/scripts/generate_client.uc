@@ -47,6 +47,8 @@ let main_node, dns_server, china_dns_server, dns_default_strategy,
     direct_domain_list, proxy_domain_list;
 
 main_node = uci.get(uciconfig, ucimain, 'main_node') || 'nil';
+/* sing-box 1.14 response matching fallback: re-resolve mainland IP answers with china-dns */
+const dns_mainland_fallback = uci.get(uciconfig, ucimain, 'dns_mainland_fallback') === '1';
 
 dns_server = uci.get(uciconfig, ucimain, 'dns_server');
 if (isEmpty(dns_server) || dns_server === 'wan')
@@ -364,28 +366,49 @@ if (!isEmpty(main_node)) {
 				server: 'main-dns'
 			});
 
-		push(config.dns.rules, {
-			rule_set: 'geosite-cn',
-			action: 'route',
-			server: 'china-dns',
-			strategy: 'prefer_ipv6'
-		});
-		push(config.dns.rules, {
-			type: 'logical',
-			mode: 'and',
-			rules: [
-				{
-					rule_set: 'geosite-noncn',
-					invert: true
-				},
-				{
-					rule_set: 'geoip-cn'
-				}
-			],
-			action: 'route',
-			server: 'china-dns',
-			strategy: 'prefer_ipv6'
-		});
+		if (dns_mainland_fallback) {
+			/* Modern DNS mode (sing-box >= 1.14): no per-rule strategy is allowed.
+			 * evaluate fetches the main-dns answer; a mainland IP answer is
+			 * re-resolved with china-dns via match_response. */
+			push(config.dns.rules, {
+				rule_set: 'geosite-cn',
+				action: 'route',
+				server: 'china-dns'
+			});
+			push(config.dns.rules, {
+				action: 'evaluate',
+				server: 'main-dns'
+			});
+			push(config.dns.rules, {
+				match_response: true,
+				rule_set: 'geoip-cn',
+				action: 'route',
+				server: 'china-dns'
+			});
+		} else {
+			push(config.dns.rules, {
+				rule_set: 'geosite-cn',
+				action: 'route',
+				server: 'china-dns',
+				strategy: 'prefer_ipv6'
+			});
+			push(config.dns.rules, {
+				type: 'logical',
+				mode: 'and',
+				rules: [
+					{
+						rule_set: 'geosite-noncn',
+						invert: true
+					},
+					{
+						rule_set: 'geoip-cn'
+					}
+				],
+				action: 'route',
+				server: 'china-dns',
+				strategy: 'prefer_ipv6'
+			});
+		}
 	}
 }
 /* DNS end */

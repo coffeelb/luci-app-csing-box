@@ -23,6 +23,7 @@ config csingbox 'config'
 	option routing_port 'common'
 	option proxy_mode 'redirect_tproxy'
 	option ipv6_support '0'
+	option dns_mainland_fallback '0'
 	option auto_update '1'
 	option log_level 'warn'
 

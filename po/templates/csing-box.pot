@@ -516,6 +516,17 @@ msgstr ""
 msgid "IPv6 support"
 msgstr ""
 
+#: htdocs/luci-static/resources/view/csingbox/setting.js:369
+msgid "Mainland IP DNS fallback"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/csingbox/setting.js:370
+msgid ""
+"When the proxy DNS returns a mainland China IP, re-resolve the query with the "
+"local DNS. Uses sing-box 1.14 response matching and disables per-rule DNS "
+"strategies (only the global strategy remains)."
+msgstr ""
+
 #: htdocs/luci-static/resources/view/csingbox/node.js:500
 msgid "Idle session check interval"
 msgstr ""

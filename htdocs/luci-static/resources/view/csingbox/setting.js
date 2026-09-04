@@ -364,6 +364,15 @@ return view.extend({
 		o = s.taboption('basic', form.Flag, 'ipv6_support', _('IPv6 support'));
 		o.rmempty = false;
 
+		o = s.taboption('basic', form.Flag, 'dns_mainland_fallback',
+			_('Mainland IP DNS fallback'),
+			_('When the proxy DNS returns a mainland China IP, re-resolve the query with the local DNS. ' +
+			  'Uses sing-box 1.14 response matching and disables per-rule DNS strategies (only the ' +
+			  'global strategy remains).'));
+		o.default = '0';
+		o.rmempty = false;
+		o.depends('routing_mode', 'bypass_mainland_china');
+
 		/* Panel config file editor (panel manual routing only) */
 		if (readRes.error) {
 			o = s.taboption('panel', form.DummyValue, '_file_missing', _('File status'));
