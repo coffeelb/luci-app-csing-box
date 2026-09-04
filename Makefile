@@ -17,7 +17,7 @@ LUCI_DEPENDS:= \
 
 PKG_NAME:=luci-app-csing-box
 PKG_VERSION:=1.1.7
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 define Package/luci-app-csing-box/conffiles
 /etc/config/csingbox
