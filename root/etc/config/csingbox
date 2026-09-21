@@ -1,0 +1,46 @@
+config csingbox 'infra'
+	option mixed_port '6330'
+	option dns_port '6333'
+	option ntp_server 'nil'
+	# UDP session timeout in seconds (300 = sing-box's own default); empty falls back to 300.
+	option udp_timeout '300'
+
+config csingbox 'config'
+	option main_node 'nil'
+	# Remote DNS for non-mainland domains; DoT/UDP URLs work too (see the Settings page).
+	option dns_server 'https://dns.google/dns-query'
+	option china_dns_server 'udp://223.5.5.5:53'
+	# Ports that are proxied. 'common' = 80,443,853,5222,8443 (everything else stays out of the
+	# proxy); port 53 (DNS) is pinned into the effective list. 'all' = every port, or a
+	# comma-separated list with `a:b` ranges; a missing option counts as 'common'.
+	option routing_port 'common'
+	# Reject proxied QUIC (UDP 80/443) so clients fall back to TCP (off by default).
+	option quic_reject '0'
+	# Open the TUN device with IFF_MULTI_QUEUE and run one queue per CPU. Linux only and
+	# needs the native stack (this package omits `stack`, so sing-box 1.15+ is fine).
+	option multi_queue '1'
+	# TUN parameters (mtu 9000 / strict_route off) are fixed in generate_client.uc; `stack` is
+	# omitted on purpose (sing-box 1.15+ native TCP/IP stack)
+	# Panel (sing-box API + dashboard) switch; when off the panel options are hidden in LuCI
+	# and the API service is stripped from the runtime config.
+	option api_panel_enabled '0'
+	option api_panel_port '9090'
+	option api_panel_secret '666b888C'
+	option ipv6_support '1'
+	option log_level 'warn'
+
+config csingbox 'control'
+	option lan_proxy_mode 'disabled'
+	# Per-device filtering uses the native tun options: include_mac_address (listed_only)
+	# or exclude_mac_address (except_listed) - they are mutually exclusive.
+	# The MAC lists themselves are filled in on the Access Control page.
+
+config csingbox 'subscription'
+	option auto_update '0'
+	option auto_update_time '2'
+	option update_via_proxy '0'
+	option allow_insecure '0'
+	option packet_encoding 'xudp'
+	option filter_nodes 'blacklist'
+	list filter_keywords '重置|到期|过期|剩余|套餐'
+	list filter_keywords 'Expiration|Remaining'

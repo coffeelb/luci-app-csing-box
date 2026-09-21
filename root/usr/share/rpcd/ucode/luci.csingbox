@@ -1,0 +1,256 @@
+#!/usr/bin/ucode
+/*
+ * SPDX-License-Identifier: GPL-2.0-only
+ *
+ * Copyright (C) 2023-2024 ImmortalWrt.org
+ */
+
+'use strict';
+
+import { error, lstat, popen, readfile, writefile } from 'fs';
+import { cursor } from 'uci';
+
+/* Kanged from ucode/luci. Same implementation as shellQuote() in
+ * /etc/csingbox/scripts/csingbox.uc; kept inline so this rpcd module does not depend on
+ * files under /etc (a missing or renamed script would break every RPC call). */
+function shellquote(s) {
+	return `'${replace(s, "'", "'\\''")}'`;
+}
+
+const CS_DIR = '/etc/csingbox';
+const RUN_DIR = '/var/run/csingbox';
+/* Scratch file for the connectivity check; lives in tmpfs and is removed right after. */
+const CHECK_FILE = '/tmp/csingbox-conn-check';
+
+const methods = {
+	certificate_write: {
+		args: { filename: 'filename' },
+		call: function(req) {
+			const writeCertificate = (filename, priv) => {
+				const tmpcert = '/tmp/csingbox_certificate.tmp';
+				const filestat = lstat(tmpcert);
+
+				if (!filestat || filestat.type !== 'file' || filestat.size <= 0) {
+					system(`rm -f ${tmpcert}`);
+					return { result: false, error: 'empty certificate file' };
+				}
+
+				let filecontent = readfile(tmpcert);
+				/* byte classes of isBinary() in csingbox.uc: NUL and control bytes mean binary */
+				if (match(filecontent, /[\x00-\x08\x0e-\x1f]/)) {
+					system(`rm -f ${tmpcert}`);
+					return { result: false, error: 'illegal file type: binary' };
+				}
+
+				/* Kanged from luci-proto-openconnect */
+				const beg = priv ? /^-----BEGIN (RSA|EC) PRIVATE KEY-----$/ : /^-----BEGIN CERTIFICATE-----$/,
+				      end = priv ? /^-----END (RSA|EC) PRIVATE KEY-----$/ : /^-----END CERTIFICATE-----$/,
+				      lines = split(trim(filecontent), /[\r\n]/);
+				let start = false, i;
+
+				for (i = 0; i < length(lines); i++) {
+					if (match(lines[i], beg))
+						start = true;
+					else if (start && !b64dec(lines[i]) && length(lines[i]) !== 64)
+						break;
+				}
+
+				if (!start || i < length(lines) - 1 || !match(lines[i], end)) {
+					system(`rm -f ${tmpcert}`);
+					return { result: false, error: 'this does not look like a correct PEM file' };
+				}
+
+				/* Sanitize certificate */
+				filecontent = trim(filecontent);
+				filecontent = replace(filecontent, /\r\n?/g, '\n');
+				if (!match(filecontent, /\n$/))
+					filecontent += '\n';
+
+				system(`mkdir -p ${CS_DIR}/certs`);
+				writefile(`${CS_DIR}/certs/${filename}.pem`, filecontent);
+				system(`rm -f ${tmpcert}`);
+
+				return { result: true };
+			};
+
+			const filename = req.args?.filename;
+			switch (filename) {
+			case 'client_ca':
+			case 'server_publickey':
+				return writeCertificate(filename, false);
+				break;
+			case 'server_privatekey':
+				return writeCertificate(filename, true);
+				break;
+			default:
+				return { result: false, error: 'illegal cerificate filename' };
+				break;
+			}
+		}
+	},
+
+	log_clean: {
+		args: { type: 'type' },
+		call: function(req) {
+			if (!(req.args?.type in ['csingbox', 'sing-box-c']))
+				return { result: false, error: 'illegal type' };
+
+			const filestat = lstat(`${RUN_DIR}/${req.args?.type}.log`);
+			if (filestat)
+				writefile(`${RUN_DIR}/${req.args?.type}.log`, '');
+			return { result: true };
+		}
+	},
+
+	singbox_get_features: {
+		call: function() {
+			let features = {};
+
+			const fd = popen('/usr/bin/sing-box version');
+			if (fd) {
+				for (let line = fd.read('line'); length(line); line = fd.read('line')) {
+					if (match(trim(line), /^sing-box version (.*)/))
+						features.version = match(trim(line), /^sing-box version (.*)/)[1];
+
+					let tags = match(trim(line), /^Tags: (.*)/);
+					if (tags)
+						for (let i in split(tags[1], ','))
+							features[i] = true;
+				}
+
+				fd.close();
+			}
+
+			return features;
+		}
+	},
+
+	connection_check: {
+		args: { site: 'site' },
+		call: function(req) {
+			let url, via_proxy = false;
+
+			switch (req.args?.site) {
+			case 'baidu': {
+				/* Direct link baseline: a plain ICMP ping. ICMP is bypassed by design and cannot be
+				 * carried by the proxy protocols, so this row also works while the service is
+				 * stopped, and its value is directly comparable to a manual `ping`.
+				 * -A sends the next packet as soon as a reply arrives (3 probes in a few ms when the
+				 * link is healthy), -w bounds the whole run so a dead link cannot block the RPC. */
+				const fd = popen('/bin/ping -c 3 -A -W 2 -w 4 -q www.baidu.com 2>"/dev/null"');
+				let ping_out = '';
+				if (fd) {
+					for (let line = fd.read('line'); length(line); line = fd.read('line'))
+						ping_out += line;
+					fd.close();
+				}
+
+				const stat = match(ping_out, /round-trip min\/avg\/max = [0-9.]+\/([0-9.]+)\//);
+
+				return (stat !== null) ? { result: true, ms: int(+stat[1] + 0.5) } : { result: false, ms: 0 };
+			}
+			case 'google':
+				/* Mozilla's captive-portal probe: plain HTTP, no redirect, body exactly "success".
+				 * Constraints learned on real devices: verified HTTPS can be broken there (this
+				 * device answers TLS verification with rc 5) and wget follows redirects, so an
+				 * http:// URL that 301s to https:// lands back in that broken path. Sending the
+				 * request to the local mixed inbound keeps it off the router's own resolver (the
+				 * proxy resolves the name) and guarantees it cannot leave unproxied. */
+				url = 'http://detectportal.firefox.com/success.txt';
+				via_proxy = true;
+				break;
+			default:
+				return { result: false, error: 'illegal site' };
+			}
+
+			/* -q: no progress; -O <file>: the body is needed for the check below; -T5 bounds the
+			 * connect; the timeout in system() covers a stalled run. Remove a stale file first so
+			 * leftovers can never be mistaken for a fresh response. */
+			system(`rm -f ${CHECK_FILE}`);
+			let cmd = `/usr/bin/wget -q -O ${CHECK_FILE} -T5 ${shellquote(url)}`;
+			if (via_proxy) {
+				const uci = cursor();
+				uci.load('csingbox');
+				const port = uci.get('csingbox', 'infra', 'mixed_port') || '6330';
+				cmd = `http_proxy=http://127.0.0.1:${port} ` + cmd;
+			}
+
+			/* clock(true) is CLOCK_MONOTONIC ([seconds, nanoseconds]) — millisecond precision
+			 * without depending on any external tool. */
+			const start = clock(true);
+			const rc = system(cmd + ' 2>"/dev/null"', 6000);
+			const stop = clock(true);
+			let ms = int((stop[0] - start[0]) * 1000 + (stop[1] - start[1]) / 1000000);
+
+			/* A hijack page, a captive portal or an ISP interstitial cannot reproduce this body
+			 * byte for byte, so the verdict does not need TLS to stay honest. */
+			let ok = false;
+			if (rc === 0)
+				ok = trim(readfile(CHECK_FILE) || '') === 'success';
+			system(`rm -f ${CHECK_FILE}`);
+
+			return { result: ok, ms: (ms > 0) ? ms : 0 };
+		}
+	},
+
+	service_reload: {
+		call: function() {
+			const exit_code = system('/etc/init.d/csingbox reload');
+			return { status: exit_code };
+		}
+	},
+
+	panel_config_read: {
+		call: function() {
+			const content = readfile(`${CS_DIR}/sing-box-panel.json`);
+			/* The template is generated once and then maintained manually: tell the UI whether
+			 * it still uses the removed redirect/tproxy inbounds so it can prompt a rebuild. */
+			return {
+				content: content,
+				legacy: content ? !match(content, /"type"\s*:\s*"tun"/) : false,
+				error: error()
+			};
+		}
+	},
+	panel_config_write: {
+		args: { content: 'content' },
+		call: function(req) {
+			const content = req.args?.content;
+			if (!content)
+				return { result: false, error: 'empty content' };
+			if (length(content) > 1024 * 1024)
+				return { result: false, error: 'content too large' };
+
+			/* Validate with the sing-box core before committing */
+			const tmpcfg = '/tmp/csingbox-panel-check.json';
+			const tmplog = '/tmp/csingbox-panel-check.log';
+			system(`rm -f ${tmpcfg} ${tmplog}`);
+			writefile(tmpcfg, content);
+
+			const exit_code = system(`/usr/bin/sing-box check --config ${shellquote(tmpcfg)} >${tmplog} 2>&1`);
+			const output = trim(readfile(tmplog));
+			system(`rm -f ${tmpcfg} ${tmplog}`);
+
+			if (exit_code !== 0)
+				return { result: false, error: output || 'sing-box check failed' };
+
+			system(`mkdir -p ${CS_DIR}`);
+			writefile(`${CS_DIR}/sing-box-panel.json`, content);
+			system(`chmod 600 ${CS_DIR}/sing-box-panel.json`);
+
+			return { result: true };
+		}
+	},
+	panel_template_regenerate: {
+		call: function() {
+			const ret = system(`rm -f ${CS_DIR}/sing-box-panel.json ${RUN_DIR}/sing-box-panel.json`);
+			if (ret !== 0)
+				return { result: false, error: 'failed to remove panel template' };
+
+			const exit_code = system('/etc/init.d/csingbox restart');
+			return { result: (exit_code === 0) };
+		}
+	}
+};
+
+return { 'luci.csingbox': methods };

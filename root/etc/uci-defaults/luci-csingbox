@@ -1,0 +1,84 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# Upgrade helpers for Csing-box 1.2.0 (TUN-only + panel manual routing).
+# Everything below is idempotent and safe to run on a fresh install.
+
+[ -f "/www/luci-static/resources/icons/loading.gif" ] && \
+	sed -i "s,/loading.svg,/loading.gif,g" "/www/luci-static/resources/view/csingbox/status.js"
+
+# --- Legacy redirect/tproxy firewall include -----------------------------------------
+# 1.1.x registered an fw4 include; TUN traffic and its nftables rules are handled by
+# sing-box itself, so drop the stale include and reload the firewall once.
+if uci -q get firewall.csingbox_post >"/dev/null"; then
+	uci -q delete firewall.csingbox_post
+	uci -q commit firewall
+	rm -f "/var/run/csingbox/fw4_post.nft"
+	/etc/init.d/firewall reload >"/dev/null" 2>&1
+fi
+
+# --- Legacy routing-port fragment ----------------------------------------------------
+# Up to 1.2.1 the routing ports used an nftables fragment in /etc/nftables.d; a stale one would
+# keep skipping those ports, so drop it (route rules handle the ports now) and reload once.
+if [ -e "/etc/nftables.d/0-csingbox-routing-ports.nft" ]; then
+	rm -f "/etc/nftables.d/0-csingbox-routing-ports.nft"
+	/etc/init.d/firewall reload >"/dev/null" 2>&1
+fi
+rm -f "/var/run/csingbox/fw4-reload-needed"
+
+# --- Changed defaults ----------------------------------------------------------------
+# Remote DNS default moved from DoT to Google DoH: only rewrite the untouched old default.
+if [ "$(uci -q get csingbox.config.dns_server)" = "tls://8.8.8.8:853" ]; then
+	uci -q set csingbox.config.dns_server='https://dns.google/dns-query'
+fi
+
+# --- Obsolete UCI options (features removed in 1.2.0) --------------------------------
+# Note: only csingbox.config.auto_update is dropped here; subscription.auto_update is
+# still in use by the subscription cron job.
+# The csingbox.control section itself is kept: 1.2.0 uses it for per-device filtering
+# (lan_proxy_mode / lan_direct_mac_addrs / lan_proxy_mac_addrs), so only its removed
+# wan_proxy_* IP lists are dropped.
+# config.routing_port is not listed on purpose: the option is live again (see Routing ports).
+for opt in \
+	"config.proxy_mode" \
+	"config.routing_mode" \
+	"config.dns_mainland_fallback" \
+	"config.auto_update" \
+	"config.jail" \
+	"infra.__warning" \
+	"infra.common_port" \
+	"infra.redirect_port" \
+	"infra.tproxy_port" \
+	"infra.tproxy_mark" \
+	"infra.table_mark" \
+	"infra.self_mark" \
+	"infra.dns_redirect" \
+	"control.wan_proxy_ipv4_ips" \
+	"control.wan_proxy_ipv6_ips"
+do
+	uci -q delete "csingbox.$opt"
+done
+uci -q commit csingbox
+
+# --- Obsolete resource files ---------------------------------------------------------
+# china_ip4/ip6/gfw_list were download artifacts of the removed routing modes,
+# direct_list/proxy_list belonged to the removed domain list feature.
+RES="/etc/csingbox/resources"
+rm -f "$RES/china_ip4.txt" "$RES/china_ip4.ver" \
+      "$RES/china_ip6.txt" "$RES/china_ip6.ver" \
+      "$RES/gfw_list.txt" "$RES/gfw_list.ver" \
+      "$RES/direct_list.txt" "$RES/proxy_list.txt"
+rmdir "$RES" 2>"/dev/null"
+rm -f "/var/run/csingbox/sing-box-c.json"
+
+# --- Legacy sandbox leftovers ---------------------------------------------------------
+# 1.2.x shipped an optional ujail sandbox and ran sing-box as the unprivileged `sing-box`
+# user, chown'ing its working directories to it. The service runs as root again, so the
+# ownership is restored here. The account itself is deliberately left alone: the sing-box
+# package declares it through USERID (sing-box=5566) and other consumers (for example the
+# luci-app-homeproxy jail) may rely on it - remove it with `deluser sing-box` only if you
+# are sure nothing else needs it.
+chown -R root:root "/etc/csingbox/ui" 2>"/dev/null"
+chown -R root:root "/var/run/csingbox" 2>"/dev/null"
+
+exit 0
