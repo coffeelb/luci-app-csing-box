@@ -1,85 +1,110 @@
-本项目基于 HomeProxy 修改，以**完整 TUN 模式**运行 **sing-box 1.15.x** 内核，并内置官方**sing-box-dashboard** 面板。
-默认只代理常见的 Web 相关端口；其余端口的连接不经过代理（由两条路由规则保证，见下）。被代理流量
-的路由由面板配置文件中的手动规则决定。**面板默认关闭，需在设置页打开「启用面板」；启用前请先把节点填写完整，
-涉及面板配置生成的选项（节点、DNS、路由端口等）在「保存并应用」后，还需点一次「覆盖配置」才会生效。**
+This package is a modified HomeProxy: it runs the **sing-box 1.15.x** core in **full TUN mode** and
+ships the official **sing-box-dashboard** panel.
+Only the common web ports are proxied by default; connections on other ports stay out of the proxy
+(enforced by two route rules, see below). The routing of proxied traffic is decided by the manual
+rules in the panel config file. **The panel is off by default - turn it on with "Enable panel" on the
+Settings page, and fill in your node first: the options that feed the generated config (node, DNS,
+routing ports, ...) only take effect after one more click on "Overwrite config" following
+"Save & Apply".**
 
-核心几乎完全重写，与上游的主要差异：
+The core is almost completely rewritten. Main differences from upstream:
 
-- **HomeProxy 的防火墙层整体移除**：`firewall_pre.uc`、`firewall_post.ut`、它们注册的 fw4
-  include 以及生成的 `/var/run/csingbox/fw4_post.nft` 规则集全部删除——TUN 路由及其 nftables
-  规则由 sing-box 自己负责，升级路径会清掉遗留 include、运行时文件与 1.2.1 之前的**路由端口** nft 片段；
-- 仅 TUN：移除旧的 `redirect` / `tproxy` inbound 与客户端/服务端双模式，只生成一个 TUN inbound；
-- **路由端口**用两条路由规则表达：限定 `inbound: tun-in` 的 `bypass`（pre-match 内核级放行）+ 普通
-  `route → direct-out`（兜住 LAN 代理端口、已建立连接等 pre-match 之外的场景）；默认表较上游精简
-  （不含 SSH/邮件/git 端口，`53` 固化）；
-- **UDP 会话超时**显式写进配置（`option infra.udp_timeout`，默认 `300` 秒 = sing-box 自身默认值）；
-- 设备级访问控制只保留 MAC、且位于 TUN 层（`include_mac_address` / `exclude_mac_address`，由
-  sing-box 自身的 auto_redirect 规则匹配——不需要防火墙规则，也不依赖 nfqueue 模块）；上游是在
-  fw4 include 里匹配 `ether saddr` 与 IPv4/IPv6 列表，并额外提供游戏模式、全局代理、WAN 策略与
-  监听接口等选项，这些在本包中已移除——升级时会清掉 WAN 策略列表，其余遗留列表不再被读取；
-- `generate_client.uc`、`init.d`、`uci-defaults` 与升级迁移围绕上述目标重写（与上游 HomeProxy 行级相似度约
-  36% / 23% / 14%），并新增或重写了 LuCI 页面与选项（面板配置页、路由端口、QUIC 开关、
-  多队列 TUN、私有网段处理：`tun-in` 作用域的 `ip_is_private` pre-match `bypass`（内核级放行）
-  + 主规则的 `direct-out` 兜底，例如经 LAN 代理端口（6330）访问内网地址时不会再被送往远端代理；
-  不再写静态 `route_exclude_address`，CGNAT 段按上游做法不处理）；
-- 基本原样继承的文件：`node.js`、`csingbox.uc`、`update_subscriptions.uc` 与 RPC/ACL 层。
+- **The HomeProxy firewall layer is gone entirely**: `firewall_pre.uc`, `firewall_post.ut`, the fw4
+  include they registered and the generated `/var/run/csingbox/fw4_post.nft` rule set are all
+  removed - the TUN routing and its nftables rules are sing-box's own business. The upgrade path
+  clears the legacy include, the runtime files and the pre-1.2.1 **routing ports** nft fragment;
+- **TUN only**: the old `redirect` / `tproxy` inbounds and the client/server dual mode are gone; a
+  single TUN inbound is generated;
+- **Routing ports** are expressed as two route rules: a `bypass` limited to `inbound: tun-in`
+  (kernel-level pass in the pre-match stage) plus a plain `route -> direct-out` (covers what
+  pre-match cannot see: the LAN proxy port, established connections, ...). The default list is
+  slimmer than upstream (no SSH/mail/git ports, `53` is pinned);
+- **UDP session timeout** is written into the config explicitly (`option infra.udp_timeout`,
+  default `300` seconds = sing-box's own default);
+- Device-level access control keeps MAC matching only, and it lives in the TUN layer
+  (`include_mac_address` / `exclude_mac_address`, matched by sing-box's own auto_redirect rules - no
+  firewall rules and no nfqueue module needed). Upstream matches `ether saddr` plus IPv4/IPv6 lists
+  inside its fw4 include and also offers game mode, global proxy, WAN policy and listen-interface
+  options; those are removed here - the upgrade clears the WAN policy lists, and the remaining
+  legacy lists are no longer read;
+- `generate_client.uc`, `init.d`, `uci-defaults` and the upgrade migration are rewritten around the
+  points above (line-level similarity to upstream HomeProxy is about 36% / 23% / 14%), and the LuCI
+  pages and options were added or rewritten (panel config page, routing ports, the QUIC switch,
+  multi-queue TUN, private-range handling: an `ip_is_private` pre-match `bypass` scoped to `tun-in`
+  (kernel-level pass) plus a `direct-out` fallback in the main rules, so for example an internal
+  address reached through the LAN proxy port (6330) is no longer handed to the remote proxy; the
+  static `route_exclude_address` is not written any more, and CGNAT is left alone the way upstream
+  does);
+- Files inherited roughly unchanged: `node.js`, `csingbox.uc`, `update_subscriptions.uc` and the
+  RPC/ACL layer.
 
-## 环境要求
+## Requirements
 
-- OpenWrt（firewall4 / nftables）
-- **sing-box 1.15.0+** —— TUN 不写 `stack` 字段：1.15.0 起 sing-tun 使用自研的 TCP/IP 栈，省略该选项即启用它
-  （该选项 1.15.0 废弃、1.17.0 移除；1.16.0 起命令行还需 `ENABLE_DEPRECATED_TUN_STACK=true` 才能沿用旧值）
-- 构建需带 **`with_wireguard` + `with_gvisor` 两个标签**：WireGuard 节点生成的是用户态 endpoint
-  （`system: false`），依赖 gVisor netstack；缺少任一标签时 UI 中都不显示 WireGuard 节点类型
-  （TUN 本身不需要 gVisor）
-- `kmod-nft-queue` / `kmod-nfnetlink-queue`（已声明为包依赖）：pre-match 的路由动作
-  （`bypass` / L3 `route` / `reject` / `sniff`）靠它们把 TCP SYN 入队到用户态；**路由端口**的
-  `bypass` 走的就是这条链路，非列表端口每条流因此有一次用户态往返，之后由内核按标记直连。
-  本包生成的排除项（`route_exclude_address_set`）和按设备 MAC 过滤都是纯静态 nftables 规则。
+- OpenWrt (firewall4 / nftables)
+- **sing-box 1.15.0+** - the TUN inbound omits the `stack` field: since 1.15.0 sing-tun uses its own
+  TCP/IP stack, and leaving the option out selects it (the option is deprecated in 1.15.0 and removed
+  in 1.17.0; from 1.16.0 the CLI additionally needs `ENABLE_DEPRECATED_TUN_STACK=true` to keep using
+  the old values)
+- The build needs **both the `with_wireguard` and `with_gvisor` tags**: WireGuard nodes are generated
+  as userspace endpoints (`system: false`) on top of the gVisor netstack; without either tag the
+  WireGuard node type is not offered in the UI at all (the TUN itself does not need gVisor)
+- `kmod-nft-queue` / `kmod-nfnetlink-queue` (declared as package dependencies): the pre-match route
+  actions (`bypass` / L3 `route` / `reject` / `sniff`) use them to queue the TCP SYN into userspace.
+  The **routing ports** `bypass` rides that path, so every flow on a non-listed port costs one
+  userspace round trip before the kernel continues it directly. The exclusions this package
+  generates (`route_exclude_address_set`) and the per-device MAC filter are plain static nftables
+  rules.
 
-## 面板（sing-box-dashboard）
+## Panel (sing-box-dashboard)
 
-面板由 sing-box 自身的 API 服务提供（不需要额外进程），首次启动时自动下载官方
-[sing-box-dashboard](https://github.com/SagerNet/sing-box-dashboard)，之后每周刷新一次
-（生成的 API 服务设置 `update_interval: 7d`）。
+The panel is served by sing-box's own API service (no extra process). On first start it downloads the
+official [sing-box-dashboard](https://github.com/SagerNet/sing-box-dashboard) and refreshes it once a
+week (the generated API service sets `update_interval: 7d`).
 
-| 项 | 值 |
+| Item | Value |
 | --- | --- |
-| 开关 | `option api_panel_enabled`（默认 `0`；关闭时**不在配置文件里生成面板内容**（`services` 里的 api 服务会被移除，`/etc` 的模板与 `/var/run` 的运行配置都不含），并隐藏面板端口/密码/打开面板。开关即时生效，不需要点「覆盖配置」；「覆盖配置」按钮本身不受它影响——它负责把节点、DNS、路由端口等设置写进配置文件） |
-| API 监听 | `0.0.0.0:9090`（`option api_panel_port`） |
-| 面板地址 | `http://<路由器IP>:9090/dashboard/` |
-| 认证 | Bearer token = `api_panel_secret`（默认 `666b888C`，建议改掉） |
+| Switch | `option api_panel_enabled` (default `0`; while it is off **no panel content is written to the config** - the api service in `services` is removed from both the `/etc` template and the `/var/run` runtime config - and the panel port / secret / open-panel rows are hidden. The switch takes effect immediately, no "Overwrite config" needed; that button is unaffected by it - it is what writes the node, DNS, routing ports and friends into the config file) |
+| API listen | `0.0.0.0:9090` (`option api_panel_port`) |
+| Panel URL | `http://<router-ip>:9090/dashboard/` |
+| Auth | Bearer token = `api_panel_secret` (default `666b888C`, change it) |
 
-面板配置文件位于 `/etc/csingbox/sing-box-panel.json`，可在 LuCI 的 *Panel Config* 页面（顶层菜单项）中
-编辑；它只生成一次，之后由手动维护——点「覆盖配置」会按当前设置覆盖手动改动。生成器只会在
-**面板开关切换时**改动其中 `services` 那一条（关闭时移除 api 服务、打开时按当前设置重新生成），
-其余内容与你手动写的规则都不动。
+The panel config file lives at `/etc/csingbox/sing-box-panel.json` and can be edited on the LuCI
+*Panel Config* page (a top-level menu entry). It is generated once and maintained by hand afterwards
+- "Overwrite config" replaces your manual edits with whatever the current settings say. The
+generator only ever touches its `services` entry, and only **when the panel switch flips** (removing
+the api service while off, regenerating it from the current settings while on); everything else,
+including rules you wrote yourself, is left untouched.
 
-仪表盘归档由 sing-box 自己下载到 `/tmp`（tmpfs）后解压到 `/etc/csingbox/ui/dashboard.tmp`，再整体改名为
-`/etc/csingbox/ui/dashboard`。注意：该目录**非空且不含 `.etag`** 时会被当作「用户提供的文件」而停止自动
-更新（日志里是 `dashboard: serving user-provided files at …, auto-update disabled`）——要强制重新下载就
-`rm -rf /etc/csingbox/ui/dashboard`，下次启动会重新拉取。
+The dashboard archive is downloaded by sing-box into `/tmp` (tmpfs), unpacked to
+`/etc/csingbox/ui/dashboard.tmp` and then renamed to `/etc/csingbox/ui/dashboard`. Note: once that
+directory is **non-empty and has no `.etag`**, it counts as "user-provided files" and automatic
+updates stop (the log says `dashboard: serving user-provided files at ..., auto-update disabled`) -
+to force a re-download, run `rm -rf /etc/csingbox/ui/dashboard` and it will be fetched again on the
+next start.
 
-DNS 方面默认只生成一条分流规则：`geosite-cn → china-dns`（大陆域名用本地 DNS 解析，其余用远程 DNS）。
-1.2.x 曾默认附带「大陆 DNS 回退」——远端解析结果落在大陆 IP 时改用国内答案；它只在远端解析器**确实返回
-大陆地址**时才生效，且每次命中都要多一次国内查询，因此不再默认生成。需要的话在「配置编辑」页把它加回
-`dns.rules`（注意顺序：放在 `geosite-cn` 那条之后）：
+For DNS, only one split rule is generated by default: `geosite-cn -> china-dns` (mainland domains use
+the local resolver, everything else the remote one). 1.2.x used to ship a "mainland DNS fallback" -
+when the remote resolver returned a mainland IP, the local answer was used instead; it only fired
+when the remote resolver **actually returned a mainland address**, and it cost one extra local query
+per hit, so it is no longer generated. If you want it back, add it to `dns.rules` on the
+*Panel Config* page (mind the order: after the `geosite-cn` entry):
 
 ```json
 { "action": "evaluate", "server": "main-dns" },
 { "match_response": true, "rule_set": "geoip-cn", "action": "route", "server": "china-dns" }
 ```
 
-## 构建（OpenWrt SDK / Buildroot）
+## Building (OpenWrt SDK / Buildroot)
 
-1. 把本目录放入 `package/luci-app-csing-box`（或加入自定义 feed 后执行
-   `./scripts/feeds install luci-app-csing-box`）。
-2. `make menuconfig` → `LuCI` → `Applications` → 选中 `luci-app-csing-box`。
-3. `make package/luci-app-csing-box/compile V=s` 生成 ipk / apk（视发行版而定）。
+1. Put this directory at `package/luci-app-csing-box` (or add it to a custom feed and run
+   `./scripts/feeds install luci-app-csing-box`).
+2. `make menuconfig` -> `LuCI` -> `Applications` -> select `luci-app-csing-box`.
+3. `make package/luci-app-csing-box/compile V=s` produces the ipk / apk (depending on the
+   distribution).
 
-## 许可证
+## License
 
-`GPL-2.0-only` —— 见 [LICENSE](LICENSE)。
+`GPL-2.0-only` - see [LICENSE](LICENSE).
 
-本包是 [immortalwrt/homeproxy](https://github.com/immortalwrt/homeproxy)（© 2022-2025 ImmortalWrt.org）
-的**修改版**。
+This package is a **modified version** of
+[immortalwrt/homeproxy](https://github.com/immortalwrt/homeproxy) (© 2022-2025 ImmortalWrt.org).
