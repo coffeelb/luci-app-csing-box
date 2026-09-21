@@ -337,7 +337,7 @@ return view.extend({
 
 		o = s.taboption('basic', form.Flag, 'quic_reject', _('Reject QUIC'),
 			_('Rejects proxied QUIC (UDP 80/443) so applications fall back to TCP immediately. Direct traffic is unaffected; turn it off only if you need UDP 443 through the proxy.'));
-		o.default = '0';
+		o.default = '1';
 		o.rmempty = false;
 
 		o = s.taboption('basic', form.Flag, 'multi_queue', _('Multi-queue TUN'),

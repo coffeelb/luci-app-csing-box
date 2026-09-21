@@ -14,8 +14,8 @@ config csingbox 'config'
 	# proxy); port 53 (DNS) is pinned into the effective list. 'all' = every port, or a
 	# comma-separated list with `a:b` ranges; a missing option counts as 'common'.
 	option routing_port 'common'
-	# Reject proxied QUIC (UDP 80/443) so clients fall back to TCP (off by default).
-	option quic_reject '0'
+	# Reject proxied QUIC (UDP 80/443) so clients fall back to TCP.
+	option quic_reject '1'
 	# Open the TUN device with IFF_MULTI_QUEUE and run one queue per CPU. Linux only and
 	# needs the native stack (this package omits `stack`, so sing-box 1.15+ is fine).
 	option multi_queue '1'
