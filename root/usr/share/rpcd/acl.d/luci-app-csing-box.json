@@ -1,0 +1,25 @@
+{
+	"luci-app-csing-box": {
+		"description": "Grant access to Csing-box configuration",
+		"read": {
+			"file": {
+				"/etc/csingbox/scripts/update_subscriptions.uc": [ "exec" ],
+				"/var/run/csingbox/csingbox.log": [ "read" ],
+				"/var/run/csingbox/sing-box-c.log": [ "read" ],
+				"/tmp/run/csingbox/csingbox.log": [ "read" ],
+				"/tmp/run/csingbox/sing-box-c.log": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ],
+				"luci.csingbox": [ "*" ]
+			},
+			"uci": [ "csingbox" ]
+		},
+		"write": {
+			"file": {
+				"/tmp/csingbox_certificate.tmp": [ "write" ]
+			},
+			"uci": [ "csingbox" ]
+		}
+	}
+}

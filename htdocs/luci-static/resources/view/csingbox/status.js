@@ -1,0 +1,204 @@
+/*
+ * SPDX-License-Identifier: GPL-2.0-only
+ *
+ * Csing-box - Status
+ * Based on luci-app-homeproxy (C) 2022-2025 ImmortalWrt.org
+ */
+
+'use strict';
+'require dom';
+'require form';
+'require fs';
+'require poll';
+'require rpc';
+'require uci';
+'require ui';
+'require view';
+'require csingbox as cs';
+
+const RUN_DIR = '/var/run/csingbox';
+
+function getConnStat(o, site) {
+	const callConnStat = rpc.declare({
+		object: 'luci.csingbox',
+		method: 'connection_check',
+		params: ['site'],
+		expect: { '': {} }
+	});
+
+	let status = E('strong', { 'class': 'status-text muted' }, _('unchecked'));
+
+	o.default = E('div', [
+		E('button', {
+			'class': 'btn cbi-button cbi-button-action',
+			'click': ui.createHandlerFn(this, () => {
+				return L.resolveDefault(callConnStat(site), {}).then((ret) => {
+					if (ret && ret.result !== undefined && ret.result !== null) {
+						const latency = (ret.ms != null) ? ' · ' + ret.ms + ' ms' : '';
+						if (ret.result) {
+							status.className = 'status-text success';
+							status.innerHTML = _('passed') + latency;
+						} else {
+							status.className = 'status-text danger';
+							status.innerHTML = _('failed') + latency;
+						}
+					} else {
+						status.className = 'status-text danger';
+						status.innerHTML = _('failed');
+					}
+				});
+			})
+		}, [ _('Check') ]),
+		' ',
+		status
+	]);
+}
+
+const css = '				\
+#log_textarea {				\
+	padding: 10px;			\
+	text-align: left;		\
+}					\
+#log_textarea pre {			\
+	padding: .5rem;			\
+	word-break: break-all;		\
+	margin: 0;			\
+}';
+
+function getRuntimeLog(o, name, _option_index, section_id, _in_table) {
+	const filename = o.option.split('_')[1];
+
+	let section, log_level_el;
+	switch (filename) {
+	case 'csingbox':
+		section = null;
+		break;
+	case 'sing-box-c':
+		section = 'config';
+		break;
+	}
+
+	if (section) {
+		const selected = uci.get('csingbox', section, 'log_level') || 'warn';
+		const choices = {
+			trace: _('Trace'),
+			debug: _('Debug'),
+			info: _('Info'),
+			warn: _('Warn'),
+			error: _('Error'),
+			fatal: _('Fatal'),
+			panic: _('Panic')
+		};
+
+		log_level_el = E('select', {
+			'id': o.cbid(section_id),
+			'class': 'cbi-input-select',
+			'style': 'margin-left: 4px; width: 6em;',
+			'change': ui.createHandlerFn(this, (ev) => {
+				uci.set('csingbox', section, 'log_level', ev.target.value);
+				return o.map.save(null, true).then(() => {
+					ui.changes.apply(true);
+				});
+			})
+		});
+
+		Object.keys(choices).forEach((v) => {
+			log_level_el.appendChild(E('option', {
+				'value': v,
+				'selected': (v === selected) ? '' : null
+			}, [ choices[v] ]));
+		});
+	}
+
+	const callLogClean = rpc.declare({
+		object: 'luci.csingbox',
+		method: 'log_clean',
+		params: ['type'],
+		expect: { '': {} }
+	});
+
+	const log_textarea = E('div', { 'id': 'log_textarea' },
+		E('img', {
+			'src': L.resource('icons/loading.svg'),
+			'alt': _('Loading'),
+			'style': 'vertical-align:middle'
+		}, _('Collecting data...'))
+	);
+
+	let log;
+	poll.add(L.bind(() => {
+		return fs.read_direct(String.format('%s/%s.log', RUN_DIR, filename), 'text')
+		.then((res) => {
+			log = E('pre', { 'wrap': 'pre' }, [
+				res.trim() || _('Log is empty.')
+			]);
+
+			dom.content(log_textarea, log);
+		}).catch((err) => {
+			if (err.toString().includes('NotFoundError'))
+				log = E('pre', { 'wrap': 'pre' }, [
+					_('Log file does not exist.')
+				]);
+			else
+				log = E('pre', { 'wrap': 'pre' }, [
+					_('Unknown error: %s').format(err)
+				]);
+
+			dom.content(log_textarea, log);
+		});
+	}));
+
+	return E([
+		E('style', [ cs.status_css, css ]),
+		E('div', {'class': 'cbi-map'}, [
+			E('h3', {'name': 'content', 'style': 'align-items: center; display: flex;'}, [
+				_('%s log').format(name),
+				log_level_el || '',
+				E('button', {
+					'class': 'btn cbi-button cbi-button-action',
+					'style': 'margin-left: 4px;',
+					'click': ui.createHandlerFn(this, () => {
+						return L.resolveDefault(callLogClean(filename), {});
+					})
+				}, [ _('Clean log') ])
+			]),
+			E('div', {'class': 'cbi-section'}, [
+				log_textarea,
+				E('div', {'style': 'text-align:right'},
+					E('small', {}, _('Refresh every %s seconds.').format(L.env.pollinterval))
+				)
+			])
+		])
+	]);
+}
+
+return view.extend({
+	render() {
+		let m, s, o;
+
+		m = new form.Map('csingbox');
+		s = m.section(form.NamedSection, 'config', 'csingbox', _('Connection check'));
+		s.anonymous = true;
+
+		o = s.option(form.DummyValue, '_check_baidu', _('BaiDu'));
+		o.cfgvalue = L.bind(getConnStat, this, o, 'baidu');
+
+		o = s.option(form.DummyValue, '_check_google', _('Google'));
+		o.cfgvalue = L.bind(getConnStat, this, o, 'google');
+
+		s = m.section(form.NamedSection, 'config', 'csingbox', _('Runtime log'));
+		s.anonymous = true;
+
+		o = s.option(form.DummyValue, '_csingbox_logview');
+		o.render = L.bind(getRuntimeLog, this, o, _('Csing-box'));
+
+		o = s.option(form.DummyValue, '_sing-box-c_logview');
+		o.render = L.bind(getRuntimeLog, this, o, _('sing-box'));
+
+		return m.render();
+	},
+
+	handleSaveApply: null,
+	handleSave: null,
+	handleReset: null
+});
