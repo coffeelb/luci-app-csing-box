@@ -35,7 +35,7 @@ let wan_dns = ubus.call('network.interface', 'status', {'interface': 'wan'})?.['
 if (!wan_dns)
 	wan_dns = '223.5.5.5';
 
-const dns_port = uci.get(uciconfig, uciinfra, 'dns_port') || '6333';
+const dns_port = uci.get(uciconfig, uciinfra, 'dns_port') || '5333';
 
 const ntp_server = uci.get(uciconfig, uciinfra, 'ntp_server') || 'time.apple.com';
 
@@ -142,7 +142,7 @@ else if (lan_proxy_mode === 'except_listed')
 
 const dns_default_strategy = (ipv6_support !== '1') ? 'ipv4_only' : null;
 
-const mixed_port = uci.get(uciconfig, uciinfra, 'mixed_port') || '6330';
+const mixed_port = uci.get(uciconfig, uciinfra, 'mixed_port') || '5330';
 
 /* UDP session timeout. 300 = sing-box's own 5-minute default (upstream writes 300s too);
  * empty or missing falls back to 300. */

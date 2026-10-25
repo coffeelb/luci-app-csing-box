@@ -86,7 +86,7 @@ start_service() {
 	# DNSMasq rules: clients using the router as resolver are forwarded to the sing-box DNS
 	# inbound; DNS queries sent to external servers are hijacked by the TUN itself.
 	local dns_port
-	config_get dns_port "infra" "dns_port" "6333"
+	config_get dns_port "infra" "dns_port" "5333"
 	mkdir -p "$DNSMASQ_DIR"
 	echo -e "conf-dir=$DNSMASQ_DIR" > "$DNSMASQ_DIR/../dnsmasq-csingbox.conf"
 	cat <<-EOF >> "$DNSMASQ_DIR/redirect-dns.conf"

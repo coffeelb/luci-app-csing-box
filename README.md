@@ -32,7 +32,7 @@ The core is almost completely rewritten. Main differences from upstream:
   pages and options were added or rewritten (panel config page, routing ports, the QUIC switch,
   multi-queue TUN, private-range handling: an `ip_is_private` pre-match `bypass` scoped to `tun-in`
   (kernel-level pass) plus a `direct-out` fallback in the main rules, so for example an internal
-  address reached through the LAN proxy port (6330) is no longer handed to the remote proxy; the
+  address reached through the LAN proxy port (5330) is no longer handed to the remote proxy; the
   static `route_exclude_address` is not written any more, and CGNAT is left alone the way upstream
   does);
 - Files inherited roughly unchanged: `node.js`, `csingbox.uc`, `update_subscriptions.uc` and the

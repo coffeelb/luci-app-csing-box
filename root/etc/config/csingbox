@@ -1,6 +1,6 @@
 config csingbox 'infra'
-	option mixed_port '6330'
-	option dns_port '6333'
+	option mixed_port '5330'
+	option dns_port '5333'
 	option ntp_server 'nil'
 	# UDP session timeout in seconds (300 = sing-box's own default); empty falls back to 300.
 	option udp_timeout '300'

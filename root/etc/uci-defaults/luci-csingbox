@@ -32,6 +32,14 @@ if [ "$(uci -q get csingbox.config.dns_server)" = "tls://8.8.8.8:853" ]; then
 	uci -q set csingbox.config.dns_server='https://dns.google/dns-query'
 fi
 
+# Restore the standard HomeProxy listener ports from the temporary test defaults.
+if [ "$(uci -q get csingbox.infra.mixed_port)" = "6330" ]; then
+	uci -q set csingbox.infra.mixed_port='5330'
+fi
+if [ "$(uci -q get csingbox.infra.dns_port)" = "6333" ]; then
+	uci -q set csingbox.infra.dns_port='5333'
+fi
+
 # --- Obsolete UCI options (features removed in 1.2.0) --------------------------------
 # Note: only csingbox.config.auto_update is dropped here; subscription.auto_update is
 # still in use by the subscription cron job.
