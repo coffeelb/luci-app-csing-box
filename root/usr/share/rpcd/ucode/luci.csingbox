@@ -8,7 +8,6 @@
 'use strict';
 
 import { error, lstat, popen, readfile, writefile } from 'fs';
-import { cursor } from 'uci';
 
 /* Kanged from ucode/luci. Same implementation as shellQuote() in
  * /etc/csingbox/scripts/csingbox.uc; kept inline so this rpcd module does not depend on
@@ -19,8 +18,6 @@ function shellquote(s) {
 
 const CS_DIR = '/etc/csingbox';
 const RUN_DIR = '/var/run/csingbox';
-/* Scratch file for the connectivity check; lives in tmpfs and is removed right after. */
-const CHECK_FILE = '/tmp/csingbox-conn-check';
 
 const methods = {
 	certificate_write: {
@@ -128,8 +125,6 @@ const methods = {
 	connection_check: {
 		args: { site: 'site' },
 		call: function(req) {
-			let url, via_proxy = false;
-
 			switch (req.args?.site) {
 			case 'baidu': {
 				/* Direct link baseline: a plain ICMP ping. ICMP is bypassed by design and cannot be
@@ -147,49 +142,15 @@ const methods = {
 
 				const stat = match(ping_out, /round-trip min\/avg\/max = [0-9.]+\/([0-9.]+)\//);
 
-				return (stat !== null) ? { result: true, ms: int(+stat[1] + 0.5) } : { result: false, ms: 0 };
+				return { result: stat !== null };
 			}
 			case 'google':
-				/* Mozilla's captive-portal probe: plain HTTP, no redirect, body exactly "success".
-				 * Constraints learned on real devices: verified HTTPS can be broken there (this
-				 * device answers TLS verification with rc 5) and wget follows redirects, so an
-				 * http:// URL that 301s to https:// lands back in that broken path. Sending the
-				 * request to the local mixed inbound keeps it off the router's own resolver (the
-				 * proxy resolves the name) and guarantees it cannot leave unproxied. */
-				url = 'http://detectportal.firefox.com/success.txt';
-				via_proxy = true;
-				break;
+				return {
+					result: system(`/usr/bin/wget --spider -qT3 --no-check-certificate https://www.google.com 2>"/dev/null"`, 3100) === 0
+				};
 			default:
 				return { result: false, error: 'illegal site' };
 			}
-
-			/* -q: no progress; -O <file>: the body is needed for the check below; -T5 bounds the
-			 * connect; the timeout in system() covers a stalled run. Remove a stale file first so
-			 * leftovers can never be mistaken for a fresh response. */
-			system(`rm -f ${CHECK_FILE}`);
-			let cmd = `/usr/bin/wget -q -O ${CHECK_FILE} -T5 ${shellquote(url)}`;
-			if (via_proxy) {
-				const uci = cursor();
-				uci.load('csingbox');
-				const port = uci.get('csingbox', 'infra', 'mixed_port') || '6330';
-				cmd = `http_proxy=http://127.0.0.1:${port} ` + cmd;
-			}
-
-			/* clock(true) is CLOCK_MONOTONIC ([seconds, nanoseconds]) — millisecond precision
-			 * without depending on any external tool. */
-			const start = clock(true);
-			const rc = system(cmd + ' 2>"/dev/null"', 6000);
-			const stop = clock(true);
-			let ms = int((stop[0] - start[0]) * 1000 + (stop[1] - start[1]) / 1000000);
-
-			/* A hijack page, a captive portal or an ISP interstitial cannot reproduce this body
-			 * byte for byte, so the verdict does not need TLS to stay honest. */
-			let ok = false;
-			if (rc === 0)
-				ok = trim(readfile(CHECK_FILE) || '') === 'success';
-			system(`rm -f ${CHECK_FILE}`);
-
-			return { result: ok, ms: (ms > 0) ? ms : 0 };
 		}
 	},
 
