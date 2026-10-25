@@ -140,7 +140,7 @@ if (lan_proxy_mode === 'listed_only')
 else if (lan_proxy_mode === 'except_listed')
 	mac_exclude = uci.get(uciconfig, 'control', 'lan_direct_mac_addrs');
 
-const dns_default_strategy = (ipv6_support !== '1') ? 'ipv4_only' : null;
+const dns_default_strategy = (ipv6_support !== '1') ? 'ipv4_only' : 'prefer_ipv6';
 
 const mixed_port = uci.get(uciconfig, uciinfra, 'mixed_port') || '5330';
 
@@ -374,7 +374,6 @@ config.dns = {
 		}
 	],
 	rules: [],
-	strategy: dns_default_strategy,
 	/* Stale-while-revalidate with a short window (the 3d default is too long here). */
 	optimistic: {
 		enabled: true,
@@ -383,6 +382,7 @@ config.dns = {
 	/* Domain names for IP-form connections (logs, dashboard, domain route rules). */
 	reverse_mapping: true
 };
+config.dns.strategy = dns_default_strategy;
 
 if (!isEmpty(main_node)) {
 	/* Main DNS */
